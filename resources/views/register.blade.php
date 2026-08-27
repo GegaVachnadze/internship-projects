@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ka">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
+    <title>{{ __('Register') }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .is-invalid {
@@ -22,6 +22,19 @@
 <body class="bg-light d-flex align-items-center min-vh-100 py-5">
 
     <div class="container" style="max-width: 500px;">
+
+
+        <div class="d-flex justify-content-end mb-3 gap-2">
+            <a href="{{ route('lang.switch', 'ka') }}"
+                class="btn btn-sm {{ app()->getLocale() == 'ka' ? 'btn-primary' : 'btn-outline-secondary' }}">
+                KA
+            </a>
+            <a href="{{ route('lang.switch', 'en') }}"
+                class="btn btn-sm {{ app()->getLocale() == 'en' ? 'btn-primary' : 'btn-outline-secondary' }}">
+                EN
+            </a>
+        </div>
+
         <div class="card shadow-sm border-0 p-4 rounded-4">
             <h3 class="mb-4 text-center fw-bold">{{ __('Register') }}</h3>
 
@@ -36,7 +49,6 @@
                     @enderror
                 </div>
 
-
                 <div class="mb-3">
                     <label for="email" class="form-label fw-semibold">{{ __('Email') }}</label>
                     <input type="email"
@@ -49,7 +61,6 @@
                     @enderror
                 </div>
 
-
                 <div class="mb-3">
                     <label for="password" class="form-label fw-semibold">{{ __('Password') }}</label>
                     <input type="password"
@@ -61,7 +72,6 @@
                     @enderror
                 </div>
 
-
                 <div class="mb-4">
                     <label for="password_confirmation" class="form-label fw-semibold">{{ __('Repeat Password') }}</label>
                     <input type="password"
@@ -69,7 +79,6 @@
                         id="password_confirmation"
                         class="form-control">
                 </div>
-
 
                 <button type="submit" class="btn btn-primary w-100 fw-bold py-2 mb-3">{{ __('Sign up') }}</button>
 
@@ -83,7 +92,6 @@
                 </div>
                 @endif
 
-
                 <a href="{{ route('google.login') }}" class="btn btn-outline-dark w-100 fw-medium py-2 mb-3 d-flex align-items-center justify-content-center gap-2">
                     <svg width="18" height="18" viewBox="0 0 24 24">
                         <path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.7 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.2 9 5 12 5z" />
@@ -93,7 +101,6 @@
                     </svg>
                     {{ __('Google Registration') }}
                 </a>
-
 
                 <div class="text-center small">
                     <span class="text-muted">{{ __('Already have an account?') }}</span>
