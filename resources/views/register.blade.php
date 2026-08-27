@@ -23,13 +23,13 @@
 
     <div class="container" style="max-width: 500px;">
         <div class="card shadow-sm border-0 p-4 rounded-4">
-            <h3 class="mb-4 text-center fw-bold">Registration</h3>
+            <h3 class="mb-4 text-center fw-bold">{{ __('Register') }}</h3>
 
             <form action="{{ route('register') }}" method="POST" novalidate>
                 @csrf
 
                 <div class="mb-3">
-                    <label for="username" class="form-label fw-semibold">Username</label>
+                    <label for="username" class="form-label fw-semibold">{{ __('Username') }}</label>
                     <input type="text" name="username" id="username" value="{{ old('username') }}" class="form-control @error('username') is-invalid @enderror">
                     @error('username')
                     <div class="error-message">{{ $message }}</div>
@@ -38,7 +38,7 @@
 
 
                 <div class="mb-3">
-                    <label for="email" class="form-label fw-semibold">Email</label>
+                    <label for="email" class="form-label fw-semibold">{{ __('Email') }}</label>
                     <input type="email"
                         name="email"
                         id="email"
@@ -51,7 +51,7 @@
 
 
                 <div class="mb-3">
-                    <label for="password" class="form-label fw-semibold">Password</label>
+                    <label for="password" class="form-label fw-semibold">{{ __('Password') }}</label>
                     <input type="password"
                         name="password"
                         id="password"
@@ -63,7 +63,7 @@
 
 
                 <div class="mb-4">
-                    <label for="password_confirmation" class="form-label fw-semibold">Repeat Password</label>
+                    <label for="password_confirmation" class="form-label fw-semibold">{{ __('Repeat Password') }}</label>
                     <input type="password"
                         name="password_confirmation"
                         id="password_confirmation"
@@ -71,7 +71,7 @@
                 </div>
 
 
-                <button type="submit" class="btn btn-primary w-100 fw-bold py-2 mb-3">Sign up</button>
+                <button type="submit" class="btn btn-primary w-100 fw-bold py-2 mb-3">{{ __('Sign up') }}</button>
 
                 @if ($errors->any())
                 <div class="alert alert-danger">
@@ -91,13 +91,13 @@
                         <path fill="#FBBC05" d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.3s.2-1.6.4-2.3L1.9 7.3C.7 9.7 0 10.8 0 12s.7 2.3 1.9 4.7l3.7-2.9z" />
                         <path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.2-6.4-5.2L1.9 16c1.8 3.7 5.6 7 10.1 7z" />
                     </svg>
-                    Google Registration
+                    {{ __('Google Registration') }}
                 </a>
 
 
                 <div class="text-center small">
-                    <span class="text-muted">Already have an account?</span>
-                    <a href="{{ route('login') }}" class="text-decoration-none fw-bold ms-1">Log In</a>
+                    <span class="text-muted">{{ __('Already have an account?') }}</span>
+                    <a href="{{ route('login') }}" class="text-decoration-none fw-bold ms-1">{{ __('Log in') }}</a>
                 </div>
             </form>
         </div>

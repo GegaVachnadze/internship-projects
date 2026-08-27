@@ -10,13 +10,16 @@ use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\App;
 
 class RegisterController extends Controller
 {
     public function showRegistrationForm(): View
     {
+        App::setLocale('ka');
         return view('register');
     }
+
 
     public function register(RegisterRequest $request): RedirectResponse
     {
