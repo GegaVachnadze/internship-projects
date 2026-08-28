@@ -2,8 +2,6 @@
 
 return [
 
-
-
     'accepted' => 'ველი :attribute უნდა იყოს მიღებული.',
     'accepted_if' => 'ველი :attribute უნდა იყოს მიღებული, როცა :other არის :value.',
     'active_url' => 'ველი :attribute უნდა იყოს სწორი URL მისამართი.',
@@ -137,8 +135,6 @@ return [
             'rule-name' => 'custom-message',
         ],
     ],
-
-
 
     'attributes' => [
         'username' => 'მომხმარებლის სახელი',

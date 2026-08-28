@@ -23,7 +23,6 @@
 
     <div class="container" style="max-width: 500px;">
 
-
         <div class="d-flex justify-content-end mb-3 gap-2">
             <a href="{{ route('lang.switch', 'ka') }}"
                 class="btn btn-sm {{ app()->getLocale() == 'ka' ? 'btn-primary' : 'btn-outline-secondary' }}">

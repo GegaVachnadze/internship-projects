@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\App;
 
-Route::get('/lang/{locale}', function ($locale) {
-    if (in_array($locale, ['ka', 'en'])) {
-        session(['locale' => $locale]);
+Route::get('/lang/{lang}', function ($lang) {
+    if (in_array($lang, ['ka', 'en'])) {
+        session()->put('locale', $lang);
     }
     return redirect()->back();
 })->name('lang.switch');
