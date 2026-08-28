@@ -2,18 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
-use Illuminate\Support\Facades\App;
 use Illuminate\Http\RedirectResponse;
 
-Route::get('/lang/{lang}', function ($lang) {
-    if (in_array($lang, ['ka', 'en'])) {
+Route::get('/lang/{lang}', function (string $lang): RedirectResponse {
+    if (in_array($lang, ['en', 'ka'])) {
         session()->put('locale', $lang);
     }
     return redirect()->back();
-})->name('lang.switch');
-
-
-
+});
 
 Route::get('/test-lang', function () {
     return __('validation.required', ['attribute' => 'username']);
