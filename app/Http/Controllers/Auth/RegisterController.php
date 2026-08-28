@@ -10,7 +10,7 @@ use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\App;
+
 
 class RegisterController extends Controller
 {
@@ -22,9 +22,6 @@ class RegisterController extends Controller
 
     public function register(RegisterRequest $request): RedirectResponse
     {
-
-
-
         $user = User::create([
             'username' => $request->username,
             'email'    => $request->email,

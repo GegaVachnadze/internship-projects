@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\App;
+use Illuminate\Http\RedirectResponse;
 
 Route::get('/lang/{lang}', function ($lang) {
     if (in_array($lang, ['ka', 'en'])) {
@@ -12,14 +13,6 @@ Route::get('/lang/{lang}', function ($lang) {
 })->name('lang.switch');
 
 
-Route::get('/debug-lang', function () {
-    return response()->json([
-        'current_locale' => app()->getLocale(),
-        'lang_path' => lang_path(),
-        'ka_file_exists' => file_exists(lang_path('ka.json')),
-        'translation_test' => __('Register'),
-    ]);
-});
 
 
 Route::get('/test-lang', function () {
