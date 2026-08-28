@@ -22,6 +22,11 @@ Route::get('/debug-lang', function () {
 });
 
 
+Route::get('/test-lang', function () {
+    return __('validation.required', ['attribute' => 'username']);
+});
+
+
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 
