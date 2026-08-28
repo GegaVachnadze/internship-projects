@@ -11,9 +11,6 @@ Route::get('/lang/{lang}', function (string $lang): RedirectResponse {
     return redirect()->back();
 })->name('lang.switch');
 
-Route::get('/test-lang', function () {
-    return __('validation.required', ['attribute' => 'username']);
-});
 
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
