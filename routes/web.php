@@ -12,15 +12,6 @@ Route::get('/lang/{locale}', function ($locale) {
 })->name('lang.switch');
 
 
-
-Route::get('/lang/{locale}', function ($locale) {
-    if (in_array($locale, ['ka', 'en'])) {
-        session(['locale' => $locale]);
-    }
-    return redirect()->back();
-})->name('lang.switch');
-
-
 Route::get('/debug-lang', function () {
     return response()->json([
         'current_locale' => app()->getLocale(),
@@ -30,9 +21,6 @@ Route::get('/debug-lang', function () {
     ]);
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);

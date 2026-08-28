@@ -7,5 +7,6 @@
     "Sign up": "Sign up",
     "Google Registration": "Google Registration",
     "Already have an account?": "Already have an account?",
-    "Log in": "Log in"
+    "Log in": "Log in",
+    "Validation.required" : "Validation.required"
 }
