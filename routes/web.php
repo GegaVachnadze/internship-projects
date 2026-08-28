@@ -9,7 +9,7 @@ Route::get('/lang/{lang}', function (string $lang): RedirectResponse {
         session()->put('locale', $lang);
     }
     return redirect()->back();
-});
+})->name('lang.switch');
 
 Route::get('/test-lang', function () {
     return __('validation.required', ['attribute' => 'username']);
