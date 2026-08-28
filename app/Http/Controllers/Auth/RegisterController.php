@@ -16,10 +16,6 @@ class RegisterController extends Controller
 {
     public function showRegistrationForm(): View
     {
-        if (session()->has('locale')) {
-            App::setLocale(session('locale'));
-        }
-
         return view('register');
     }
 
