@@ -197,6 +197,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'username' => 'username',
+        'email' => 'email',
+        'password' => 'password',
+    ],
 
 ];
