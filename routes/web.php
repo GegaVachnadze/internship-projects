@@ -25,9 +25,9 @@ Route::get('/login', function () {
 
 Route::get('/authorize', function () {
     return view('authorize');
-})->name('authorize');
+});
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
