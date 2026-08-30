@@ -11,8 +11,6 @@ Route::get('/lang/{lang}', function (string $lang): RedirectResponse {
     return redirect()->back();
 })->name('lang.switch');
 
-
-
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 
@@ -23,3 +21,13 @@ Route::get('/auth/google', function () {
 Route::get('/login', function () {
     return view('login');
 })->name('login');
+
+
+Route::get('/authorize', function () {
+    return view('authorize');
+})->name('authorize');
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
