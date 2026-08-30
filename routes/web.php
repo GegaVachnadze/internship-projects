@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Controllers\AuthController;
 
 Route::get('/lang/{lang}', function (string $lang): RedirectResponse {
     if (in_array($lang, ['en', 'ka'])) {
@@ -29,3 +30,6 @@ Route::get('/', function () {
 Route::get('/recover-password', function () {
     return view('recover-password');
 });
+
+Route::get('/authorize', [AuthController::class, 'showLogin']);
+Route::post('/authorize', [AuthController::class, 'login'])->name('login.submit');
