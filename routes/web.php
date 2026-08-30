@@ -29,18 +29,16 @@ Route::get('/auth/google', function () {
     return 'Google Auth flow';
 })->name('google.login');
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
 
 Route::get('/authorize', function () {
     return view('authorize');
 });
 
-Route::get('/', function () {
-    return view('home');
-});
 
 Route::get('/forgot-password', function () {
     return view('/forgot-password');
+});
+
+Route::get('/reset-password', function () {
+    return view('reset-password');
 });

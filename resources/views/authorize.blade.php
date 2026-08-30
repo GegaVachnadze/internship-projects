@@ -47,6 +47,10 @@
             </button>
 
             <div class="text-center text-sm text-slate-500 pt-2">
+                დაგავიწყდათ პაროლი? <a href="{{ url('/forgot-password') }}" class="text-indigo-600 font-semibold hover:underline">აღდგენა</a>
+            </div>
+
+            <div class="text-center text-sm text-slate-500 pt-2">
                 არ გაქვთ ანგარიში? <a href="{{ url('/register') }}" class="text-indigo-600 font-semibold hover:underline">რეგისტრაცია</a>
             </div>
 
