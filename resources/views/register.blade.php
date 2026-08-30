@@ -100,11 +100,6 @@
                     </svg>
                     {{ __('Google Registration') }}
                 </a>
-
-                <div class="text-center small">
-                    <span class="text-muted">{{ __('Already have an account?') }}</span>
-                    <a href="{{ route('login') }}" class="text-decoration-none fw-bold ms-1">{{ __('Log in') }}</a>
-                </div>
             </form>
         </div>
     </div>
