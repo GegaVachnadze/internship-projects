@@ -25,7 +25,6 @@
                 <p id="userError" class="text-xs text-rose-500 mt-1.5 hidden font-medium">გთხოვთ შეიყვანოთ მინიმუმ 3 სიმბოლო</p>
             </div>
 
-
             <div>
                 <label for="passwordInput" class="block text-sm font-semibold text-slate-700 mb-1.5">პაროლი</label>
                 <input type="password" id="passwordInput" placeholder="შეიყვანეთ პაროლი"
@@ -33,9 +32,15 @@
                 <p id="passwordError" class="text-xs text-rose-500 mt-1.5 hidden font-medium">პაროლის ველი სავალდებულოა</p>
             </div>
 
+
             <button type="submit" class="w-full py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/25 transition-all active:scale-[0.98]">
                 ავტორიზაცია
             </button>
+
+
+            <div class="text-center text-sm text-slate-500 pt-2">
+                არ გაქვთ ანგარიში? <a href="{{ url('/register') }}" class="text-indigo-600 font-semibold hover:underline">რეგისტრაცია</a>
+            </div>
 
         </form>
     </div>
