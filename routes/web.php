@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\PasswordResetController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/lang/{lang}', function (string $lang): RedirectResponse {
     if (in_array($lang, ['en', 'ka'])) {
@@ -41,4 +41,9 @@ Route::get('/forgot-password', function () {
 
 Route::get('/reset-password', function () {
     return view('reset-password');
+});
+
+
+Route::get('/welcome', function () {
+    return view('welcome');
 });

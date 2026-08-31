@@ -100,10 +100,12 @@
                     </svg>
                     {{ __('Google Registration') }}
                 </a>
+                <div class="text-center text-sm text-slate-500 pt-2">
+                    გაქვთ ანგარიში? <a href="{{ url('/authorize') }}" class="text-indigo-600 font-semibold hover:underline">ავტორიზაცია</a>
+                </div>
             </form>
         </div>
     </div>
-
 </body>
 
 </html>
