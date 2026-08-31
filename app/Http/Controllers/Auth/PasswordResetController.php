@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -18,7 +19,7 @@ class PasswordResetController extends Controller
         return view('auth.forgot-password');
     }
 
-    public function sendResetLink(Request $request): RedirectResponse
+    public function sendResetLink(FormRequest $request): RedirectResponse
     {
         $request->validate(['email' => 'required|email']);
 
@@ -29,12 +30,12 @@ class PasswordResetController extends Controller
             : back()->withErrors(['email' => __($status)]);
     }
 
-    public function showResetForm(Request $request, string $token): View
+    public function showResetForm(FormRequest $request, string $token): View
     {
         return view('reset-password', ['token' => $token, 'email' => $request->email]);
     }
 
-    public function reset(Request $request): RedirectResponse
+    public function reset(FormRequest $request): RedirectResponse
     {
         $request->validate([
             'token' => 'required',
@@ -44,7 +45,7 @@ class PasswordResetController extends Controller
 
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
-            function ($user, $password) {
+            function (\App\Models\User $user, $password): void {
                 $user->forceFill([
                     'password' => Hash::make($password)
                 ])->save();

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class AuthController extends Controller
@@ -13,17 +13,17 @@ class AuthController extends Controller
         return view('authorize');
     }
 
-    public function login(Request $request): RedirectResponse
+    public function login(FormRequest $request): RedirectResponse
     {
         $request->validate([
             'login' => 'required|min:3',
             'password' => 'required',
         ], [
-            'login.required' => 'გთხოვთ შეიყვანოთ Username ან Email',
-            'login.min' => 'Username უნდა შედგებოდეს მინიმუმ 3 სიმბოლოსგან',
-            'password.required' => 'პაროლის ველი სავალდებულოა',
+            'login.required' => __('Please enter Username or Email'),
+            'login.min' => __('Username must be at least 3 characters'),
+            'password.required' => __('Password field is required'),
         ]);
 
-        return back()->with('success', 'ავტორიზაცია წარმატებულია!');
+        return back()->with('success', __('Authorization successful!'));
     }
 }
