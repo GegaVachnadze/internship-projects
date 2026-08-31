@@ -44,7 +44,6 @@ Route::get('/reset-password', function (): View {
     return view('reset-password');
 });
 
-
 Route::get('/welcome', function (): View {
     return view('welcome');
 });

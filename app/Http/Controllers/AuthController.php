@@ -22,6 +22,7 @@ class AuthController extends Controller
             'login.required' => __('Please enter Username or Email'),
             'login.min' => __('Username must be at least 3 characters'),
             'password.required' => __('Password field is required'),
+            'password.confirmed' => __('The password confirmation does not match'),
         ]);
 
         return back()->with('success', __('Authorization successful!'));

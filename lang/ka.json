@@ -10,5 +10,8 @@
     "Log in": "შესვლა",
     "Authorization": "ავტორიზაცია",
     "Forgot Password": "პაროლის აღდგენა",
-    "Please enter Username or Email": "გთხოვთ შეიყვანოთ Username ან Email"
+    "Please enter Username or Email": "გთხოვთ შეიყვანოთ Username ან Email",
+    "Password field is required": "პაროლის ველი სავალდებულოა",
+    "Please fill out this field.": "გთხოვთ შეავსოთ ეს ველი",
+    "Reset Password": "პაროლის აღდგენა"
 }
