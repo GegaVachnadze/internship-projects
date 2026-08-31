@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -13,17 +13,9 @@ class AuthController extends Controller
         return view('authorize');
     }
 
-    public function login(FormRequest $request): RedirectResponse
+    public function login(LoginRequest $request): RedirectResponse
     {
-        $request->validate([
-            'login' => 'required|min:3',
-            'password' => 'required',
-        ], [
-            'login.required' => __('Please enter Username or Email'),
-            'login.min' => __('Username must be at least 3 characters'),
-            'password.required' => __('Password field is required'),
-            'password.confirmed' => __('The password confirmation does not match'),
-        ]);
+        $validated = $request->validated();
 
         return back()->with('success', __('Authorization successful!'));
     }

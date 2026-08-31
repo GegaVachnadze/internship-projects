@@ -4,26 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ __('Register') }}</title>
+    <title>{{ __('auth.register') }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .is-invalid {
-            border-color: #dc3545 !important;
-        }
-
-        .error-message {
-            color: #dc3545;
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-        }
-    </style>
 </head>
 
-<body class="bg-light d-flex align-items-center min-vh-100 py-5">
+<body style="background-color: #f8f9fa; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 3rem 0;">
 
-    <div class="container" style="max-width: 500px;">
+    <div style="max-width: 500px; width: 100%; margin: 0 auto; padding: 0 15px;">
 
-        <div class="d-flex justify-content-end mb-3 gap-2">
+        <div style="display: flex; justify-content: flex-end; margin-bottom: 1rem; gap: 0.5rem;">
             <a href="{{ route('lang.switch', 'ka') }}"
                 class="btn btn-sm {{ app()->getLocale() == 'ka' ? 'btn-primary' : 'btn-outline-secondary' }}">
                 KA
@@ -34,56 +23,56 @@
             </a>
         </div>
 
-        <div class="card shadow-sm border-0 p-4 rounded-4">
-            <h3 class="mb-4 text-center fw-bold">{{ __('Register') }}</h3>
+        <div style="background: #ffffff; border: none; box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); padding: 1.5rem; border-radius: 1rem;">
+            <h3 style="margin-bottom: 1.5rem; text-align: center; font-weight: 700;">{{ __('auth.register') }}</h3>
 
             <form action="{{ route('register') }}" method="POST" novalidate>
                 @csrf
 
-                <div class="mb-3">
-                    <label for="username" class="form-label fw-semibold">{{ __('Username') }}</label>
+                <div style="margin-bottom: 1rem;">
+                    <label for="username" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">{{ __('auth.username') }}</label>
                     <input type="text" name="username" id="username" value="{{ old('username') }}" class="form-control @error('username') is-invalid @enderror">
                     @error('username')
-                    <div class="error-message">{{ $message }}</div>
+                    <div style="color: #dc3545; font-size: 0.875rem; margin-top: 0.25rem;">{{ $message }}</div>
                     @enderror
                 </div>
 
-                <div class="mb-3">
-                    <label for="email" class="form-label fw-semibold">{{ __('Email') }}</label>
+                <div style="margin-bottom: 1rem;">
+                    <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">{{ __('auth.email') }}</label>
                     <input type="email"
                         name="email"
                         id="email"
                         value="{{ old('email') }}"
                         class="form-control @error('email') is-invalid @enderror">
                     @error('email')
-                    <div class="error-message">{{ $message }}</div>
+                    <div style="color: #dc3545; font-size: 0.875rem; margin-top: 0.25rem;">{{ $message }}</div>
                     @enderror
                 </div>
 
-                <div class="mb-3">
-                    <label for="password" class="form-label fw-semibold">{{ __('Password') }}</label>
+                <div style="margin-bottom: 1rem;">
+                    <label for="password" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">{{ __('auth.password') }}</label>
                     <input type="password"
                         name="password"
                         id="password"
                         class="form-control @error('password') is-invalid @enderror">
                     @error('password')
-                    <div class="error-message">{{ $message }}</div>
+                    <div style="color: #dc3545; font-size: 0.875rem; margin-top: 0.25rem;">{{ $message }}</div>
                     @enderror
                 </div>
 
-                <div class="mb-4">
-                    <label for="password_confirmation" class="form-label fw-semibold">{{ __('Repeat Password') }}</label>
+                <div style="margin-bottom: 1.5rem;">
+                    <label for="password_confirmation" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">{{ __('auth.repeat_password') }}</label>
                     <input type="password"
                         name="password_confirmation"
                         id="password_confirmation"
                         class="form-control">
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100 fw-bold py-2 mb-3">{{ __('Sign up') }}</button>
+                <button type="submit" class="btn btn-primary w-100 fw-bold py-2 mb-3">{{ __('auth.sign_up') }}</button>
 
                 @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul class="mb-0">
+                <div class="alert alert-danger" style="margin-bottom: 1rem;">
+                    <ul style="margin-bottom: 0; padding-left: 1rem;">
                         @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                         @endforeach
@@ -98,10 +87,10 @@
                         <path fill="#FBBC05" d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.3s.2-1.6.4-2.3L1.9 7.3C.7 9.7 0 10.8 0 12s.7 2.3 1.9 4.7l3.7-2.9z" />
                         <path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.2-6.4-5.2L1.9 16c1.8 3.7 5.6 7 10.1 7z" />
                     </svg>
-                    {{ __('Google Registration') }}
+                    {{ __('auth.google_reg') }}
                 </a>
-                <div class="text-center text-sm text-slate-500 pt-2">
-                    გაქვთ ანგარიში? <a href="{{ url('/authorize') }}" class="text-indigo-600 font-semibold hover:underline">ავტორიზაცია</a>
+                <div style="text-align: center; font-size: 0.875rem; color: #64748b; padding-top: 0.5rem;">
+                    {{ __('auth.have_account_q') }} <a href="{{ url('/authorize') }}" style="color: #4f46e5; font-weight: 600; text-decoration: underline;">{{ __('auth.authorization') }}</a>
                 </div>
             </form>
         </div>

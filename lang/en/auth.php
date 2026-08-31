@@ -1,20 +1,31 @@
 <?php
 
 return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | Authentication Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used during authentication for various
-    | messages that we need to display to the user. You are free to modify
-    | these language lines according to your application's requirements.
-    |
-    */
-
     'failed' => 'These credentials do not match our records.',
-    'password' => 'The provided password is incorrect.',
+    'password' => 'Password',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'authorization' => 'Authorization',
+    'login' => 'Log in',
+    'forgot_password' => 'Forgot Password',
+    'welcome' => 'Welcome',
+    'enter_details' => 'Enter your details to log in',
+    'username_or_email' => 'Username or Email',
+    'placeholder_login' => 'Ex: user123 or email@domain.com',
+    'placeholder_password' => 'Enter password',
+    'forgot_password_q' => 'Forgot password?',
+    'recover' => 'Reset',
+    'no_account' => "Don't have an account?",
+    'register' => 'Register',
+    'username' => 'Username',
+    'email' => 'Email',
+    'repeat_password' => 'Repeat Password',
+    'sign_up' => 'Sign up',
+    'google_reg' => 'Google Registration',
+    'have_account_q' => 'Already have an account?',
+    'reset_password_title' => 'Reset Password',
+    'reset_password_text' => 'Enter your email and we will send you a reset link',
+    'send_reset_link' => 'Send Reset Link',
+    'enter_new_password_text' => 'Enter a new password for your account',
+    'password_confirmation' => 'Repeat Password'
 
-];
+];;

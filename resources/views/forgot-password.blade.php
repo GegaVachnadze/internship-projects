@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ka">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>პაროლის აღდგენა</title>
+    <title>{{ __('auth.reset_password_title') }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -12,8 +12,8 @@
 
     <div class="w-full max-w-md p-8 bg-white rounded-2xl shadow-xl border border-slate-100">
         <div class="text-center mb-8">
-            <h1 class="text-2xl font-bold text-slate-800">პაროლის აღდგენა</h1>
-            <p class="text-sm text-slate-500 mt-1">შეიყვანეთ თქვენი ელ-ფოსტა და გამოგიგზავნით აღდგენის ბმულს</p>
+            <h1 class="text-2xl font-bold text-slate-800">{{ __('auth.reset_password_title') }}</h1>
+            <p class="text-sm text-slate-500 mt-1">{{ __('auth.reset_password_text') }}</p>
         </div>
 
         @if (session('status'))
@@ -36,16 +36,15 @@
             </div>
 
             <button type="submit" class="w-full py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/25 transition-all active:scale-[0.98]">
-                აღდგენის ლინკის გაგზავნა
+                {{ __('auth.send_reset_link') }}
             </button>
 
             <div class="text-center text-sm text-slate-500 pt-2">
-                <a href="{{ url('/authorize') }}" class="text-indigo-600 font-semibold hover:underline">ავტორიზაცია</a>
+                <a href="{{ url('/authorize') }}" class="text-indigo-600 font-semibold hover:underline">{{ __('auth.authorization') }}</a>
             </div>
         </form>
     </div>
 
 </body>
-
 
 </html>
