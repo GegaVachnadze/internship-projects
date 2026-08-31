@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\AuthController;
+use Illuminate\View\View;
 
 Route::get('/lang/{lang}', function (string $lang): RedirectResponse {
     if (in_array($lang, ['en', 'ka'])) {
@@ -30,20 +31,20 @@ Route::get('/auth/google', function () {
 })->name('google.login');
 
 
-Route::get('/authorize', function () {
+Route::get('/authorize', function (): View {
     return view('authorize');
 });
 
 
-Route::get('/forgot-password', function () {
+Route::get('/forgot-password', function (): View {
     return view('/forgot-password');
 });
 
-Route::get('/reset-password', function () {
+Route::get('/reset-password', function (): View {
     return view('reset-password');
 });
 
 
-Route::get('/welcome', function () {
+Route::get('/welcome', function (): View {
     return view('welcome');
 });
