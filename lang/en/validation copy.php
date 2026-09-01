@@ -150,9 +150,8 @@ return [
     ],
 
     'attributes' => [
-        'username' => 'username',
         'email' => 'email',
+        'username' => 'username',
         'password' => 'password',
     ],
-
 ];

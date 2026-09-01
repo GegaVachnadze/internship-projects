@@ -4,13 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\View\View;
-
+use App\Http\Requests\RegisterRequest;
 
 class RegisterController extends Controller
 {
@@ -19,12 +18,12 @@ class RegisterController extends Controller
         return view('register');
     }
 
-
     public function register(RegisterRequest $request): RedirectResponse
     {
+
         $user = User::create([
             'username' => $request->username,
-            'email'    => $request->email,
+            'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
@@ -32,6 +31,6 @@ class RegisterController extends Controller
 
         Auth::login($user);
 
-        return redirect()->back()->with('show_verify_modal', true);
+        return redirect()->route('register');
     }
 }

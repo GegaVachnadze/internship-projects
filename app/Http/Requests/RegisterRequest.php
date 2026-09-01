@@ -14,39 +14,9 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => [
-                'required',
-                'string',
-                'min:3',
-                'max:15',
-                'regex:/^[a-z0-9]+$/',
-                'unique:users,username',
-            ],
-            'email' => [
-                'required',
-                'email',
-                'unique:users,email',
-            ],
-            'password' => [
-                'required',
-                'min:8',
-                'max:15',
-                'regex:/^[a-z0-9]+$/',
-                'confirmed',
-            ],
-            'password_confirmation' => [
-                'required',
-            ],
-        ];
-    }
-
-    public function attributes(): array
-    {
-        return [
-            'username'              => __('Username'),
-            'email'                 => __('Email'),
-            'password'              => __('Password'),
-            'password_confirmation' => __('Repeat Password'),
+            'username' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ];
     }
 }

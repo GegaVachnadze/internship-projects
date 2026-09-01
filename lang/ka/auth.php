@@ -1,0 +1,28 @@
+<?php
+return [
+    'authorization' => 'ავტორიზაცია',
+    'login' => 'შესვლა',
+    'forgot_password' => 'პაროლის აღდგენა',
+    'welcome' => 'მოგესალმებით',
+    'enter_details' => 'შეიყვანეთ თქვენი მონაცემები სისტემაში შესასვლელად',
+    'username_or_email' => 'Username ან Email',
+    'placeholder_login' => 'მაგ: user123 ან email@domain.com',
+    'placeholder_password' => 'შეიყვანეთ პაროლი',
+    'password' => 'პაროლი',
+    'forgot_password_q' => 'დაგავიწყდათ პაროლი?',
+    'recover' => 'აღდგენა',
+    'no_account' => 'არ გაქვთ ანგარიში?',
+    'register' => 'რეგისტრაცია',
+    'reset_password_title' => 'პაროლის აღდგენა',
+    'reset_password_text' => 'შეიყვანეთ თქვენი ელ-ფოსტა და გამოგიგზავნით აღდგენის ბმულს',
+    'send_reset_link' => 'აღდგენის ლინკის გაგზავნა',
+    'have_account_q' => 'გაქვთ ანგარიში?',
+    'username' => 'მომხმარებელი',
+    'email' => 'ელ-ფოსტა',
+    'repeat_password' => 'გაიმეორეთ პაროლი',
+    'sign_up' => 'რეგისტრაცია',
+    'google_reg' => 'Google-ით რეგისტრაცია',
+    'password_confirmation' => 'პაროლის გამეორება',
+    'enter_new_password_text' => 'შეიყვანეთ ახალი პაროლი აღსადგენად',
+    'create_password' => "შექმენით ახალი პაროლი"
+];
