@@ -5,9 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\AuthController;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\LocalizationController;
-
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
@@ -21,7 +19,11 @@ Route::post('/forgot-password', [PasswordResetController::class, 'sendResetLink'
 Route::get('/reset-password/{token}', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
 Route::post('/reset-password', [PasswordResetController::class, 'reset'])->name('password.update');
 
-Route::get('lang/{locale}', [LocalizationController::class, 'switch']);
+Route::get('lang/{locale}', [LocalizationController::class, 'switch'])->name('lang.switch');
+
+Route::get('reset-password/{token}', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
+Route::post('reset-password', [PasswordResetController::class, 'reset'])->name('password.update');
+
 
 Route::get('/auth/google', function (): View {
     return view('google.login');
@@ -33,21 +35,6 @@ Route::get('/authorize', function (): View {
 });
 
 
-Route::get('/forgot-password', function (): View {
-    return view('/forgot-password');
-});
-
-Route::get('/reset-password', function (): View {
-    return view('reset-password');
-});
-
 Route::get('/welcome', function (): View {
     return view('welcome');
 });
-
-Route::get('lang/{locale}', function ($locale) {
-    if (in_array($locale, ['en', 'ka'])) {
-        Session::put('locale', $locale);
-    }
-    return redirect()->back();
-})->name('locale.change');
