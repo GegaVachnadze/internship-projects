@@ -1,6 +1,7 @@
 <?php
 
 return [
+    "email" => "Email",
     'failed' => 'These credentials do not match our records.',
     'password' => 'Password',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
@@ -17,7 +18,6 @@ return [
     'no_account' => "Don't have an account?",
     'register' => 'Register',
     'username' => 'Username',
-    'email' => 'Email',
     'repeat_password' => 'Repeat Password',
     'sign_up' => 'Sign up',
     'google_reg' => 'Google Registration',
@@ -26,6 +26,6 @@ return [
     'reset_password_text' => 'Enter your email and we will send you a reset link',
     'send_reset_link' => 'Send Reset Link',
     'enter_new_password_text' => 'Enter a new password for your account',
-    'password_confirmation' => 'Repeat Password'
-
+    'password_confirmation' => 'Repeat Password',
+    'create_password' => "Create new password"
 ];;

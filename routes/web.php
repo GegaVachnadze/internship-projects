@@ -2,17 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
-use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\AuthController;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\App;
 
-Route::get('/lang/{lang}', function (string $lang): RedirectResponse {
-    if (in_array($lang, ['en', 'ka'])) {
-        session()->put('locale', $lang);
-    }
-    return redirect()->back();
-})->name('lang.switch');
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
@@ -26,8 +21,8 @@ Route::post('/forgot-password', [PasswordResetController::class, 'sendResetLink'
 Route::get('/reset-password/{token}', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
 Route::post('/reset-password', [PasswordResetController::class, 'reset'])->name('password.update');
 
-Route::get('/auth/google', function () {
-    return 'Google Auth flow';
+Route::get('/auth/google', function (): View {
+    return view('google.login');
 })->name('google.login');
 
 
@@ -47,3 +42,18 @@ Route::get('/reset-password', function (): View {
 Route::get('/welcome', function (): View {
     return view('welcome');
 });
+
+Route::get('lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'ka'])) {
+        Session::put('locale', $locale);
+    }
+    return redirect()->back();
+})->name('locale.change');
+
+Route::get('lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'ka'])) {
+        session(['locale' => $locale]);
+        App::setLocale($locale);
+    }
+    return redirect()->back();
+})->name('lang.switch');

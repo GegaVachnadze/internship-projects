@@ -7,21 +7,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class PasswordResetController extends Controller
 {
-
     public function showLinkRequestForm(): View
     {
         return view('auth.forgot-password');
     }
 
-    public function sendResetLink(FormRequest $request): RedirectResponse
+    public function sendResetLink(Request $request): RedirectResponse
     {
-        $request->validate(['email' => 'required|email']);
+        $request->validate([
+            'email' => ['required', 'string', 'email'],
+        ]);
 
         $status = Password::sendResetLink($request->only('email'));
 
@@ -30,17 +30,17 @@ class PasswordResetController extends Controller
             : back()->withErrors(['email' => __($status)]);
     }
 
-    public function showResetForm(FormRequest $request, string $token): View
+    public function showResetForm(Request $request, string $token): View
     {
         return view('reset-password', ['token' => $token, 'email' => $request->email]);
     }
 
-    public function reset(FormRequest $request): RedirectResponse
+    public function reset(Request $request): RedirectResponse
     {
         $request->validate([
-            'token' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|min:8|confirmed',
+            'token' => ['required'],
+            'email' => ['required', 'string', 'email'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
         $status = Password::reset(

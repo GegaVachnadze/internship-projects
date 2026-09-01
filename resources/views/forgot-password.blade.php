@@ -26,7 +26,7 @@
             @csrf
 
             <div>
-                <label for="emailInput" class="block text-sm font-semibold text-slate-700 mb-1.5">Email</label>
+                <label for="email" class="block text-sm font-semibold text-slate-700 mb-1.5">{{ __('auth.email') }}</label>
                 <input type="email" id="emailInput" name="email" value="{{ old('email') }}" placeholder="email@domain.com"
                     class="w-full px-4 py-3 text-sm bg-slate-50 border @error('email') border-rose-500 bg-rose-50 @else border-slate-300 @enderror rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all">
 

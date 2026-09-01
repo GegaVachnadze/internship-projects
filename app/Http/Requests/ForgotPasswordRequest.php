@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
-class ForgotPasswordRequest extends FormRequest
+class ForgotPasswordRequest extends Request
 {
     public function authorize(): bool
     {
@@ -25,7 +25,7 @@ class ForgotPasswordRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'email' => __('auth.email'),
+            'email' => 'email'
         ];
     }
 }

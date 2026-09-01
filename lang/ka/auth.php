@@ -16,12 +16,13 @@ return [
     'reset_password_title' => 'პაროლის აღდგენა',
     'reset_password_text' => 'შეიყვანეთ თქვენი ელ-ფოსტა და გამოგიგზავნით აღდგენის ბმულს',
     'send_reset_link' => 'აღდგენის ლინკის გაგზავნა',
-    'enter_new_password_text' => 'შეიყვანეთ ახალი პაროლი თქვენი ანგარიშისთვის',
     'have_account_q' => 'გაქვთ ანგარიში?',
     'username' => 'მომხმარებელი',
-    'email' => 'იმეილი',
+    'email' => 'ელ-ფოსტა',
     'repeat_password' => 'გაიმეორეთ პაროლი',
     'sign_up' => 'რეგისტრაცია',
     'google_reg' => 'Google-ით რეგისტრაცია',
-    'password_confirmation' => 'პაროლის გამეორება'
+    'password_confirmation' => 'პაროლის გამეორება',
+    'enter_new_password_text' => 'შეიყვანეთ ახალი პაროლი აღსადგენად',
+    'create_password' => "შექმენით ახალი პაროლი"
 ];
