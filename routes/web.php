@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminPanelController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\PasswordResetController;
@@ -24,6 +25,7 @@ Route::get('lang/{locale}', [LocalizationController::class, 'switch'])->name('la
 Route::get('reset-password/{token}', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
 Route::post('reset-password', [PasswordResetController::class, 'reset'])->name('password.update');
 
+Route::get('lang/{locale}', [AdminPanelController::class, 'changeLocale'])->name('locale.change');
 
 Route::get('/auth/google', function (): View {
     return view('google.login');
@@ -37,4 +39,8 @@ Route::get('/authorize', function (): View {
 
 Route::get('/welcome', function (): View {
     return view('welcome');
+});
+
+Route::get('/admin-panel', function () {
+    return view('admin-panel');
 });
