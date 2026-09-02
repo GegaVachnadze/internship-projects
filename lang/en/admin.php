@@ -39,4 +39,10 @@ return [
 
     'save' => 'Save',
     'update' => 'Update',
+
+    'title' => 'Admin-Panel',
+    'base_configuration' => 'Base Configuration',
+    'make_migrations_and_seeders' => 'Make Migrations And Seeders Files',
+    'project_design' => 'Project Design',
+    'ui_styles_layout' => "Ui Styles And Layouts"
 ];

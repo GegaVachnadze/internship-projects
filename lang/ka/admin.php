@@ -1,8 +1,8 @@
 <?php
 return [
 
-    'my_tasks' => 'My Tasks',
-    'due_tasks' => 'Due Tasks',
+    'my_tasks' => 'ჩემი დავალებები',
+    'due_tasks' => 'გასაკეთებელი დავალებები',
     'edit_profile' => 'პროფილის რედაქტირება',
     'logout' => 'გასვლა',
     'user' => 'მომხმარებელი',
@@ -39,4 +39,10 @@ return [
 
     'save' => 'შენახვა',
     'update' => 'განახლება',
+
+    'title' => 'ადმინ-პანელი',
+    'base_configuration' => 'ბაზის კონფიგურაცია',
+    'make_migrations_and_seeders' => 'Migration და Seeder ფაილების შექმნა',
+    'project_design' => 'პროექტის დიზაინი',
+    'ui_styles_layout' => "UI სტილების დაწყობა და განლაგება"
 ];
