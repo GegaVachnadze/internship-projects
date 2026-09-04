@@ -7,6 +7,8 @@ use App\Http\Controllers\AuthController;
 use Illuminate\View\View;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\TaskAddController;
+use App\Http\Controllers\DeleteTableController;
+use App\Http\Controllers\EditTaskController;
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
@@ -27,6 +29,11 @@ Route::get('/tasks/create', [TaskAddController::class, 'create'])->name('tasks.c
 Route::post('/tasks', [TaskAddController::class, 'store'])->name('tasks.store');
 
 Route::get('/admin-panel', [TaskAddController::class, 'showAssignments']);
+
+Route::delete('/tasks/{id}', [DeleteTableController::class, 'clearTask'])->name('tasks.destroy');
+
+Route::get('/tasks/{id}/edit', [EditTaskController::class, 'edit'])->name('tasks.edit');
+Route::put('/tasks/{id}', [EditTaskController::class, 'update'])->name('tasks.update');
 
 Route::get('/auth/google', function (): View {
     return view('google.login');

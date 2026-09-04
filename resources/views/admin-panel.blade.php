@@ -99,7 +99,7 @@
                                     <div style="display: flex; justify-content: center; gap: 8px;">
                                         <a href="/tasks/{{ $task->id }}" style="background-color: #17a2b8; color: white; padding: 6px 10px; border-radius: 4px; text-decoration: none;" title="{{ __('admin.view') }}">👁️</a>
                                         <a href="/tasks/{{ $task->id }}/edit" style="background-color: #ffc107; color: #212529; padding: 6px 10px; border-radius: 4px; text-decoration: none;" title="{{ __('admin.edit') }}">✏️</a>
-                                        <form action="/tasks/{{ $task->id }}/delete" method="POST" style="margin: 0; display: inline;">
+                                        <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="margin: 0; display: inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" style="background-color: #dc3545; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer;" title="{{ __('admin.delete') }}">🗑️</button>
