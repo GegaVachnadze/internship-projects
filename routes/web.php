@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\AdminPanelController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\AuthController;
 use Illuminate\View\View;
 use App\Http\Controllers\LocalizationController;
+use App\Http\Controllers\TaskAddController;
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
@@ -22,25 +22,12 @@ Route::post('/reset-password', [PasswordResetController::class, 'reset'])->name(
 
 Route::get('lang/{locale}', [LocalizationController::class, 'switch'])->name('lang.switch');
 
-Route::get('reset-password/{token}', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
-Route::post('reset-password', [PasswordResetController::class, 'reset'])->name('password.update');
+Route::get('/tasks', [TaskAddController::class, 'index'])->name('tasks.index');
+Route::get('/tasks/create', [TaskAddController::class, 'create'])->name('tasks.create');
+Route::post('/tasks', [TaskAddController::class, 'store'])->name('tasks.store');
 
-Route::get('lang/{locale}', [AdminPanelController::class, 'changeLocale'])->name('locale.change');
+Route::get('/admin-panel', [TaskAddController::class, 'showAssignments']);
 
 Route::get('/auth/google', function (): View {
     return view('google.login');
 })->name('google.login');
-
-
-Route::get('/authorize', function (): View {
-    return view('authorize');
-});
-
-
-Route::get('/welcome', function (): View {
-    return view('welcome');
-});
-
-Route::get('/admin-panel', function () {
-    return view('admin-panel');
-});

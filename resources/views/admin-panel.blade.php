@@ -10,9 +10,7 @@
 <body>
     <div style="display: flex; height: 100vh; font-family: Arial, sans-serif; background-color: #f4f6f9; margin: 0; overflow: hidden;">
 
-
         <div style="width: 260px; background-color: #343a40; color: #ffffff; display: flex; flex-direction: column; padding: 20px; box-sizing: border-box;">
-
 
             <div style="display: flex; align-items: center; margin-bottom: 30px; border-bottom: 1px solid #4b545c; padding-bottom: 15px;">
                 <img src="/default-avatar.png" alt="Avatar" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; background-color: #6c757d; margin-right: 15px;">
@@ -21,7 +19,6 @@
                     <div style="font-size: 12px; color: #adb5bd;">{{ __('admin.admin') }}</div>
                 </div>
             </div>
-
 
             <div style="display: flex; flex-direction: column; gap: 10px; flex-grow: 1;">
                 <a href="/tasks" style="color: #ffffff; text-decoration: none; padding: 10px 15px; border-radius: 5px; background-color: #007bff; display: flex; align-items: center; gap: 10px; font-size: 14px;">
@@ -35,7 +32,6 @@
                 </a>
             </div>
 
-
             <div>
                 <form action="/logout" method="POST" style="margin: 0;">
                     @csrf
@@ -46,26 +42,23 @@
             </div>
         </div>
 
-
         <div style="flex-grow: 1; display: flex; flex-direction: column; overflow-y: auto;">
-
 
             <div style="background-color: #ffffff; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #dee2e6; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
                 <h1 style="margin: 0; font-size: 22px; color: #333;">{{ __('admin.all_tasks') }}</h1>
 
                 <div style="display: flex; align-items: center; gap: 15px;">
-                    <!-- Language Switcher -->
+
                     <select onchange="window.location.href='/lang/' + this.value" style="padding: 6px 10px; border-radius: 4px; border: 1px solid #ced4da; background-color: #fff; cursor: pointer;">
                         <option value="ka" {{ app()->getLocale() == 'ka' ? 'selected' : '' }}>ქართული</option>
                         <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>English</option>
                     </select>
 
-                    <!-- Add Task Button -->
+
                     <a href="/tasks/create" style="background-color: #28a745; color: white; padding: 8px 15px; border-radius: 4px; text-decoration: none; font-size: 14px; font-weight: bold; display: flex; align-items: center; gap: 5px;">
                         <span>➕</span> {{ __('admin.add_task') }}
                     </a>
 
-                    <!-- Delete Old/Due Tasks Button -->
                     <form action="/tasks/clear-due" method="POST" style="margin: 0;">
                         @csrf
                         <button type="submit" style="background-color: #ffc107; color: #212529; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: bold; display: flex; align-items: center; gap: 5px;">
@@ -74,7 +67,6 @@
                     </form>
                 </div>
             </div>
-
 
             <div style="padding: 30px; box-sizing: border-box;">
                 <div style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05); overflow: hidden;">
@@ -89,17 +81,25 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            @foreach($tasks as $task)
                             <tr style="border-bottom: 1px solid #dee2e6;">
-                                <td style="padding: 15px; font-weight: 500; color: #333;">{{__('admin.project_design')}}</td>
-                                <td style="padding: 15px; color: #666;">{{__('admin.ui_styles_layout')}}</td>
-                                <td style="padding: 15px; color: #666;">2026-09-01</td>
-                                <td style="padding: 15px; color: #28a745;">2026-09-05</td>
+
+                                <td style="padding: 15px; font-weight: 500; color: #333;">
+                                    {{ app()->getLocale() == 'ka' ? $task->title_ka : $task->title_en }}
+                                </td>
+
+
+                                <td style="padding: 15px; color: #666;">
+                                    {{ app()->getLocale() == 'ka' ? $task->description_ka : $task->description_en }}
+                                </td>
+
+                                <td style="padding: 15px; color: #666;">{{ $task->created_at->format('Y-m-d') }}</td>
+                                <td style="padding: 15px; color: #28a745;">{{ $task->due_date }}</td>
                                 <td style="padding: 15px; text-align: center;">
                                     <div style="display: flex; justify-content: center; gap: 8px;">
-                                        <a href="/tasks/1" style="background-color: #17a2b8; color: white; padding: 6px 10px; border-radius: 4px; text-decoration: none;" title="{{ __('admin.view') }}">👁️</a>
-                                        <a href="/tasks/1/edit" style="background-color: #ffc107; color: #212529; padding: 6px 10px; border-radius: 4px; text-decoration: none;" title="{{ __('admin.edit') }}">✏️</a>
-                                        <form action="/tasks/1/delete" method="POST" style="margin: 0; display: inline;">
+                                        <a href="/tasks/{{ $task->id }}" style="background-color: #17a2b8; color: white; padding: 6px 10px; border-radius: 4px; text-decoration: none;" title="{{ __('admin.view') }}">👁️</a>
+                                        <a href="/tasks/{{ $task->id }}/edit" style="background-color: #ffc107; color: #212529; padding: 6px 10px; border-radius: 4px; text-decoration: none;" title="{{ __('admin.edit') }}">✏️</a>
+                                        <form action="/tasks/{{ $task->id }}/delete" method="POST" style="margin: 0; display: inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" style="background-color: #dc3545; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer;" title="{{ __('admin.delete') }}">🗑️</button>
@@ -107,25 +107,7 @@
                                     </div>
                                 </td>
                             </tr>
-
-
-                            <tr style="border-bottom: 1px solid #dee2e6;">
-                                <td style="padding: 15px; font-weight: 500; color: #333;">{{__('admin.base_configuration')}}</td>
-                                <td style="padding: 15px; color: #666;">{{__('admin.make_migrations_and_seeders')}}</td>
-                                <td style="padding: 15px; color: #666;">2026-08-20</td>
-                                <td style="padding: 15px; color: #dc3545; font-weight: bold;">2026-08-25</td>
-                                <td style="padding: 15px; text-align: center;">
-                                    <div style="display: flex; justify-content: center; gap: 8px;">
-                                        <a href="/tasks/2" style="background-color: #17a2b8; color: white; padding: 6px 10px; border-radius: 4px; text-decoration: none;" title="{{ __('admin.view') }}">👁️</a>
-                                        <a href="/tasks/2/edit" style="background-color: #ffc107; color: #212529; padding: 6px 10px; border-radius: 4px; text-decoration: none;" title="{{ __('admin.edit') }}">✏️</a>
-                                        <form action="/tasks/2/delete" method="POST" style="margin: 0; display: inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" style="background-color: #dc3545; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer;" title="{{ __('admin.delete') }}">🗑️</button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->string('title_en');
-            $table->string('title_ka');
-            $table->text('description_en');
-            $table->text('description_ka');
-            $table->date('due_date');
+            $table->string('title_en')->nullable();
+            $table->string('title_ka')->nullable();
+            $table->text('description_en')->nullable();
+            $table->text('description_ka')->nullable();
+            $table->date('due_date')->nullable();
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      */
