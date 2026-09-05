@@ -8,8 +8,6 @@ return [
     'user' => 'User',
     'admin' => 'Admin',
 
-
-
     'all_tasks' => 'All Tasks',
     'add_task' => 'Add Task',
     'clear_old_tasks' => 'Clear Old Tasks',
@@ -18,12 +16,10 @@ return [
     'edit' => 'Edit',
     'delete' => 'Delete',
 
-
     'task_name' => 'Task Name',
     'description' => 'Description',
     'created_at' => 'Created At',
     'due_date' => 'Due Date',
-
 
     'task_name_en' => 'Task Name (EN)',
     'task_name_ka' => 'Task Name (KA)',
@@ -31,12 +27,10 @@ return [
     'description_ka' => 'Description (KA)',
     'due_date_field' => 'Due Date: ',
 
-
     'current_password' => 'Current Password',
     'new_password' => 'New Password',
     'confirm_new_password' => 'Confirm New Password',
     'profile_photo' => 'Profile Photo',
-
 
     'save' => 'Save',
     'update' => 'Update',
@@ -49,5 +43,10 @@ return [
     'georgian' => 'ქართული',
     'english' => "English",
     'only_english' => 'Only English, min:3',
-    'only_georgian' => 'Only Georgian, min:3'
+    'only_georgian' => 'Only Georgian, min:3',
+
+
+    'due_tasks_page_title' => 'Due Tasks',
+    'due_tasks_subtitle' => 'This page displays only overdue tasks.',
+    'no_due_tasks' => '🎉 No overdue tasks found!',
 ];

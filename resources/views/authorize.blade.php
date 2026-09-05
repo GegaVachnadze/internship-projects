@@ -40,7 +40,7 @@
             </div>
 
             <button type="submit" class="w-full py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/25 transition-all active:scale-[0.98]">
-                {{ __('auth.login') }}
+                <a href="/admin-panel">{{ __('auth.login') }}</a>
             </button>
 
             <div class="text-center text-sm text-slate-500 pt-2">

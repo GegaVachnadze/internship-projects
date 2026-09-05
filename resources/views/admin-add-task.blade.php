@@ -5,38 +5,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ __('admin.add_task') }}</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
-<body style="margin: 0; font-family: Arial, sans-serif; background-color: #f4f6f9;">
+<body class="bg-gray-900 text-gray-100 font-sans m-0">
 
-    <div style="display: flex; height: 100vh; overflow: hidden;">
+    <div class="flex h-screen overflow-hidden">
 
 
-        <div style="width: 260px; background-color: #343a40; color: #ffffff; display: flex; flex-direction: column; padding: 20px; box-sizing: border-box;">
-            <div style="display: flex; align-items: center; margin-bottom: 30px; border-bottom: 1px solid #4b545c; padding-bottom: 15px;">
-                <img src="/default-avatar.png" alt="Avatar" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; background-color: #6c757d; margin-right: 15px;">
+        <div class="w-64 bg-gray-800 border-r border-gray-700 text-white flex flex-col p-4 box-border">
+            <div class="flex items-center mb-8 pb-4 border-b border-gray-700 px-2">
+                <img src="/default-avatar.png" alt="Avatar" class="w-12 h-12 rounded-full object-cover bg-gray-700 mr-3.5">
                 <div>
-                    <div style="font-weight: bold; font-size: 16px;">{{ __('admin.user') }}</div>
-                    <div style="font-size: 12px; color: #adb5bd;">{{ __('admin.admin') }}</div>
+                    <div class="font-bold text-base text-white">{{ __('admin.user') }}</div>
+                    <div class="text-xs text-gray-400">{{ __('admin.admin') }}</div>
                 </div>
             </div>
 
-            <div style="display: flex; flex-direction: column; gap: 10px; flex-grow: 1;">
-                <a href="/tasks" style="color: #c2c7d0; text-decoration: none; padding: 10px 15px; border-radius: 5px; display: flex; align-items: center; gap: 10px; font-size: 14px;">
+            <div class="flex flex-col gap-2.5 flex-grow">
+                <a href="/admin-panel" class="text-gray-400 hover:bg-gray-700 hover:text-white text-decoration-none px-4 py-2.5 rounded-lg flex items-center gap-2.5 text-sm transition">
                     <span>✅</span> {{ __('admin.my_tasks') }}
                 </a>
-                <a href="/tasks/due" style="color: #c2c7d0; text-decoration: none; padding: 10px 15px; border-radius: 5px; display: flex; align-items: center; gap: 10px; font-size: 14px;">
+                <a href="{{ route('tasks.due-tasks') }}" class="text-gray-400 hover:bg-gray-700 hover:text-white text-decoration-none px-4 py-2.5 rounded-lg flex items-center gap-2.5 text-sm transition">
                     <span>⏰</span> {{ __('admin.due_tasks') }}
                 </a>
-                <a href="/profile/edit" style="color: #c2c7d0; text-decoration: none; padding: 10px 15px; border-radius: 5px; display: flex; align-items: center; gap: 10px; font-size: 14px;">
+                <a href="/profile/edit" class="text-gray-400 hover:bg-gray-700 hover:text-white text-decoration-none px-4 py-2.5 rounded-lg flex items-center gap-2.5 text-sm transition">
                     <span>🛠️</span> {{ __('admin.edit_profile') }}
                 </a>
             </div>
 
             <div>
-                <form action="/logout" method="POST" style="margin: 0;">
+                <form action="/logout" method="POST" class="m-0">
                     @csrf
-                    <button type="submit" style="width: 100%; background-color: #dc3545; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 14px;">
+                    <button type="submit" class="w-full bg-red-600 hover:bg-red-500 text-white border-none px-4 py-2.5 rounded-lg cursor-pointer flex items-center justify-center gap-2.5 text-sm font-medium transition">
                         <span>🚪</span> {{ __('admin.logout') }}
                     </button>
                 </form>
@@ -44,70 +45,70 @@
         </div>
 
 
-        <div style="flex-grow: 1; display: flex; flex-direction: column; overflow-y: auto;">
+        <div class="flex-grow flex flex-col overflow-y-auto">
 
 
-            <div style="background-color: #ffffff; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #dee2e6;">
-                <h1 style="margin: 0; font-size: 22px; color: #333;">{{ __('admin.add_task') }}</h1>
-                <select onchange="window.location.href='/lang/' + this.value" style="padding: 6px 10px; border-radius: 4px; border: 1px solid #ced4da; cursor: pointer;">
+            <div class="bg-gray-800 px-8 py-4 flex justify-between items-center border-b border-gray-700">
+                <h1 class="m-0 text-2xl font-bold text-white">{{ __('admin.add_task') }}</h1>
+                <select onchange="window.location.href='/lang/' + this.value" class="bg-gray-700 border border-gray-600 rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none focus:border-red-500 cursor-pointer">
                     <option value="ka" {{ app()->getLocale() == 'ka' ? 'selected' : '' }}>{{__('admin.georgian')}}</option>
                     <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>{{__('admin.english')}}</option>
                 </select>
             </div>
 
 
-            <div style="padding: 30px; box-sizing: border-box; max-width: 700px;">
-                <div style="background-color: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+            <div class="p-8 box-border max-w-[700px]">
+                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 shadow-lg">
                     <form action="/tasks" method="POST">
                         @csrf
 
 
-                        <div style="margin-bottom: 20px;">
-                            <label style="display: block; margin-bottom: 8px; font-weight: bold; font-size: 14px; color: #333;">{{ __('admin.task_name_en') }}</label>
-                            <input type="text" name="title_en" value="{{ old('title_en') }}" style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box;">
+                        <div class="mb-5">
+                            <label class="block mb-2 font-bold text-sm text-white-300">{{ __('admin.task_name_en') }}</label>
+                            <input type="text" name="title_en" value="{{ old('title_en') }}" class="w-full p-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white box-border focus:outline-none focus:border-red-500">
                             @error('title_en')
-                            <div style="color: #dc3545; font-size: 12px; margin-top: 5px;">{{ $message }}</div>
+                            <div class="text-red-400 text-xs mt-1.5">{{ $message }}</div>
                             @enderror
                         </div>
 
 
-                        <div style="margin-bottom: 20px;">
-                            <label style="display: block; margin-bottom: 8px; font-weight: bold; font-size: 14px; color: #333;">{{ __('admin.task_name_ka') }}</label>
-                            <input type="text" name="title_ka" value="{{ old('title_ka') }}" style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box;">
+                        <div class="mb-5">
+                            <label class="block mb-2 font-bold text-sm text-white-300">{{ __('admin.task_name_ka') }}</label>
+                            <input type="text" name="title_ka" value="{{ old('title_ka') }}" class="w-full p-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white box-border focus:outline-none focus:border-red-500">
                             @error('title_ka')
-                            <div style="color: #dc3545; font-size: 12px; margin-top: 5px;">{{ $message }}</div>
+                            <div class="text-red-400 text-xs mt-1.5">{{ $message }}</div>
                             @enderror
                         </div>
 
 
-                        <div style="margin-bottom: 20px;">
-                            <label style="display: block; margin-bottom: 8px; font-weight: bold; font-size: 14px; color: #333;">{{ __('admin.description_en') }}</label>
-                            <textarea name="description_en" rows="3" style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box;">{{ old('description_en') }}</textarea>
+                        <div class="mb-5">
+                            <label class="block mb-2 font-bold text-sm text-white-300">{{ __('admin.description_en') }}</label>
+                            <textarea name="description_en" rows="3" class="w-full p-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white box-border focus:outline-none focus:border-red-500">{{ old('description_en') }}</textarea>
                             @error('description_en')
-                            <div style="color: #dc3545; font-size: 12px; margin-top: 5px;">{{ $message }}</div>
+                            <div class="text-red-400 text-xs mt-1.5">{{ $message }}</div>
                             @enderror
                         </div>
 
 
-                        <div style="margin-bottom: 20px;">
-                            <label style="display: block; margin-bottom: 8px; font-weight: bold; font-size: 14px; color: #333;">{{ __('admin.description_ka') }}</label>
-                            <textarea name="description_ka" rows="3" style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box;">{{ old('description_ka') }}</textarea>
+                        <div class="mb-5">
+                            <label class="block mb-2 font-bold text-sm text-white-300">{{ __('admin.description_ka') }}</label>
+                            <textarea name="description_ka" rows="3" class="w-full p-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white box-border focus:outline-none focus:border-red-500">{{ old('description_ka') }}</textarea>
                             @error('description_ka')
-                            <div style="color: #dc3545; font-size: 12px; margin-top: 5px;">{{ $message }}</div>
+                            <div class="text-red-400 text-xs mt-1.5">{{ $message }}</div>
                             @enderror
                         </div>
 
 
-                        <div style="margin-bottom: 25px;">
-                            <label style="display: block; margin-bottom: 8px; font-weight: bold; font-size: 14px; color: #333;">{{ __('admin.due_date_field') }}</label>
-                            <input type="date" name="due_date" value="{{ old('due_date') }}" style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box;">
+                        <div class="mb-6">
+                            <label class="block mb-2 font-bold text-sm text-white-300">{{ __('admin.due_date_field') }}</label>
+                            <input type="date" name="due_date" value="{{ old('due_date') }}" class="w-full p-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white box-border focus:outline-none focus:border-red-500">
                             @error('due_date')
-                            <div style="color: #dc3545; font-size: 12px; margin-top: 5px;">{{ $message }}</div>
+                            <div class="text-red-400 text-xs mt-1.5">{{ $message }}</div>
                             @enderror
                         </div>
 
 
-                        <button type="submit" style="background-color: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 4px; font-size: 14px; font-weight: bold; cursor: pointer;">
+                        <button type="submit" class="bg-red-600 hover:bg-red-500 text-white border-none px-5 py-2.5 rounded-lg text-sm font-bold cursor-pointer transition">
                             {{ __('admin.save') }}
                         </button>
                     </form>
