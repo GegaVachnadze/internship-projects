@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminPanelController;
+use App\Http\Controllers\DueTasksController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\PasswordResetController;
@@ -28,12 +30,17 @@ Route::get('/tasks', [TaskAddController::class, 'index'])->name('tasks.index');
 Route::get('/tasks/create', [TaskAddController::class, 'create'])->name('tasks.create');
 Route::post('/tasks', [TaskAddController::class, 'store'])->name('tasks.store');
 
-Route::get('/admin-panel', [TaskAddController::class, 'showAssignments']);
+Route::get('/admin-panel', [AdminPanelController::class, 'index']);
+Route::get('/due-tasks', [DueTasksController::class, 'showPage'])->name('tasks.due-tasks');
 
-Route::delete('/tasks/{id}', [DeleteTableController::class, 'clearTask'])->name('tasks.destroy');
+Route::get('/tasks/due', [DueTasksController::class, 'showPage'])->name('tasks.due');
+Route::delete('/tasks/clear-old', [DueTasksController::class, 'clearOldTasks'])->name('tasks.clearOld');
+Route::delete('/tasks/{id}/clear', [DueTasksController::class, 'clearTask'])->name('tasks.clearSingle');
 
 Route::get('/tasks/{id}/edit', [EditTaskController::class, 'edit'])->name('tasks.edit');
 Route::put('/tasks/{id}', [EditTaskController::class, 'update'])->name('tasks.update');
+
+Route::get('/tasks/{id}', [TaskAddController::class, 'show'])->name('tasks.show');
 
 Route::get('/auth/google', function (): View {
     return view('google.login');

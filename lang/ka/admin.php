@@ -44,5 +44,9 @@ return [
     'base_configuration' => 'ბაზის კონფიგურაცია',
     'make_migrations_and_seeders' => 'Migration და Seeder ფაილების შექმნა',
     'project_design' => 'პროექტის დიზაინი',
-    'ui_styles_layout' => "UI სტილების დაწყობა და განლაგება"
+    'ui_styles_layout' => "UI სტილების დაწყობა და განლაგება",
+    'georgian' => 'ქართული',
+    'english' => "English",
+    'only_english' => 'მხოლოდ ინგლისურად, მინ:3',
+    'only_georgian' => 'მხოლოდ ქართულად, მინ:3'
 ];

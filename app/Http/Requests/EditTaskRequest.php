@@ -23,8 +23,8 @@ class EditTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title_en' => ['required', 'string', 'min:3', 'regex:/^[A-Za-z\s]+$/'],
-            'title_ka' => ['required', 'string', 'min:3', 'regex:/^[ა-ჰ\s]+$/'],
+            'title_en' => ['required', 'string', 'min:3', 'regex:/^[A-Za-z0-9\s]+$/'],
+            'title_ka' => ['required', 'string', 'min:3', 'regex:/^[ა-ჰ0-9\s]+$/'],
             'description_en' => ['required', 'string', 'min:3', 'regex:/^[A-Za-z\s]+$/'],
             'description_ka' => ['required', 'string', 'min:3', 'regex:/^[ა-ჰ\s]+$/'],
             'due_date' => ['required', 'date'],

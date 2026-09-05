@@ -16,6 +16,6 @@ class DeleteTableController extends Controller
             $task->delete();
         }
 
-        return redirect('/admin-panel');
+        return redirect('admin-panel');
     }
 }

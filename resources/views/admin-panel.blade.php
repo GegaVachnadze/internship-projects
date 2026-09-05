@@ -1,118 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ka">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{__('admin.title')}}</title>
+    <title>Due Tasks - ვადაგადაცილებული დავალებები</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
-<body>
-    <div style="display: flex; height: 100vh; font-family: Arial, sans-serif; background-color: #f4f6f9; margin: 0; overflow: hidden;">
-
-        <div style="width: 260px; background-color: #343a40; color: #ffffff; display: flex; flex-direction: column; padding: 20px; box-sizing: border-box;">
-
-            <div style="display: flex; align-items: center; margin-bottom: 30px; border-bottom: 1px solid #4b545c; padding-bottom: 15px;">
-                <img src="/default-avatar.png" alt="Avatar" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; background-color: #6c757d; margin-right: 15px;">
-                <div>
-                    <div style="font-weight: bold; font-size: 16px;">{{ __('admin.user') }}</div>
-                    <div style="font-size: 12px; color: #adb5bd;">{{ __('admin.admin') }}</div>
-                </div>
-            </div>
-
-            <div style="display: flex; flex-direction: column; gap: 10px; flex-grow: 1;">
-                <a href="/tasks" style="color: #ffffff; text-decoration: none; padding: 10px 15px; border-radius: 5px; background-color: #007bff; display: flex; align-items: center; gap: 10px; font-size: 14px;">
-                    <span>✅</span> {{ __('admin.my_tasks') }}
-                </a>
-                <a href="/tasks/due" style="color: #c2c7d0; text-decoration: none; padding: 10px 15px; border-radius: 5px; display: flex; align-items: center; gap: 10px; font-size: 14px;">
-                    <span>⏰</span> {{ __('admin.due_tasks') }}
-                </a>
-                <a href="/profile/edit" style="color: #c2c7d0; text-decoration: none; padding: 10px 15px; border-radius: 5px; display: flex; align-items: center; gap: 10px; font-size: 14px;">
-                    <span>🛠️</span> {{ __('admin.edit_profile') }}
-                </a>
-            </div>
-
+<body class="bg-gray-900 text-gray-100 font-sans">
+    <div class="flex h-screen">
+        <aside class="w-64 bg-gray-800 border-r border-gray-700 flex flex-col justify-between p-4">
             <div>
-                <form action="/logout" method="POST" style="margin: 0;">
-                    @csrf
-                    <button type="submit" style="width: 100%; background-color: #dc3545; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 14px;">
-                        <span>🚪</span> {{ __('admin.logout') }}
-                    </button>
-                </form>
+                <div class="text-xl font-bold text-red-500 mb-8 px-2">🌋 Due Tasks</div>
+                <nav class="space-y-2">
+                    <a href="{{ url('/tasks/due') }}" class="block px-4 py-2.5 rounded-lg bg-gray-700 text-white font-medium">ვადაგადაცილებული</a>
+                    <a href="{{ route('tasks.index') }}" class="block px-4 py-2.5 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white transition">ყველა დავალება</a>
+                </nav>
             </div>
-        </div>
-
-        <div style="flex-grow: 1; display: flex; flex-direction: column; overflow-y: auto;">
-
-            <div style="background-color: #ffffff; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #dee2e6; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-                <h1 style="margin: 0; font-size: 22px; color: #333;">{{ __('admin.all_tasks') }}</h1>
-
-                <div style="display: flex; align-items: center; gap: 15px;">
-
-                    <select onchange="window.location.href='/lang/' + this.value" style="padding: 6px 10px; border-radius: 4px; border: 1px solid #ced4da; background-color: #fff; cursor: pointer;">
-                        <option value="ka" {{ app()->getLocale() == 'ka' ? 'selected' : '' }}>ქართული</option>
-                        <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>English</option>
-                    </select>
-
-
-                    <a href="/tasks/create" style="background-color: #28a745; color: white; padding: 8px 15px; border-radius: 4px; text-decoration: none; font-size: 14px; font-weight: bold; display: flex; align-items: center; gap: 5px;">
-                        <span>➕</span> {{ __('admin.add_task') }}
-                    </a>
-
-                    <form action="/tasks/clear-due" method="POST" style="margin: 0;">
+            <div class="pt-4 border-t border-gray-700">
+                <label class="block text-xs text-gray-400 mb-1">🌐 ენა / Language</label>
+                <select class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-500">
+                    <option>ქართული</option>
+                    <option>English</option>
+                </select>
+            </div>
+        </aside>
+        <main class="flex-1 flex flex-col overflow-hidden">
+            <header class="bg-gray-800 border-b border-gray-700 px-8 py-4 flex justify-between items-center">
+                <div>
+                    <h1 class="text-2xl font-bold text-white">ვადაგადაცილებული დავალებები</h1>
+                    <p class="text-sm text-gray-400">ამ გვერდზე ნაჩვენებია მხოლოდ ვადაგადაცილებული დავალებები.</p>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <form action="{{ route('tasks.clearOld') }}" method="POST">
                         @csrf
-                        <button type="submit" style="background-color: #ffc107; color: #212529; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: bold; display: flex; align-items: center; gap: 5px;">
-                            <span>🧹</span> {{ __('admin.clear_old_tasks') }}
+                        @method('DELETE')
+                        <button type="submit" class="bg-gray-700 hover:bg-gray-600 text-gray-200 px-4 py-2 rounded-lg text-sm font-medium transition cursor-pointer">
+                            🧹 ძველების წაშლა
                         </button>
                     </form>
+                    <a href="{{ route('tasks.create') }}" class="bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition flex items-center">
+                        ➕ დავალების დამატება
+                    </a>
                 </div>
-            </div>
-
-            <div style="padding: 30px; box-sizing: border-box;">
-                <div style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05); overflow: hidden;">
-                    <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
+            </header>
+            <div class="flex-1 overflow-x-auto p-8">
+                <div class="bg-gray-800 border border-gray-700 rounded-xl overflow-hidden shadow-lg">
+                    <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr style="background-color: #f8f9fa; border-bottom: 2px solid #dee2e6; color: #495057;">
-                                <th style="padding: 15px;">{{ __('admin.task_name') }}</th>
-                                <th style="padding: 15px;">{{ __('admin.description') }}</th>
-                                <th style="padding: 15px;">{{ __('admin.created_at') }}</th>
-                                <th style="padding: 15px;">{{ __('admin.due_date') }}</th>
-                                <th style="padding: 15px; text-align: center;">{{ __('admin.actions') }}</th>
+                            <tr class="bg-gray-700/50 text-gray-400 text-xs uppercase tracking-wider border-b border-gray-700">
+                                <th class="py-3.5 px-6">დავალების სახელი</th>
+                                <th class="py-3.5 px-6">აღწერა</th>
+                                <th class="py-3.5 px-6">შექმნის თარიღი</th>
+                                <th class="py-3.5 px-6">შესრულების ბოლო ვადა</th>
+                                <th class="py-3.5 px-6 text-center">მოქმედება</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach($tasks as $task)
-                            <tr style="border-bottom: 1px solid #dee2e6;">
-
-                                <td style="padding: 15px; font-weight: 500; color: #333;">
-                                    {{ app()->getLocale() == 'ka' ? $task->title_ka : $task->title_en }}
-                                </td>
-
-
-                                <td style="padding: 15px; color: #666;">
-                                    {{ app()->getLocale() == 'ka' ? $task->description_ka : $task->description_en }}
-                                </td>
-
-                                <td style="padding: 15px; color: #666;">{{ $task->created_at->format('Y-m-d') }}</td>
-                                <td style="padding: 15px; color: #28a745;">{{ $task->due_date }}</td>
-                                <td style="padding: 15px; text-align: center;">
-                                    <div style="display: flex; justify-content: center; gap: 8px;">
-                                        <a href="/tasks/{{ $task->id }}" style="background-color: #17a2b8; color: white; padding: 6px 10px; border-radius: 4px; text-decoration: none;" title="{{ __('admin.view') }}">👁️</a>
-                                        <a href="/tasks/{{ $task->id }}/edit" style="background-color: #ffc107; color: #212529; padding: 6px 10px; border-radius: 4px; text-decoration: none;" title="{{ __('admin.edit') }}">✏️</a>
-                                        <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="margin: 0; display: inline;">
+                        <tbody class="divide-y divide-gray-700 text-sm">
+                            @forelse($tasks as $task)
+                            <tr class="hover:bg-gray-700/30 transition">
+                                <td class="py-4 px-6 font-medium text-white">{{ $task->title }}</td>
+                                <td class="py-4 px-6 text-gray-400 truncate max-w-xs">{{ $task->description }}</td>
+                                <td class="py-4 px-6 text-gray-400">{{ $task->created_at->format('Y-m-d') }}</td>
+                                <td class="py-4 px-6 text-red-400 font-medium">{{ $task->due_date }}</td>
+                                <td class="py-4 px-6 text-center">
+                                    <div class="flex items-center justify-center space-x-3">
+                                        <a href="{{ route('tasks.edit', $task->id) }}" title="რედაქტირება" class="text-gray-400 hover:text-blue-400 transition">✏️</a>
+                                        <form action="{{ route('tasks.clearSingle', $task->id) }}" method="POST" class="inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" style="background-color: #dc3545; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer;" title="{{ __('admin.delete') }}">🗑️</button>
+                                            <button type="submit" title="წაშლა" class="text-gray-400 hover:text-red-400 transition cursor-pointer">🗑️</button>
                                         </form>
                                     </div>
                                 </td>
                             </tr>
-                            @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="5" class="py-8 text-center text-gray-400">
+                                    🎉 ვადაგადაცილებული დავალებები არ მოიძებნა!
+                                </td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>
+        </main>
     </div>
 </body>
 

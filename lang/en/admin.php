@@ -9,6 +9,7 @@ return [
     'admin' => 'Admin',
 
 
+
     'all_tasks' => 'All Tasks',
     'add_task' => 'Add Task',
     'clear_old_tasks' => 'Clear Old Tasks',
@@ -28,7 +29,7 @@ return [
     'task_name_ka' => 'Task Name (KA)',
     'description_en' => 'Description (EN)',
     'description_ka' => 'Description (KA)',
-    'due_date_field' => 'Due Date',
+    'due_date_field' => 'Due Date: ',
 
 
     'current_password' => 'Current Password',
@@ -44,5 +45,9 @@ return [
     'base_configuration' => 'Base Configuration',
     'make_migrations_and_seeders' => 'Make Migrations And Seeders Files',
     'project_design' => 'Project Design',
-    'ui_styles_layout' => "Ui Styles And Layouts"
+    'ui_styles_layout' => "Ui Styles And Layouts",
+    'georgian' => 'ქართული',
+    'english' => "English",
+    'only_english' => 'Only English, min:3',
+    'only_georgian' => 'Only Georgian, min:3'
 ];

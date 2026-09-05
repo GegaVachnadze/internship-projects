@@ -50,8 +50,8 @@
             <div style="background-color: #ffffff; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #dee2e6;">
                 <h1 style="margin: 0; font-size: 22px; color: #333;">{{ __('admin.add_task') }}</h1>
                 <select onchange="window.location.href='/lang/' + this.value" style="padding: 6px 10px; border-radius: 4px; border: 1px solid #ced4da; cursor: pointer;">
-                    <option value="ka" {{ app()->getLocale() == 'ka' ? 'selected' : '' }}>ქართული</option>
-                    <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>English</option>
+                    <option value="ka" {{ app()->getLocale() == 'ka' ? 'selected' : '' }}>{{__('admin.georgian')}}</option>
+                    <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>{{__('admin.english')}}</option>
                 </select>
             </div>
 
