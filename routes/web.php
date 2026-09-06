@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AdminPanelController;
 use App\Http\Controllers\DueTasksController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;

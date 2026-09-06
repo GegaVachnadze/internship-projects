@@ -31,6 +31,7 @@ return [
     'new_password' => 'New Password',
     'confirm_new_password' => 'Confirm New Password',
     'profile_photo' => 'Profile Photo',
+    'action' => 'Action',
 
     'save' => 'Save',
     'update' => 'Update',
@@ -49,4 +50,7 @@ return [
     'due_tasks_page_title' => 'Due Tasks',
     'due_tasks_subtitle' => 'This page displays only overdue tasks.',
     'no_due_tasks' => '🎉 No overdue tasks found!',
+    'admin_panel' => 'Admin Panel',
+    "overdue_tasks" => "Only overdue tasks are shown on this page.",
+    "language" => '🌐 Language'
 ];

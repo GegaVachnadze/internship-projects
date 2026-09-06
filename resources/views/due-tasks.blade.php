@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ __('admin.due_tasks') }} - {{ __('admin.title') }}</title>
+    <title>{{ __('admin.due_tasks') }}</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
@@ -35,7 +35,7 @@
 
             <div class="flex flex-col gap-4">
                 <div class="pt-4 border-t border-gray-700">
-                    <label class="block text-xs text-gray-400 mb-1">🌐 ენა / Language</label>
+                    <label class="block text-xs text-gray-400 mb-1">{{__('admin.language')}}</label>
                     <select onchange="window.location.href='/lang/' + this.value" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-500 cursor-pointer">
                         <option value="ka" {{ app()->getLocale() == 'ka' ? 'selected' : '' }}>{{ __('admin.georgian') }}</option>
                         <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>{{ __('admin.english') }}</option>
@@ -55,8 +55,8 @@
         <main class="flex-1 flex flex-col overflow-hidden">
             <header class="bg-gray-800 border-b border-gray-700 px-8 py-4 flex justify-between items-center">
                 <div>
-                    <h1 class="text-2xl font-bold text-white">{{ __('admin.due_tasks') }}</h1>
-                    <p class="text-sm text-gray-400">ამ გვერდზე ნაჩვენებია მხოლოდ ვადაგადაცილებული დავალებები.</p>
+                    <h1 class="text-2xl font-bold text-white">{{ __('admin.due_tasks_page_title') }}</h1>
+                    <p class="text-sm text-gray-400">{{__('admin.overdue_tasks')}}</p>
                 </div>
                 <div class="flex items-center space-x-3">
                     <form action="{{ route('tasks.clearOld') }}" method="POST" class="m-0">

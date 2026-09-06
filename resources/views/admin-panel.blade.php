@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - ადმინ პანელი</title>
+    <title>{{__('admin.admin_panel')}}</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
@@ -45,7 +45,7 @@
         <main class="flex-1 flex flex-col overflow-hidden">
             <header class="bg-gray-800 border-b border-gray-700 px-8 py-4 flex justify-between items-center">
                 <div>
-                    <h1 class="text-2xl font-bold text-white">ადმინ პანელი</h1>
+                    <h1 class="text-2xl font-bold text-white">{{__('admin.admin_panel')}}</h1>
 
                 </div>
                 <div class="flex items-center space-x-3">
@@ -78,11 +78,11 @@
                     <table class="w-full text-left border-collapse">
                         <thead>
                             <tr class="bg-gray-700/50 text-gray-400 text-xs uppercase tracking-wider border-b border-gray-700">
-                                <th class="py-3.5 px-6">დავალების სახელი</th>
-                                <th class="py-3.5 px-6">აღწერა</th>
-                                <th class="py-3.5 px-6">შექმნის თარიღი</th>
-                                <th class="py-3.5 px-6">შესრულების ბოლო ვადა</th>
-                                <th class="py-3.5 px-6 text-center">მოქმედება</th>
+                                <th class="py-3.5 px-6">{{__('admin.task_name')}}</th>
+                                <th class="py-3.5 px-6">{{__('admin.description')}}</th>
+                                <th class="py-3.5 px-6">{{__('admin.created_at')}}</th>
+                                <th class="py-3.5 px-6">{{__('admin.due_date')}}</th>
+                                <th class="py-3.5 px-6 text-center">{{__('admin.action')}}</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-700 text-sm">
