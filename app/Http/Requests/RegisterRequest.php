@@ -14,9 +14,19 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => ['required', 'string', 'max:255'],
+
+            'username' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ];
+    }
+
+
+    public function messages(): array
+    {
+        return [
+            'username.unique' => 'მსგავსი მომხმარებელი ბაზაში უკვე არსებობს.',
+            'email.unique' => 'ეს ელ. ფოსტა უკვე დაკავებულია.',
         ];
     }
 }

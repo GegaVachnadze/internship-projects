@@ -19,16 +19,16 @@ class AuthController extends Controller
 
         $credentials = $request->validated();
 
-        $loginField = filter_var($credentials['email'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        $loginField = filter_var($credentials['login'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
-        if (Auth::attempt([$loginField => $credentials['email'], 'password' => $credentials['password']])) {
+        if (Auth::attempt([$loginField => $credentials['login'], 'password' => $credentials['password']])) {
             $request->session()->regenerate();
 
             return redirect()->intended('/admin-panel')->with('success', __('Authorization successful!'));
         }
 
         return back()->withErrors([
-            'email' => __('The provided credentials do not match our records.'),
-        ])->onlyInput('email');
+            'login' => __('admin.the_provided_credentials_do_not_match_our_records.'),
+        ])->onlyInput('login');
     }
 }

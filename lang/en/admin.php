@@ -52,5 +52,6 @@ return [
     'no_due_tasks' => '🎉 No overdue tasks found!',
     'admin_panel' => 'Admin Panel',
     "overdue_tasks" => "Only overdue tasks are shown on this page.",
-    "language" => '🌐 Language'
+    "language" => '🌐 Language',
+    'the_provided_credentials_do_not_match_our_records.' => 'The provided credentials do not match our records.'
 ];
