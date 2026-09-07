@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TaskDetailsController;
 use App\Http\Controllers\DueTasksController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
@@ -13,6 +14,9 @@ use App\Http\Controllers\EditTaskController;
 use App\Http\Controllers\MyTaskController;
 use App\Http\Controllers\ProfileController;
 
+Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::get('/task-details/{id}', [TaskDetailsController::class, 'show'])->name('tasks.show');
 
 Route::get('/profile', [ProfileController::class, 'visit'])->name('profile');
 Route::get('/my-tasks', [MyTaskController::class, 'myTasks'])->name('mytasks');

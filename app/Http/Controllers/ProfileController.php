@@ -14,10 +14,4 @@ class ProfileController extends Controller
     {
         return view('profile');
     }
-
-
-    public function Edit(ProfileRequest $request):RedirectResponse{
-        $validate = $request->validate();
-
-    }
 }

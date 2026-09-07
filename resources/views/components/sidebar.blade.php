@@ -25,7 +25,7 @@
             <a href="/due-tasks" class="text-gray-400 hover:bg-gray-700 hover:text-white text-decoration-none px-4 py-2.5 rounded-lg flex items-center gap-2.5 text-sm transition">
                 <span>⏰</span> {{ __('admin.due_tasks') }}
             </a>
-            <a href="/profile/edit" class="text-gray-400 hover:bg-gray-700 hover:text-white text-decoration-none px-4 py-2.5 rounded-lg flex items-center gap-2.5 text-sm transition">
+            <a href="/profile" class="text-gray-400 hover:bg-gray-700 hover:text-white text-decoration-none px-4 py-2.5 rounded-lg flex items-center gap-2.5 text-sm transition">
                 <span>🛠️</span> {{ __('admin.edit_profile') }}
             </a>
         </div>

@@ -53,6 +53,7 @@ return [
     "overdue_tasks" => "ამ გვერდზე ნაჩვენებია მხოლოდ ვადაგადასული დავალებები",
     "language" => '🌐 ენა ',
     'the_provided_credentials_do_not_match_our_records.' => 'მოწოდებული მონაცემები არ ემთხვევა ჩვენს ჩანაწერებს.',
-    'clear_due_tasks' => 'ვადაგასული დავალებების წაშლა'
+    'clear_due_tasks' => 'ვადაგასული დავალებების წაშლა',
+    'task_details' => "დავალების დეტალები"
 
 ];
