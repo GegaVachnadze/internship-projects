@@ -16,6 +16,12 @@
             <p class="text-sm text-slate-500 mt-1">{{ __('auth.enter_details') }}</p>
         </div>
 
+        @if (session('status'))
+        <div class="mb-4 p-4 text-sm text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-xl font-medium text-center">
+            {{ session('status') }}
+        </div>
+        @endif
+
         <form action="{{ route('login.submit') }}" method="POST" class="space-y-5">
             @csrf
 
@@ -40,7 +46,7 @@
             </div>
 
             <button type="submit" class="w-full py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/25 transition-all active:scale-[0.98]">
-                <a href="{{url('/admin-panel')}}">{{ __('auth.login') }}</a>
+                {{ __('auth.login') }}
             </button>
 
             <div class="text-center text-sm text-slate-500 pt-2">

@@ -21,7 +21,7 @@
             </div>
 
             <div class="flex flex-col gap-2.5 flex-grow">
-                <a href="/admin-panel" class="text-gray-400 hover:bg-gray-700 hover:text-white text-decoration-none px-4 py-2.5 rounded-lg flex items-center gap-2.5 text-sm transition">
+                <a href="/my-tasks" class="text-gray-400 hover:bg-gray-700 hover:text-white text-decoration-none px-4 py-2.5 rounded-lg flex items-center gap-2.5 text-sm transition">
                     <span>✅</span> {{ __('admin.my_tasks') }}
                 </a>
                 <a href="/due-tasks" class="text-gray-400 hover:bg-gray-700 hover:text-white text-decoration-none px-4 py-2.5 rounded-lg flex items-center gap-2.5 text-sm transition">

@@ -10,6 +10,12 @@ use Illuminate\View\View;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\TaskAddController;
 use App\Http\Controllers\EditTaskController;
+use App\Http\Controllers\MyTaskController;
+use App\Http\Controllers\ProfileController;
+
+
+Route::get('/profile', [ProfileController::class, 'visit'])->name('profile');
+Route::get('/my-tasks', [MyTaskController::class, 'myTasks']);
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);

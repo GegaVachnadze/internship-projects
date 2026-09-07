@@ -33,4 +33,11 @@ class ResetPasswordRequest extends Request
             'password' => __('auth.password'),
         ];
     }
+    public function messages(): array
+    {
+        return [
+            'password' => __('auth.password'),
+            'repeat_password' => __('auth.repeat_password'),
+        ];
+    }
 }

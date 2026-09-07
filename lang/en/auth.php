@@ -27,5 +27,11 @@ return [
     'send_reset_link' => 'Send Reset Link',
     'enter_new_password_text' => 'Enter a new password for your account',
     'password_confirmation' => 'Repeat Password',
-    'create_password' => "Create new password"
-];;
+    'create_password' => "Create new password",
+    'custom' => [
+        'unique' => 'Type of username already exists.',
+    ],
+    'Email' => [
+        'unique' => 'Type of email already exists.',
+    ],
+];

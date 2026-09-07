@@ -25,8 +25,8 @@ class RegisterRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'username.unique' => 'მსგავსი მომხმარებელი ბაზაში უკვე არსებობს.',
-            'email.unique' => 'ეს ელ. ფოსტა უკვე დაკავებულია.',
+            'username.unique' => __('auth.custom.unique'),
+            'email.unique' => __('auth.Email.unique'),
         ];
     }
 }
