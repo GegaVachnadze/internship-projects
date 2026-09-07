@@ -59,7 +59,7 @@
 
                     <div class="mt-8 pt-6 border-t border-gray-700 flex justify-end">
                         <a href="/admin-panel" class="bg-gray-700 hover:bg-gray-600 text-gray-200 px-5 py-2.5 rounded-lg text-sm font-medium transition text-decoration-none">
-                            {{__('admin.'get_back'')}}
+                            {{__('admin.get_back')}}
                         </a>
                     </div>
                 </div>
