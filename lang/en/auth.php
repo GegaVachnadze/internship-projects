@@ -34,4 +34,7 @@ return [
     'Email' => [
         'unique' => 'Type of email already exists.',
     ],
+    'password_field' => "Password field is required",
+    'confirm_new_password' => "Repeat password field is required"
+
 ];

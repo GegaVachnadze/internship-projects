@@ -15,7 +15,7 @@ use App\Http\Controllers\ProfileController;
 
 
 Route::get('/profile', [ProfileController::class, 'visit'])->name('profile');
-Route::get('/my-tasks', [MyTaskController::class, 'myTasks']);
+Route::get('/my-tasks', [MyTaskController::class, 'myTasks'])->name('mytasks');
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);

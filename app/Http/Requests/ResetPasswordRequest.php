@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Http\Request;
+use Illuminate\Foundation\Http\FormRequest;
 
-class ResetPasswordRequest extends Request
+class ResetPasswordRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -36,8 +36,8 @@ class ResetPasswordRequest extends Request
     public function messages(): array
     {
         return [
-            'password' => __('auth.password'),
-            'repeat_password' => __('auth.repeat_password'),
+            'password' => __('auth.password_field'),
+            'repeat_password' => __('auth.confirm_new_password')
         ];
     }
 }

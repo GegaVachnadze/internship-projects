@@ -48,11 +48,11 @@ return [
 
 
     'due_tasks_page_title' => 'ვადაგადაცილებული დავალებები',
-    'due_tasks_subtitle' => 'ამ გვერდზე ნაჩვენებია მხოლოდ ვადაგადაცილებული დავალებები.',
     'no_due_tasks' => '🎉 ვადაგადაცილებული დავალებები არ მოიძებნა!',
     'admin_panel' => "ადმინ პანელი",
     "overdue_tasks" => "ამ გვერდზე ნაჩვენებია მხოლოდ ვადაგადასული დავალებები",
     "language" => '🌐 ენა ',
-    'the_provided_credentials_do_not_match_our_records.' => 'მოწოდებული მონაცემები არ ემთხვევა ჩვენს ჩანაწერებს.'
+    'the_provided_credentials_do_not_match_our_records.' => 'მოწოდებული მონაცემები არ ემთხვევა ჩვენს ჩანაწერებს.',
+    'clear_due_tasks' => 'ვადაგასული დავალებების წაშლა'
 
 ];
