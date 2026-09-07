@@ -13,9 +13,14 @@ use App\Http\Controllers\TaskAddController;
 use App\Http\Controllers\EditTaskController;
 use App\Http\Controllers\MyTaskController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LogOutController;
 
+Route::post('/logout', [LogOutController::class, 'logout'])->name('logout');
+
+Route::get('/profile', [ProfileController::class, 'visit'])->name('profile.edit');
 Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::match(['put', 'patch'], '/profile', [ProfileController::class, 'update'])->name('profile.update');
+
 Route::get('/task-details/{id}', [TaskDetailsController::class, 'show'])->name('tasks.show');
 
 Route::get('/profile', [ProfileController::class, 'visit'])->name('profile');

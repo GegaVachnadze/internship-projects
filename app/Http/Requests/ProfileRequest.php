@@ -23,10 +23,9 @@ class ProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,',
-            'current_password' => 'nullable|required_with:password|current_password',
-            'password' => 'nullable|min:6|confirmed'
+            'current_password' => ['required', 'current_password'],
+            'password' => ['required', 'min:6', 'confirmed'],
+            'photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
         ];
     }
 }

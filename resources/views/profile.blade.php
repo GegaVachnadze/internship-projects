@@ -36,12 +36,12 @@
                     </div>
                     @endif
 
-                    <form action="{{ route('profile') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @method('PATCH')
+                        @method('PUT')
 
-                        <div class="mb-5">
-                            <label class="block text-gray-300 text-sm font-medium mb-2">არსებული პაროლი *</label>
+                        <div class="mb-5 border-t border-gray-700 pt-5">
+                            <label class="block text-gray-300 text-sm font-medium mb-2">არსებული პაროლი</label>
                             <input type="password" name="current_password" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-red-500">
                             @error('current_password')
                             <span class="text-red-400 text-xs mt-1 block">{{ $message }}</span>
@@ -49,7 +49,7 @@
                         </div>
 
                         <div class="mb-5">
-                            <label class="block text-gray-300 text-sm font-medium mb-2">ახალი პაროლი (მინ. 4 სიმბოლო) *</label>
+                            <label class="block text-gray-300 text-sm font-medium mb-2">ახალი პაროლი (მინ. 4 სიმბოლო)</label>
                             <input type="password" name="password" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-red-500">
                             @error('password')
                             <span class="text-red-400 text-xs mt-1 block">{{ $message }}</span>
@@ -57,14 +57,14 @@
                         </div>
 
                         <div class="mb-5">
-                            <label class="block text-gray-300 text-sm font-medium mb-2">გაიმეორე ახალი პაროლი *</label>
+                            <label class="block text-gray-300 text-sm font-medium mb-2">გაიმეორე ახალი პაროლი</label>
                             <input type="password" name="password_confirmation" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-red-500">
                             @error('password_confirmation')
                             <span class="text-red-400 text-xs mt-1 block">{{ $message }}</span>
                             @enderror
                         </div>
 
-                        <div class="mb-6">
+                        <div class="mb-6 border-t border-gray-700 pt-5">
                             <label class="block text-gray-300 text-sm font-medium mb-2">პროფილის ფოტო</label>
                             <input type="file" name="photo" class="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-gray-700 file:text-white hover:file:bg-gray-600 cursor-pointer">
                             @error('photo')
@@ -72,7 +72,7 @@
                             @enderror
                         </div>
 
-                        <div class="flex justify-end">
+                        <div class="flex justify-end pt-2">
                             <button type="submit" class="bg-red-600 hover:bg-red-500 text-white px-6 py-2.5 rounded-lg text-sm font-medium transition cursor-pointer">
                                 ცვლილებების შენახვა
                             </button>
