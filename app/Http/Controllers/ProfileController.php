@@ -49,6 +49,6 @@ class ProfileController extends Controller
 
         $user->update($data);
 
-        return back()->with('success', 'პროფილი წარმატებით განახლდა!');
+        return back();
     }
 }

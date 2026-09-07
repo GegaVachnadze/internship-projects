@@ -20,6 +20,6 @@ class DueTasksController extends Controller
 
         Task::where('due_date', '<', now())->delete();
 
-        return redirect()->back()->with('success', 'ძველი დავალებები წაიშალა!');
+        return redirect()->back();
     }
 }

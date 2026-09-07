@@ -55,5 +55,11 @@ return [
     "language" => '🌐 Language',
     'the_provided_credentials_do_not_match_our_records.' => 'The provided credentials do not match our records.',
     'clear_due_tasks' => 'Clear old tasks',
-    'task_details' => 'Task details'
+    'task_details' => 'Task details',
+    'get_back' => "Get back",
+    'password' => "Password",
+    'repeat_password' => "Repeat Password",
+    'save_changes' => "Save Changes",
+    'profile_picture' => 'Profile picture',
+    'file_not_choosen' => 'File is not choosen'
 ];
