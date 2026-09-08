@@ -18,10 +18,10 @@ Route::get('/profile', [ProfileController::class, 'visit'])->name('profile.edit'
 Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::match(['put', 'patch'], '/profile', [ProfileController::class, 'update'])->name('profile.update');
 
-Route::get('/task-details/{id}', [TaskDetailsController::class, 'show'])->name('tasks.show');
+Route::get('/task-details/{id}', [TaskController::class, 'show'])->name('tasks.show');
 
 Route::get('/profile', [ProfileController::class, 'visit'])->name('profile');
-Route::get('/my-tasks', [MyTaskController::class, 'myTasks'])->name('mytasks');
+Route::get('/my-tasks', [TaskController::class, 'myTasks'])->name('mytasks');
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);

@@ -6,6 +6,7 @@ use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\EditTaskRequest;
 use App\Models\Task;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 
 
@@ -75,5 +76,19 @@ class TaskController extends Controller
         Task::where('due_date', '<', now())->delete();
 
         return redirect()->back();
+    }
+
+    public function show(int $id): View
+    {
+        $task = Task::findOrFail($id);
+
+        return view('task-details', compact('task'));
+    }
+
+    public function myTasks(): View
+    {
+        $tasks = Task::where('due_date', '>=', Carbon::today())->get();
+
+        return view('my-tasks', compact('tasks'));
     }
 }
