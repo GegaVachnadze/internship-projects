@@ -24,5 +24,11 @@ return [
     'google_reg' => 'Google-ით რეგისტრაცია',
     'password_confirmation' => 'პაროლის გამეორება',
     'enter_new_password_text' => 'შეიყვანეთ ახალი პაროლი აღსადგენად',
-    'create_password' => "შექმენით ახალი პაროლი"
+    'create_password' => "შექმენით ახალი პაროლი",
+    'custom' => [
+        'unique' => 'ამგვარი მომხმარებელი უკვე არსებობს.',
+    ],
+    'Email' => [
+        'unique' => 'ამგვარი ელ-ფოსტა უკვე დაკავებულია.',
+    ],
 ];

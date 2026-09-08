@@ -30,13 +30,19 @@ class PasswordResetController extends Controller
 
     public function showResetForm(Request $request, string $token): View
     {
-        return view('reset-password', ['token' => $token, 'email' => $request->email]);
+        return view('reset-password', [
+            'token' => $token,
+            'email' => $request->query('email')
+        ]);
     }
 
     public function reset(ResetPasswordRequest $request): RedirectResponse
     {
+
+        $credentials = $request->validated();
+
         $status = Password::reset(
-            $request->only('email', 'password', 'password_confirmation', 'token'),
+            $credentials,
             function (\App\Models\User $user, $password): void {
                 $user->forceFill([
                     'password' => Hash::make($password)
@@ -47,7 +53,7 @@ class PasswordResetController extends Controller
         );
 
         return $status == Password::PASSWORD_RESET
-            ? redirect()->route('login')->with('status', __($status))
+            ? redirect()->route('authorize')->with('status', __($status))
             : back()->withErrors(['email' => [__($status)]]);
     }
 }

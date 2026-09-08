@@ -10,7 +10,7 @@ class LocalizationController extends Controller
 {
     public function switch(string $locale): RedirectResponse
     {
-        if (in_array($locale, ['ka', 'en', 'ru'])) {
+        if (in_array($locale, ['ka', 'en'])) {
             Session::put('locale', $locale);
         }
 

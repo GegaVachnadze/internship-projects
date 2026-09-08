@@ -16,6 +16,12 @@
             <p class="text-sm text-slate-500 mt-1">{{ __('auth.enter_details') }}</p>
         </div>
 
+        @if (session('status'))
+        <div class="mb-4 p-4 text-sm text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-xl font-medium text-center">
+            {{ session('status') }}
+        </div>
+        @endif
+
         <form action="{{ route('login.submit') }}" method="POST" class="space-y-5">
             @csrf
 
