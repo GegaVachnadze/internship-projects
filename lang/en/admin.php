@@ -61,5 +61,6 @@ return [
     'repeat_password' => "Repeat Password",
     'save_changes' => "Save Changes",
     'profile_picture' => 'Profile picture',
-    'file_not_choosen' => 'File is not choosen'
+    'file_not_choosen' => 'File is not choosen',
+    'title_ka' => 'Georgian title is required'
 ];

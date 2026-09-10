@@ -34,7 +34,7 @@
 
                         <div class="mb-5">
                             <label class="block mb-2 font-bold text-sm text-gray-300">{{__('admin.task_name_en')}} - {{__('admin.only_english')}}</label>
-                            <input type="text" name="title_en" value="{{ old('title_en', $task->title_en ?? '') }}" class="w-full p-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white box-border focus:outline-none focus:border-red-500">
+                            <input type="text" name="title_en" value="{{ old('title_en', $task->title['en'] ?? '') }}" class="w-full p-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white box-border focus:outline-none focus:border-red-500">
                             @error('title_en')
                             <span class="text-red-400 text-xs block mt-1.5">{{ $message }}</span>
                             @enderror
@@ -42,7 +42,7 @@
 
                         <div class="mb-5">
                             <label class="block mb-2 font-bold text-sm text-gray-300">{{__('admin.task_name_ka')}} - {{__('admin.only_georgian')}}</label>
-                            <input type="text" name="title_ka" value="{{ old('title_ka', $task->title_ka ?? '') }}" class="w-full p-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white box-border focus:outline-none focus:border-red-500">
+                            <input type="text" name="title_ka" value="{{ old('title_ka', $task->title['ka'] ?? '') }}" class="w-full p-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white box-border focus:outline-none focus:border-red-500">
                             @error('title_ka')
                             <span class="text-red-400 text-xs block mt-1.5">{{ $message }}</span>
                             @enderror

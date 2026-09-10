@@ -31,7 +31,7 @@
                     class="w-full px-4 py-3 text-sm bg-slate-50 border @error('email') border-rose-500 bg-rose-50 @else border-slate-300 @enderror rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all">
 
                 @error('email')
-                <p class="text-xs text-rose-500 mt-1.5 font-medium">{{ $message }}</p>
+                <p class="text-xs text-rose-500 mt-1.5 font-medium">{{__('auth.email_required')}}</p>
                 @enderror
             </div>
 

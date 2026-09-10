@@ -33,13 +33,6 @@
                 </div>
             </header>
 
-            <div class="bg-gray-800/50 px-8 py-2.5 border-b border-gray-700/50 flex justify-end">
-                <select onchange="window.location.href='/lang/' + this.value" class="bg-gray-700 border border-gray-600 rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none focus:border-red-500 cursor-pointer">
-                    <option value="ka" {{ app()->getLocale() == 'ka' ? 'selected' : '' }}>{{ __('admin.georgian') }}</option>
-                    <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>{{ __('admin.english') }}</option>
-                </select>
-            </div>
-
             <div class="flex-1 overflow-x-auto p-8">
                 <div class="bg-gray-800 border border-gray-700 rounded-xl overflow-hidden shadow-lg">
                     <table class="w-full text-left border-collapse">

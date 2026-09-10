@@ -9,20 +9,11 @@
 </head>
 
 <body class="bg-gray-900 text-gray-100 font-sans m-0">
-
     <div class="flex h-screen overflow-hidden">
 
         <x-sidebar />
 
         <div class="flex-grow flex flex-col overflow-y-auto">
-
-            <div class="bg-gray-800 px-8 py-4 flex justify-between items-center border-b border-gray-700">
-                <h1 class="m-0 text-2xl font-bold text-white">{{ __('admin.add_task') }}</h1>
-                <select onchange="window.location.href='/lang/' + this.value" class="bg-gray-700 border border-gray-600 rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none focus:border-red-500 cursor-pointer">
-                    <option value="ka" {{ app()->getLocale() == 'ka' ? 'selected' : '' }}>{{__('admin.georgian')}}</option>
-                    <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>{{__('admin.english')}}</option>
-                </select>
-            </div>
 
             <div class="p-8 box-border max-w-[700px]">
                 <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 shadow-lg">

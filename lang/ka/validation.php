@@ -39,8 +39,12 @@ return [
 
     'attributes' => [
         'username' => 'მომხმარებლის სახელი',
-        'email' => 'ელ-ფოსტა',
+        'email' => 'ელ-ფოსტა ',
         'password' => 'პაროლი',
-
+        'current_password' => 'ამღამინდელი პაროლი',
+        'title_ka' => 'ქართული',
+        'title_en' => 'ინგლისური ',
+        'description_ka' => "ქართული",
+        'description_en' => "ინგლისური"
     ],
 ];

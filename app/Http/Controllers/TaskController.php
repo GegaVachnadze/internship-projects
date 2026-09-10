@@ -30,11 +30,22 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
         return view('edit', compact('task'));
     }
-
     public function update(EditTaskRequest $request, int $id): RedirectResponse
     {
         $task = Task::findOrFail($id);
-        $task->update($request->validated());
+        $data = $request->validated();
+
+        $task->update([
+            'title' => [
+                'en' => $data['title_en'],
+                'ka' => $data['title_ka'],
+            ],
+            'description' => [
+                'en' => $data['description_en'],
+                'ka' => $data['description_ka'],
+            ],
+            'due_date' => $data['due_date'],
+        ]);
 
         return redirect('/admin-panel');
     }
@@ -52,7 +63,19 @@ class TaskController extends Controller
     //store
     public function store(StoreTaskRequest $request): RedirectResponse
     {
-        Task::create($request->validated());
+        $data = $request->validated();
+
+        Task::create([
+            'title' => [
+                'en' => $data['title_en'],
+                'ka' => $data['title_ka'],
+            ],
+            'description' => [
+                'en' => $data['description_en'],
+                'ka' => $data['description_ka'],
+            ],
+            'due_date' => $data['due_date'],
+        ]);
 
         return redirect('/admin-panel');
     }

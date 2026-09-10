@@ -19,6 +19,7 @@ return [
     'have_account_q' => 'გაქვთ ანგარიში?',
     'username' => 'მომხმარებელი',
     'email' => 'ელ-ფოსტა',
+    'email_required' => "ელ-ფოსტა ველი სავალდებულოა",
     'repeat_password' => 'გაიმეორეთ პაროლი',
     'sign_up' => 'რეგისტრაცია',
     'google_reg' => 'Google-ით რეგისტრაცია',

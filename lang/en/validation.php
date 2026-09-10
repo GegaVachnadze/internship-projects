@@ -122,7 +122,7 @@ return [
     'present' => 'The :attribute field must be present.',
     'prohibited' => 'The :attribute field is prohibited.',
     'regex' => 'The :attribute field format is invalid.',
-    'required' => 'The :attribute field is required.',
+    'required' => ':attribute field is required.',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
     'required_with' => 'The :attribute field is required when :values is present.',
@@ -150,8 +150,12 @@ return [
     ],
 
     'attributes' => [
-        'email' => 'email',
+        'email' => 'email field is required',
         'username' => 'username',
         'password' => 'password',
+        'title_ka' => 'Georgian',
+        'title_en' => 'English',
+        'description_en' => "English",
+        'description_ka' => "Georgian"
     ],
 ];

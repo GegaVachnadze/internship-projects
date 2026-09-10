@@ -39,7 +39,7 @@
                         <div>
                             <span class="block text-xs uppercase tracking-wider text-gray-400 mb-1">{{ __('admin.description') }}</span>
                             <p class="text-gray-300 bg-gray-700/50 p-4 rounded-lg border border-gray-700 leading-relaxed">
-                                {{ app()->getLocale() == 'ka' ? ($task->description_ka ?? $task->description_en) : ($task->description_en ?? $task->description_ka) }}
+                                {{ $task->description[app()->getLocale()] ?? '' }}
                             </p>
                         </div>
 

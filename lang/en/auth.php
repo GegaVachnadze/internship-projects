@@ -1,8 +1,9 @@
 <?php
 
 return [
-    "email" => "Email",
+    "email" => "Email ",
     'failed' => 'These credentials do not match our records.',
+    'email_required' => "Email field is required",
     'password' => 'Password',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'authorization' => 'Authorization',
@@ -36,5 +37,4 @@ return [
     ],
     'password_field' => "Password field is required",
     'confirm_new_password' => "Repeat password field is required"
-
 ];

@@ -60,6 +60,6 @@ return [
     'repeat_password' => 'გაიმეორეთ პაროლი',
     'save_changes' => "შეინახეთ ცვლილებები",
     'profile_picture' => 'პროფილის სურათი',
-    'file_not_choosen' => 'ფაილი არ არის არჩეული'
-
+    'file_not_choosen' => 'ფაილი არ არის არჩეული',
+    'title_ka' => 'ქართული ველი სავალდებულოა'
 ];

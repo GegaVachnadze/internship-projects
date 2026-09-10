@@ -22,7 +22,7 @@ Route::get('/task-details/{id}', [TaskController::class, 'show'])->name('tasks.s
 
 Route::get('/profile', [ProfileController::class, 'visit'])->name('profile');
 Route::get('/my-tasks', [TaskController::class, 'myTasks'])->name('mytasks');
-
+Route::get('/', [RegisterController::class, 'showRegistrationForm'])->name('home');
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 
