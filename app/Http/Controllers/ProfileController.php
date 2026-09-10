@@ -37,29 +37,12 @@ class ProfileController extends Controller
             unset($data['password']);
         }
 
-        unset($data['current_password']);
-
         if ($request->hasFile('photo')) {
-
-            $file = $request->file('photo');
-
-            $path = 'profile-photos/' . uniqid() . '.' . $file->getClientOriginalExtension();
-
-            $destination = storage_path('app/public/' . $path);
-
-            copy($file->getRealPath(), $destination);
-
-            $user->photo = $path;
-
-            unset($data['photo']);
-        } else {
-            unset($data['photo']);
+            $data['photo'] = $request->file('photo')->store('profile-photos', 'public');
         }
 
         $user->update($data);
 
-        $user->save();
-
-        return back();
+        return redirect()->back();
     }
 }
