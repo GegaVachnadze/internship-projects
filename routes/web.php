@@ -1,16 +1,21 @@
 <?php
 
-use App\Http\Controllers\TaskDetailsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\AuthController;
 use Illuminate\View\View;
 use App\Http\Controllers\LocalizationController;
-use App\Http\Controllers\MyTaskController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LogOutController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\GoogleAuthController;
+
+Route::get('/auth/google', [GoogleAuthController::class, 'redirect'])
+    ->name('google.login');
+
+Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback'])
+    ->name('google.callback');
 
 Route::post('/logout', [LogOutController::class, 'logout'])->name('logout');
 
@@ -49,7 +54,3 @@ Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
 Route::get('/tasks/{id}', [TaskController::class, 'show'])->name('tasks.show');
 Route::get('/tasks/{id}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
 Route::put('/tasks/{id}', [TaskController::class, 'update'])->name('tasks.update');
-
-Route::get('/auth/google', function (): View {
-    return view('google.login');
-})->name('google.login');
