@@ -15,8 +15,9 @@ class Task extends Model
         'due_date',
     ];
 
-	protected $casts = [
-    	'title' => 'array',
-    	'description' => 'array',
-	];
+    protected $casts = [
+        'title' => 'array',
+        'description' => 'array',
+        'task_name' => 'array'
+    ];
 }

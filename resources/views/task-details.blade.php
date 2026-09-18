@@ -30,9 +30,9 @@
 
                     <div class="space-y-6">
                         <div>
-                            <span class="block text-xs uppercase tracking-wider text-gray-400 mb-1">{{ __('admin.task_name') }}</span>
+                            <span class="block text-xs uppercase tracking-wider text-gray-400 mb-1">{{__('admin.task_name')}}</span>
                             <h2 class="text-xl font-bold text-white">
-                                {{ app()->getLocale() == 'ka' ? ($task->title_ka ?? $task->title_en) : ($task->title_en ?? $task->title_ka) }}
+                                {{ $task->title[app()->getLocale()] ?? '' }}
                             </h2>
                         </div>
 
