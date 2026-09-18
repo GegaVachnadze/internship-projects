@@ -24,12 +24,12 @@
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="bg-gray-700 hover:bg-gray-600 text-gray-200 px-4 py-2 rounded-lg text-sm font-medium transition cursor-pointer">
-                            {{__('admin.delete')}}
+                            🧹{{__('admin.delete')}}
                         </button>
                     </form>
 
                     <a href="{{ route('tasks.create') }}" class="bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition flex items-center text-decoration-none">
-                        {{__('admin.add_task')}}
+                        ➕{{__('admin.add_task')}}
                     </a>
                 </div>
             </header>

@@ -19,7 +19,7 @@
                     <h1 class="text-2xl font-bold text-white">{{ __('admin.due_tasks_page_title') }}</h1>
                     <p class="text-sm text-gray-400">{{__('admin.overdue_tasks')}}</p>
                 </div>
-                <div class="flex items-center space-x-3">
+                <div class="flex items-center gap-4">
                     <form action="{{ route('tasks.clearOld') }}" method="POST" class="m-0">
                         @csrf
                         @method('DELETE')
