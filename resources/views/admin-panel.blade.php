@@ -18,7 +18,7 @@
                 <div>
                     <h1 class="text-2xl font-bold text-white">{{__('admin.admin_panel')}}</h1>
                 </div>
-                <div class="flex items-center space-x-3">
+                <div class="flex items-center gap-4">
 
                     <form action="{{ route('tasks.clearOld') }}" method="POST" class="m-0">
                         @csrf
