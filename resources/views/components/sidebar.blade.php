@@ -12,13 +12,13 @@
 
         <div class="flex items-center mb-8 pb-4 border-b border-gray-700 px-2">
 
-            <img src="{{ auth()->user()->photo ? asset('storage/' . auth()->user()->photo) : '/default-avatar.png' }}"
+            <img src="{{ auth()->user()?->photo ? asset('storage/' . auth()->user()->photo) : asset('default-avatar.png') }}"
                 alt="Avatar"
                 class="w-12 h-12 rounded-full object-cover bg-gray-700 mr-3.5">
 
             <div>
                 <div class="font-bold text-base text-white">
-                    {{ auth()->user()->username ?? __('admin.user') }}
+                    {{ auth()->user()?->username ?? __('admin.user') }}
                 </div>
 
                 <div class="text-xs text-gray-400">
