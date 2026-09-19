@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\EditTaskRequest;
 use App\Models\Task;
@@ -57,7 +58,7 @@ class TaskController extends Controller
 
     public function index(): View
     {
-        $tasks = Task::all();
+        $tasks = Task::where('user_id', Auth::id())->get();
         return view('admin-add-task', compact('tasks'));
     }
     //store
@@ -75,6 +76,7 @@ class TaskController extends Controller
                 'ka' => $data['description_ka'],
             ],
             'due_date' => $data['due_date'],
+            'user_id' =>  Auth::id(),
         ]);
 
         return redirect('/admin-panel');
@@ -82,7 +84,7 @@ class TaskController extends Controller
 
     public function showAssignments(): View
     {
-        $tasks = Task::latest()->get();
+        $tasks = Task::where('user_id', Auth::id())->latest()->get();
         return view('admin-panel', compact('tasks'));
     }
 
