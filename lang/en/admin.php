@@ -63,5 +63,6 @@ return [
     'profile_picture' => 'Profile picture',
     'file_not_choosen' => 'File is not choosen',
     'title_ka' => 'Georgian title is required',
-    'google_login' => 'Google login'
+    'google_login' => 'Google login',
+    'success_message' => 'Profile changed successfuly !'
 ];

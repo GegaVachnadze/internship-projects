@@ -45,6 +45,6 @@ class ProfileController extends Controller
 
         $user->update($data);
 
-        return redirect()->back();
+        return redirect('/admin-panel');
     }
 }

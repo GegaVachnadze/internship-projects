@@ -12,7 +12,7 @@
 
         <div class="flex items-center mb-8 pb-4 border-b border-gray-700 px-2">
 
-            <img src="{{ auth()->user()?->photo ? asset('storage/' . auth()->user()->photo) : asset('default-avatar.png') }}"
+            <img src="{{ auth()->user()?->photo_url }}"
                 alt="Avatar"
                 class="w-12 h-12 rounded-full object-cover bg-gray-700 mr-3.5">
 

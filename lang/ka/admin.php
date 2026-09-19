@@ -62,5 +62,6 @@ return [
     'profile_picture' => 'პროფილის სურათი',
     'file_not_choosen' => 'ფაილი არ არის არჩეული',
     'title_ka' => 'ქართული ველი სავალდებულოა',
-    'google_login' => 'Google-ით შესვლა'
+    'google_login' => 'Google-ით შესვლა',
+    'success_message' => 'პროფილი წარმატებით შეიცვალა !'
 ];

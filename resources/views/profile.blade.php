@@ -60,11 +60,14 @@
                         <div class="mb-6 border-t border-gray-700 pt-5">
                             <label class="block text-gray-300 text-sm font-medium mb-2">{{__('admin.profile_picture')}}</label>
 
-                            @if($user->photo)
-                            <img src="{{ asset('storage/' . $user->photo) }}" alt="Profile photo" class="w-24 h-24 rounded-full object-cover ...">
-                            @endif
+                            <div class="mb-3">
+                                <img id="profile-preview"
+                                    src="{{ $user->photo_url }}"
+                                    alt="Profile photo"
+                                    class="w-24 h-24 rounded-full object-cover border border-gray-600">
+                            </div>
 
-                            <input type="file" name="photo" class="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-gray-700 file:text-white hover:file:bg-gray-600 cursor-pointer">
+                            <input type="file" name="photo" id="photo-input" class="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-gray-700 file:text-white hover:file:bg-gray-600 cursor-pointer">
 
                             @error('photo')
                             <span class="text-red-400 text-xs mt-1 block">{{ $message }}</span>
