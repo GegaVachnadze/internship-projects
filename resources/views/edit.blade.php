@@ -16,14 +16,6 @@
 
         <div class="flex-grow flex flex-col overflow-y-auto">
 
-            <div class="bg-gray-800 px-8 py-4 flex justify-between items-center border-b border-gray-700">
-                <h1 class="m-0 text-2xl font-bold text-white">{{ __('admin.edit') }}</h1>
-                <select onchange="window.location.href='/lang/' + this.value" class="bg-gray-700 border border-gray-600 rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none focus:border-red-500 cursor-pointer">
-                    <option value="ka" {{ app()->getLocale() == 'ka' ? 'selected' : '' }}>{{__('admin.georgian')}}</option>
-                    <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>{{__('admin.english')}}</option>
-                </select>
-            </div>
-
             <div class="p-8 box-border max-w-[700px]">
                 <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 shadow-lg">
                     <h2 class="mb-5 text-xl font-bold text-white text-center">{{__('admin.edit')}}</h2>
@@ -50,7 +42,7 @@
 
                         <div class="mb-5">
                             <label class="block mb-2 font-bold text-sm text-gray-300">{{__('admin.description_en')}} - {{__('admin.only_english')}}</label>
-                            <textarea name="description_en" rows="3" class="w-full p-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white box-border focus:outline-none focus:border-red-500">{{ old('description_en', $task->description_en ?? '') }}</textarea>
+                            <textarea name="description_en" rows="3" class="w-full p-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white box-border focus:outline-none focus:border-red-500">{{ old('description_en', $task->description['en'] ?? '') }}</textarea>
                             @error('description_en')
                             <span class="text-red-400 text-xs block mt-1.5">{{ $message }}</span>
                             @enderror
@@ -58,7 +50,7 @@
 
                         <div class="mb-5">
                             <label class="block mb-2 font-bold text-sm text-gray-300">{{__('admin.description_ka')}} - {{__('admin.only_georgian')}}</label>
-                            <textarea name="description_ka" rows="3" class="w-full p-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white box-border focus:outline-none focus:border-red-500">{{ old('description_ka', $task->description_ka ?? '') }}</textarea>
+                            <textarea name="description_ka" rows="3" class="w-full p-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white box-border focus:outline-none focus:border-red-500">{{ old('description_ka', $task->description['ka'] ?? '') }}</textarea>
                             @error('description_ka')
                             <span class="text-red-400 text-xs block mt-1.5">{{ $message }}</span>
                             @enderror
