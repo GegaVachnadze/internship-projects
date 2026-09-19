@@ -31,10 +31,12 @@ class ProfileController extends Controller
 
         $data = $request->validated();
 
+
         if (!empty($data['password'])) {
             $data['password'] = Hash::make($data['password']);
         } else {
             unset($data['password']);
+            unset($data['current_password']);
         }
 
         if ($request->hasFile('photo')) {
