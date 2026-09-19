@@ -29,6 +29,7 @@ return [
     'enter_new_password_text' => 'Enter a new password for your account',
     'password_confirmation' => 'Repeat Password',
     'create_password' => "Create new password",
+    'google_login' => 'Google login',
     'custom' => [
         'unique' => 'Type of username already exists.',
     ],

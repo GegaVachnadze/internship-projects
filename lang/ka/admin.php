@@ -61,5 +61,6 @@ return [
     'save_changes' => "შეინახეთ ცვლილებები",
     'profile_picture' => 'პროფილის სურათი',
     'file_not_choosen' => 'ფაილი არ არის არჩეული',
-    'title_ka' => 'ქართული ველი სავალდებულოა'
+    'title_ka' => 'ქართული ველი სავალდებულოა',
+    'google_login' => 'Google-ით შესვლა'
 ];

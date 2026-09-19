@@ -26,6 +26,7 @@ return [
     'password_confirmation' => 'პაროლის გამეორება',
     'enter_new_password_text' => 'შეიყვანეთ ახალი პაროლი აღსადგენად',
     'create_password' => "შექმენით ახალი პაროლი",
+    'google_login' => 'Google-ით შესვლა',
     'custom' => [
         'unique' => 'ამგვარი მომხმარებელი უკვე არსებობს.',
     ],

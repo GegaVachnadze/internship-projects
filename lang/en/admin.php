@@ -62,5 +62,6 @@ return [
     'save_changes' => "Save Changes",
     'profile_picture' => 'Profile picture',
     'file_not_choosen' => 'File is not choosen',
-    'title_ka' => 'Georgian title is required'
+    'title_ka' => 'Georgian title is required',
+    'google_login' => 'Google login'
 ];

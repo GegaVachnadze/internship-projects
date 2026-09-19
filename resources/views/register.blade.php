@@ -89,6 +89,7 @@
                     </svg>
                     {{ __('auth.google_reg') }}
                 </a>
+
                 <div style="text-align: center; font-size: 0.875rem; color: #64748b; padding-top: 0.5rem;">
                     {{ __('auth.have_account_q') }} <a href="{{ url('/authorize') }}" style="color: #4f46e5; font-weight: 600; text-decoration: underline;">{{ __('auth.authorization') }}</a>
                 </div>
