@@ -20,4 +20,9 @@ class Apartment extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
 }
