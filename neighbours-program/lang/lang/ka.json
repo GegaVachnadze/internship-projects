@@ -1,0 +1,16 @@
+{
+    "Welcome": "მოგესალმებით",
+    "Apartment Number": "შენი ბინის ნომერი",
+    "Floor": "სართული",
+    "Apartment not linked": "ბინა ჯერ არ არის მიბმული თქვენს ანგარიშთან.",
+    "Logout": "გასვლა",
+    "My Payments": "ჩემი გადახდები",
+    "Month": "თვე",
+    "Amount": "თანხა",
+    "Status": "სტატუსი",
+    "Paid": "გადახდილია",
+    "Pending": "გადასახდელი",
+    "No payments history": "გადახდების ისტორია ჯერ ცარიელია.",
+    "Announcements": "განცხადებები",
+    "No announcements": "ახალი განცხადებები არ არის."
+}
