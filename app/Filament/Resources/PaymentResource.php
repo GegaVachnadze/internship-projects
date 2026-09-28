@@ -4,11 +4,18 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PaymentResource\Pages;
 use App\Models\Payment;
-use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
 
 class PaymentResource extends Resource
 {
@@ -20,23 +27,23 @@ class PaymentResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('apartment_id')
+                Select::make('apartment_id')
                     ->relationship('apartment', 'apartment_number')
-                    ->label('ბინა')
+                    ->label(__('Apartment'))
                     ->required()
                     ->searchable()
                     ->preload(),
-                Forms\Components\TextInput::make('amount')
-                    ->label('თანხა (₾)')
+                TextInput::make('amount')
+                    ->label(__('Amount'))
                     ->required()
                     ->numeric()
                     ->prefix('₾'),
-                Forms\Components\TextInput::make('month')
-                    ->label('თვე (მაგ: 2026-09)')
+                TextInput::make('month')
+                    ->label(__('Month'))
                     ->required()
                     ->placeholder('2026-09'),
-                Forms\Components\Toggle::make('is_paid')
-                    ->label('გადახდილია')
+                Toggle::make('is_paid')
+                    ->label(__('Status'))
                     ->default(true)
                     ->required(),
             ]);
@@ -46,46 +53,42 @@ class PaymentResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('apartment.apartment_number')
-                    ->label('ბინის ნომერი')
+                TextColumn::make('apartment.apartment_number')
+                    ->label(__('Apartment Number'))
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('amount')
-                    ->label('თანხა')
+                TextColumn::make('amount')
+                    ->label(__('Amount'))
                     ->money('GEL')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('month')
-                    ->label('თვე')
+                TextColumn::make('month')
+                    ->label(__('Month'))
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\IconColumn::make('is_paid')
-                    ->label('სტატუსი')
+                IconColumn::make('is_paid')
+                    ->label(__('Status'))
                     ->boolean(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->label('ჩაწერა')
+                TextColumn::make('created_at')
+                    ->label(__('Created At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                //
-            ])
+            ->filters([])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                EditAction::make(),
+                DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array

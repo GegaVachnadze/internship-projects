@@ -4,11 +4,17 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ExpenseResource\Pages;
 use App\Models\Expense;
-use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Textarea;
 use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
 
 class ExpenseResource extends Resource
 {
@@ -20,21 +26,21 @@ class ExpenseResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->label('ხარჯის დასახელება')
+                TextInput::make('title')
+                    ->label(__('Title'))
                     ->required()
                     ->maxLength(255)
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('amount')
-                    ->label('თანხა (₾)')
+                TextInput::make('amount')
+                    ->label(__('Amount'))
                     ->required()
                     ->numeric()
                     ->prefix('₾'),
-                Forms\Components\DatePicker::make('expense_date')
-                    ->label('თარიღი')
+                DatePicker::make('expense_date')
+                    ->label(__('Date'))
                     ->default(now()),
-                Forms\Components\Textarea::make('description')
-                    ->label('აღწერა')
+                Textarea::make('description')
+                    ->label(__('Description'))
                     ->columnSpanFull(),
             ]);
     }
@@ -43,43 +49,39 @@ class ExpenseResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')
-                    ->label('დასახელება')
+                TextColumn::make('title')
+                    ->label(__('Title'))
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('amount')
-                    ->label('თანხა')
+                TextColumn::make('amount')
+                    ->label(__('Amount'))
                     ->money('GEL')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('expense_date')
-                    ->label('თარიღი')
+                TextColumn::make('expense_date')
+                    ->label(__('Date'))
                     ->date()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->label('ჩაწერა')
+                TextColumn::make('created_at')
+                    ->label(__('Created At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                //
-            ])
+            ->filters([])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                EditAction::make(),
+                DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array

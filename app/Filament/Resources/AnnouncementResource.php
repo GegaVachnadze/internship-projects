@@ -2,11 +2,10 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\AnnouncementResource\Pages;
-use App\Models\Announcement;
+use App\Filament\Resources\ApartmentResource\Pages;
+use App\Models\Apartment;
 use Filament\Forms\Form;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Resources\Resource;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
@@ -15,25 +14,23 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
 
-class AnnouncementResource extends Resource
+class ApartmentResource extends Resource
 {
-    protected static ?string $model = Announcement::class;
+    protected static ?string $model = Apartment::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-megaphone';
+    protected static ?string $navigationIcon = 'heroicon-o-home';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('title')
-                    ->label(__('Title'))
+                TextInput::make('apartment_number')
+                    ->label(__('Apartment Number'))
                     ->required()
-                    ->maxLength(255)
-                    ->columnSpanFull(),
-                Textarea::make('body')
-                    ->label(__('Body'))
-                    ->required()
-                    ->columnSpanFull(),
+                    ->maxLength(255),
+                TextInput::make('floor')
+                    ->label(__('Floor'))
+                    ->numeric(),
             ]);
     }
 
@@ -41,18 +38,20 @@ class AnnouncementResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('title')
-                    ->label(__('Title'))
+                TextColumn::make('apartment_number')
+                    ->label(__('Apartment Number'))
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('created_at')
-                    ->label(__('Published At'))
-                    ->dateTime()
+                TextColumn::make('floor')
+                    ->label(__('Floor'))
                     ->sortable(),
+                TextColumn::make('created_at')
+                    ->label(__('Created At'))
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                //
-            ])
+            ->filters([])
             ->actions([
                 EditAction::make(),
                 DeleteAction::make(),
@@ -66,17 +65,15 @@ class AnnouncementResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListAnnouncements::route('/'),
-            'create' => Pages\CreateAnnouncement::route('/create'),
-            'edit' => Pages\EditAnnouncement::route('/{record}/edit'),
+            'index' => Pages\ListApartments::route('/'),
+            'create' => Pages\CreateApartment::route('/create'),
+            'edit' => Pages\EditApartment::route('/{record}/edit'),
         ];
     }
 }
