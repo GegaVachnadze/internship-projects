@@ -4,11 +4,15 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ApartmentResource\Pages;
 use App\Models\Apartment;
-use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
 
 class ApartmentResource extends Resource
 {
@@ -20,12 +24,12 @@ class ApartmentResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('apartment_number')
-                    ->label('ბინის ნომერი')
+                TextInput::make('apartment_number')
+                    ->label(__('Apartment Number'))
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('floor')
-                    ->label('სართული')
+                TextInput::make('floor')
+                    ->label(__('Floor'))
                     ->numeric(),
             ]);
     }
@@ -34,38 +38,34 @@ class ApartmentResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('apartment_number')
-                    ->label('ბინის ნომერი')
+                TextColumn::make('apartment_number')
+                    ->label(__('Apartment Number'))
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('floor')
-                    ->label('სართული')
+                TextColumn::make('floor')
+                    ->label(__('Floor'))
                     ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->label('დამატების თარიღი')
+                TextColumn::make('created_at')
+                    ->label(__('Created At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                //
-            ])
+            ->filters([])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                EditAction::make(),
+                DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array

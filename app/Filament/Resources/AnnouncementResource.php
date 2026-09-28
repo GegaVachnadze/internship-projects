@@ -14,7 +14,7 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
 
-class ApartmentResource extends Resource
+class AnnouncementResource extends Resource
 {
     protected static ?string $model = Apartment::class;
 
