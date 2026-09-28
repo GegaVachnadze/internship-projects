@@ -1,0 +1,18 @@
+<?php
+
+return [
+    'Welcome' => 'Welcome',
+    'Apartment Number' => 'Your apartment number',
+    'Floor' => 'Floor',
+    'Apartment not linked' => 'Apartment is not linked to your account yet.',
+    'Logout' => 'Logout',
+    'My Payments' => 'My Payments',
+    'Month' => 'Month',
+    'Amount' => 'Amount',
+    'Status' => 'Status',
+    'Paid' => 'Paid',
+    'Pending' => 'Pending',
+    'No payments history' => 'Payments history is empty.',
+    'Announcements' => 'Announcements',
+    'No announcements' => 'No announcements found.',
+];
