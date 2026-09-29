@@ -23,27 +23,42 @@ class PaymentResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-credit-card';
 
+    public static function getNavigationLabel(): string
+    {
+        return __('messages.Payments');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('messages.Payment');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('messages.Payments');
+    }
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Select::make('apartment_id')
                     ->relationship('apartment', 'apartment_number')
-                    ->label(__('Apartment'))
+                    ->label(__('messages.Apartment'))
                     ->required()
                     ->searchable()
                     ->preload(),
                 TextInput::make('amount')
-                    ->label(__('Amount'))
+                    ->label(__('messages.Amount'))
                     ->required()
                     ->numeric()
                     ->prefix('₾'),
                 TextInput::make('month')
-                    ->label(__('Month'))
+                    ->label(__('messages.Month'))
                     ->required()
                     ->placeholder('2026-09'),
                 Toggle::make('is_paid')
-                    ->label(__('Status'))
+                    ->label(__('messages.Status'))
                     ->default(true)
                     ->required(),
             ]);
@@ -54,22 +69,22 @@ class PaymentResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('apartment.apartment_number')
-                    ->label(__('Apartment Number'))
+                    ->label(__('messages.Apartment Number'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('amount')
-                    ->label(__('Amount'))
+                    ->label(__('messages.Amount'))
                     ->money('GEL')
                     ->sortable(),
                 TextColumn::make('month')
-                    ->label(__('Month'))
+                    ->label(__('messages.Month'))
                     ->searchable()
                     ->sortable(),
                 IconColumn::make('is_paid')
-                    ->label(__('Status'))
+                    ->label(__('messages.Status'))
                     ->boolean(),
                 TextColumn::make('created_at')
-                    ->label(__('Created At'))
+                    ->label(__('messages.Created At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

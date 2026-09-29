@@ -22,6 +22,21 @@ class ExpenseResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-banknotes';
 
+    public static function getNavigationLabel(): string
+    {
+        return __('messages.Expenses');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('messages.Expense');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('messages.Expenses');
+    }
+
     public static function form(Form $form): Form
     {
         return $form
