@@ -32,4 +32,11 @@ return [
     'Start registration' => 'Start Registration',
     'Neighborhood Management' => 'Neighborhood Management',
     'Neighborhood Management. All rights reserved.' => 'Neighborhood Management. All rights reserved.',
+    'apartment_ex' => 'E.g., Apartment 42, 5th floor',
+    'name_example' => 'E.g., Giorgi Vachnadze ',
+    'email_example' => 'name@example.com',
+    'Neighbourhood' => 'Neighbourhood',
+    'Dashboard' => 'Dashboard',
+    'Modern Management System' => 'Modern Management System',
+    'Login to System' => 'Login to System',
 ];

@@ -48,7 +48,7 @@
                         <input id="name" name="name" type="text" required autofocus autocomplete="name"
                             value="{{ old('name') }}"
                             class="w-full px-4 py-3 rounded-xl bg-slate-950/60 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition text-sm"
-                            placeholder="მაგ: გიორგი ვაჩნაძე">
+                            placeholder="{{__('messages.name_example')}}">
                     </div>
 
                     <div>
@@ -58,7 +58,7 @@
                         <input id="email" name="email" type="email" required autocomplete="username"
                             value="{{ old('email') }}"
                             class="w-full px-4 py-3 rounded-xl bg-slate-950/60 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition text-sm"
-                            placeholder="name@example.com">
+                            placeholder="{{__('messages.email_example')}}">
                     </div>
 
                     <div>
@@ -68,7 +68,7 @@
                         <input id="apartment_number" name="apartment_number" type="text" required
                             value="{{ old('apartment_number') }}"
                             class="w-full px-4 py-3 rounded-xl bg-slate-950/60 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition text-sm"
-                            placeholder="მაგ: ბინა 42, სართული 5">
+                            placeholder="{{__('messages.apartment_ex')}}">
                     </div>
 
                     <div>
