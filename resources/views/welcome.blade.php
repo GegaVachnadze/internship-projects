@@ -51,17 +51,17 @@
             </div>
 
             <h1 class="text-5xl sm:text-7xl font-extrabold tracking-tight leading-[1.1] mb-8 text-white">
-                შენი სამეზობლო, შენი სახლი — <span class="text-indigo-400">ყველაფერი ერთ სივრცეში</span>
+                {{__('Your House')}} — <span class="text-indigo-400">{{__('Everything in one space')}}</span>
             </h1>
 
             <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed">
-                მარტივად ადევნე თვალი ბინის გადახდებს, გაეცანი კორპუსის სიახლეებს, განცხადებებს და მიიღე მნიშვნელოვანი ინფორმაცია დროულად.
+                {{__('Easy follow')}}
             </p>
 
             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 @if (Route::has('register'))
                 <a href="{{ route('register') }}" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-8 py-4 rounded-2xl shadow-xl shadow-indigo-600/25 transition transform hover:-translate-y-0.5">
-                    {{ __('Start Registration') }}
+                    {{ __('Start registration') }}
                 </a>
                 @endif
 
