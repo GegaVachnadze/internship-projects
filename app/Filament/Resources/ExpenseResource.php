@@ -27,20 +27,20 @@ class ExpenseResource extends Resource
         return $form
             ->schema([
                 TextInput::make('title')
-                    ->label(__('Title'))
+                    ->label(__('messages.Title'))
                     ->required()
                     ->maxLength(255)
                     ->columnSpanFull(),
                 TextInput::make('amount')
-                    ->label(__('Amount'))
+                    ->label(__('messages.Amount'))
                     ->required()
                     ->numeric()
                     ->prefix('₾'),
                 DatePicker::make('expense_date')
-                    ->label(__('Date'))
+                    ->label(__('messages.Date'))
                     ->default(now()),
                 Textarea::make('description')
-                    ->label(__('Description'))
+                    ->label(__('messages.Description'))
                     ->columnSpanFull(),
             ]);
     }
@@ -50,19 +50,19 @@ class ExpenseResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('title')
-                    ->label(__('Title'))
+                    ->label(__('messages.Title'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('amount')
-                    ->label(__('Amount'))
+                    ->label(__('messages.Amount'))
                     ->money('GEL')
                     ->sortable(),
                 TextColumn::make('expense_date')
-                    ->label(__('Date'))
+                    ->label(__('messages.Date'))
                     ->date()
                     ->sortable(),
                 TextColumn::make('created_at')
-                    ->label(__('Created At'))
+                    ->label(__('messages.Created At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

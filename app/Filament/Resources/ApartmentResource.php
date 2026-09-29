@@ -25,11 +25,11 @@ class ApartmentResource extends Resource
         return $form
             ->schema([
                 TextInput::make('apartment_number')
-                    ->label(__('Apartment Number'))
+                    ->label(__('messages.Apartment Number'))
                     ->required()
                     ->maxLength(255),
                 TextInput::make('floor')
-                    ->label(__('Floor'))
+                    ->label(__('messages.Floor'))
                     ->numeric(),
             ]);
     }
@@ -39,14 +39,14 @@ class ApartmentResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('apartment_number')
-                    ->label(__('Apartment Number'))
+                    ->label(__('messages.Apartment Number'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('floor')
-                    ->label(__('Floor'))
+                    ->label(__('messages.Floor'))
                     ->sortable(),
                 TextColumn::make('created_at')
-                    ->label(__('Created At'))
+                    ->label(__('messages.Created At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
