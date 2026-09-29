@@ -50,5 +50,5 @@ return [
     'Description' => 'Description',
     'Created At' => 'Created At',
     'Announcement' => 'Announcement',
-
+    'Neighborhood' => 'Neighborhood'
 ];

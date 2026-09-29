@@ -50,4 +50,5 @@ return [
     'Description' => 'აღწერა',
     'Created At' => 'შექმნის თარიღი',
     'Announcement' => 'განცხადება',
+    'Neighborhood' => 'სამეზობლო'
 ];
