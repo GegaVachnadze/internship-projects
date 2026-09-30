@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Models\Neighborhood;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -30,6 +31,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->brandName('Neighborhood')
             ->login()
+            ->tenant(Neighborhood::class)
             ->colors([
                 'primary' => Color::Amber,
             ])

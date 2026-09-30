@@ -21,6 +21,8 @@ class AnnouncementResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-megaphone';
 
+    protected static bool $isScopedToTenant = true;
+
     public static function getNavigationLabel(): string
     {
         return __('messages.Announcements');

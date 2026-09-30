@@ -23,6 +23,8 @@ class PaymentResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-credit-card';
 
+    protected static bool $isScopedToTenant = true;
+
     public static function getNavigationLabel(): string
     {
         return __('messages.Payments');

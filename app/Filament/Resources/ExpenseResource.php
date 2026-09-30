@@ -22,6 +22,8 @@ class ExpenseResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-banknotes';
 
+    protected static bool $isScopedToTenant = true;
+
     public static function getNavigationLabel(): string
     {
         return __('messages.Expenses');
