@@ -17,6 +17,7 @@ return new class extends Migration
             $table->decimal('amount', 8, 2);
             $table->string('month');
             $table->boolean('is_paid')->default(true);
+            $table->foreignId('neighborhood_id')->constrained('neighborhoods')->cascadeOnDelete();
             $table->timestamps();
         });
     }

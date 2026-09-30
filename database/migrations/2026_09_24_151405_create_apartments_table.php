@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('apartment_number');
             $table->integer('floor')->nullable();
+            $table->foreignId('neighborhood_id')->constrained('neighborhoods')->cascadeOnDelete();
             $table->timestamps();
         });
     }

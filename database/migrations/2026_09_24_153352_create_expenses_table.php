@@ -17,6 +17,7 @@ return new class extends Migration
             $table->decimal('amount', 8, 2);
             $table->date('expense_date')->nullable();
             $table->text('description')->nullable();
+            $table->foreignId('neighborhood_id')->constrained('neighborhoods')->cascadeOnDelete();
             $table->timestamps();
         });
     }
