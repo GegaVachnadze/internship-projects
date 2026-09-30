@@ -2,7 +2,6 @@
 
 namespace App\Providers\Filament;
 
-use App\Models\Neighborhood;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -20,6 +19,8 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
+use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
+use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -31,7 +32,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->brandName('Neighborhood')
             ->login()
-            ->tenant(Neighborhood::class)
+
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -55,7 +56,9 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
-                \App\Http\Middleware\SetLocale::class
+                \App\Http\Middleware\SetLocale::class,
+                InitializeTenancyByDomain::class,
+                PreventAccessFromCentralDomains::class,
             ])
             ->plugins([
                 FilamentShieldPlugin::make(),

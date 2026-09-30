@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('apartments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('apartment_id')->constrained()->cascadeOnDelete();
-            $table->decimal('amount', 8, 2);
-            $table->string('month');
-            $table->boolean('is_paid')->default(true);
-            $table->foreignId('neighborhood_id')->constrained('neighborhoods')->cascadeOnDelete();
+            $table->string('apartment_number');
+            $table->integer('floor')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('apartments');
     }
 };
