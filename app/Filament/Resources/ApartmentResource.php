@@ -20,8 +20,6 @@ class ApartmentResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-home';
 
-    protected static bool $isScopedToTenant = true;
-
     public static function getNavigationLabel(): string
     {
         return __('messages.Apartments');
