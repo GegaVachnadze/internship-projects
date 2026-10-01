@@ -17,7 +17,6 @@ class AnnouncementResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-megaphone';
 
-    protected static bool $isScopedToTenant = true;
 
     public static function getNavigationLabel(): string
     {

@@ -17,7 +17,6 @@ class PaymentResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-home';
 
-    protected static bool $isScopedToTenant = true;
 
     public static function getNavigationLabel(): string
     {
