@@ -24,7 +24,7 @@ class TenantResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('id')
-                    ->label('Tenant ID (Slug)')
+                    ->label(__('messages.tenant_id_slug'))
                     ->required()
                     ->unique(ignoreRecord: true),
 

@@ -50,5 +50,6 @@ return [
     'Description' => 'აღწერა',
     'Created At' => 'შექმნის თარიღი',
     'Announcement' => 'განცხადება',
-    'Neighborhood' => 'სამეზობლო'
+    'Neighborhood' => 'სამეზობლო',
+    'tenant_id_slug' => 'თენანტის ID (სლაგი)'
 ];

@@ -50,5 +50,6 @@ return [
     'Description' => 'Description',
     'Created At' => 'Created At',
     'Announcement' => 'Announcement',
-    'Neighborhood' => 'Neighborhood'
+    'Neighborhood' => 'Neighborhood',
+    'tenant_id_slug' => 'Tenant ID (Slug)',
 ];
