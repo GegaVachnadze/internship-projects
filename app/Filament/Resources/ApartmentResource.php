@@ -2,6 +2,12 @@
 
 namespace App\Filament\Resources;
 
+use BackedEnum;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\ApartmentResource\Pages;
 use App\Models\Apartment;
 use Filament\Forms\Form;
@@ -9,16 +15,13 @@ use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Actions\BulkActionGroup;
-use Filament\Tables\Actions\DeleteBulkAction;
+
 
 class ApartmentResource extends Resource
 {
     protected static ?string $model = Apartment::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-home';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-home';
 
     public static function getNavigationLabel(): string
     {
@@ -35,9 +38,9 @@ class ApartmentResource extends Resource
         return __('messages.Apartment');
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
                 TextInput::make('apartment_number')
                     ->label(__('messages.Apartment Number'))
