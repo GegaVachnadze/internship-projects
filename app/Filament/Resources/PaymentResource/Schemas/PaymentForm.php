@@ -15,13 +15,22 @@ class PaymentForm
             ->components([
                 Select::make('monthly_fee_id')
                     ->label(__('messages.Monthly Fee'))
-                    ->options(
-                        MonthlyFee::with('apartment')
+                    ->options(function (): array {
+                        $user = auth()->user();
+
+                        $query = MonthlyFee::with('apartment');
+
+                        if ($user?->hasRole('Resident')) {
+                            $query->where('apartment_id', $user->apartment_id);
+                        }
+
+                        return $query
                             ->get()
                             ->mapWithKeys(fn (MonthlyFee $fee): array => [
                                 $fee->id => $fee->apartment->apartment_number . ' — ' . $fee->month,
                             ])
-                    )
+                            ->all();
+                    })
                     ->required()
                     ->searchable()
                     ->preload(),
@@ -34,4 +43,3 @@ class PaymentForm
             ]);
     }
 }
-

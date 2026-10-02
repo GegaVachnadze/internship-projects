@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PaymentResource\Pages;
 use App\Filament\Resources\PaymentResource\Schemas\PaymentForm;
 use App\Filament\Resources\PaymentResource\Tables\PaymentsTable;
+use Illuminate\Database\Eloquent\Builder;
 use App\Models\Payment;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -55,5 +56,20 @@ class PaymentResource extends Resource
             'create' => Pages\CreatePayment::route('/create'),
             'edit' => Pages\EditPayment::route('/{record}/edit'),
         ];
+    }
+
+   public static function getEloquentQuery(): Builder
+    {
+    $query = parent::getEloquentQuery();
+
+    $user = auth()->user();
+
+    if ($user?->hasRole('Resident')) {
+        $query->whereHas('monthlyFee', function (Builder $query) use ($user): void {
+            $query->where('apartment_id', $user->apartment_id);
+        });
+    }
+
+    return $query;
     }
 }
