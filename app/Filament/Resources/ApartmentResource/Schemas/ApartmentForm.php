@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\ApartmentResource\Schemas;
 
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -19,6 +20,13 @@ class ApartmentForm
                 TextInput::make('floor')
                     ->label(__('messages.Floor'))
                     ->numeric(),
+
+                Select::make('neighborhood_id')
+                    ->relationship('neighborhood', 'name')
+                    ->label(__('messages.Neighborhood'))
+                    ->required()
+                    ->searchable()
+                    ->preload(),
             ]);
     }
 }

@@ -52,4 +52,9 @@ return [
     'Announcement' => 'Announcement',
     'Neighborhood' => 'Neighborhood',
     'tenant_id_slug' => 'Tenant ID (Slug)',
+    'Monthly Fee' => 'Monthly Fee',
+    'Expected' => 'Expected',
+    'Collected' => 'Collected',
+    'Remaining' => 'Remaining',
+    'Collection %' => 'Collection %',
 ];

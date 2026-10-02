@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\PaymentResource\Schemas;
 
+use App\Models\MonthlyFee;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 
 class PaymentForm
@@ -13,9 +13,15 @@ class PaymentForm
     {
         return $schema
             ->components([
-                Select::make('apartment_id')
-                    ->relationship('apartment', 'apartment_number')
-                    ->label(__('messages.Apartment'))
+                Select::make('monthly_fee_id')
+                    ->label(__('messages.Monthly Fee'))
+                    ->options(
+                        MonthlyFee::with('apartment')
+                            ->get()
+                            ->mapWithKeys(fn (MonthlyFee $fee) => [
+                                $fee->id => $fee->apartment->apartment_number . ' — ' . $fee->month,
+                            ])
+                    )
                     ->required()
                     ->searchable()
                     ->preload(),
@@ -25,16 +31,6 @@ class PaymentForm
                     ->required()
                     ->numeric()
                     ->prefix('₾'),
-
-                TextInput::make('month')
-                    ->label(__('messages.Month'))
-                    ->required()
-                    ->placeholder('2026-09'),
-
-                Toggle::make('is_paid')
-                    ->label(__('messages.Status'))
-                    ->default(true)
-                    ->required(),
             ]);
     }
 }

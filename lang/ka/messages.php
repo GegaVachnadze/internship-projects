@@ -51,5 +51,10 @@ return [
     'Created At' => 'შექმნის თარიღი',
     'Announcement' => 'განცხადება',
     'Neighborhood' => 'სამეზობლო',
-    'tenant_id_slug' => 'თენანტის ID (სლაგი)'
+    'tenant_id_slug' => 'თენანტის ID (სლაგი)',
+    'Monthly Fee' => 'თვიური გადასახადი',
+    'Expected' => 'მოსალოდნელი',
+    'Collected' => 'შეგროვებული',
+    'Remaining' => 'დარჩენილი',
+    'Collection %' => 'შეგროვებულია %',
 ];
