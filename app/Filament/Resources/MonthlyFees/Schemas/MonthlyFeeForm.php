@@ -18,11 +18,16 @@ class MonthlyFeeForm
                     ->required()
                     ->searchable()
                     ->preload(),
+
                 TextInput::make('amount')
+                    ->label(__('messages.Amount'))
                     ->required()
                     ->numeric(),
+
                 TextInput::make('month')
+                    ->label(__('messages.Month'))
                     ->required(),
             ]);
     }
 }
+
