@@ -17,6 +17,7 @@ class TenantPanelProvider extends PanelProvider
         return $panel
             ->id('tenant')
             ->path('admin')
+            ->login()
             ->domain('{tenant}.localhost')
             ->plugins([
                 FilamentShieldPlugin::make(),

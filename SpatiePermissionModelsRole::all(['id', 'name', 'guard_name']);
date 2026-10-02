@@ -1,0 +1,57 @@
+[90m= [39m[34;4mIlluminate\Database\Eloquent\Collection[39;24m {#9704
+    [34mall[39m: [
+      [34;4mApp\Models\User[39;24m {#9876
+        [34mid[39m: [35m1[39m,
+        [34mname[39m: [32m"[39m[32mGega[39m[32m"[39m,
+        [34memail[39m: [32m"[39m[32mgega@example.com[39m[32m"[39m,
+        [34mapartment_id[39m: [35m1[39m,
+        [34mroles[39m: [34;4mIlluminate\Database\Eloquent\Collection[39;24m {#9837
+          [34mall[39m: [
+            [34;4mSpatie\Permission\Models\Role[39;24m {#9714
+              [34mid[39m: [35m3[39m,
+              [34mname[39m: [32m"[39m[32mResident[39m[32m"[39m,
+              [34mguard_name[39m: [32m"[39m[32mweb[39m[32m"[39m,
+              [34mcreated_at[39m: [32m"[39m[32m2026-10-02 14:48:39[39m[32m"[39m,
+              [34mupdated_at[39m: [32m"[39m[32m2026-10-02 14:48:39[39m[32m"[39m,
+              [34mpivot[39m: [34;4mIlluminate\Database\Eloquent\Relations\MorphPivot[39;24m {#9705
+                [34mmodel_type[39m: [32m"[39m[32mApp[39m\\[32mModels[39m\\[32mUser[39m[32m"[39m,
+                [34mmodel_id[39m: [35m1[39m,
+                [34mrole_id[39m: [35m3[39m,
+              },
+            },
+          ],
+        },
+      },
+      [34;4mApp\Models\User[39;24m {#9865
+        [34mid[39m: [35m2[39m,
+        [34mname[39m: [32m"[39m[32mAdmin[39m[32m"[39m,
+        [34memail[39m: [32m"[39m[32madmin@building.test[39m[32m"[39m,
+        [34mapartment_id[39m: [36mnull[39m,
+        [34mroles[39m: [34;4mIlluminate\Database\Eloquent\Collection[39;24m {#9875
+          [34mall[39m: [],
+        },
+      },
+      [34;4mApp\Models\User[39;24m {#9868
+        [34mid[39m: [35m3[39m,
+        [34mname[39m: [32m"[39m[32mChairman[39m[32m"[39m,
+        [34memail[39m: [32m"[39m[32mchairman@building.test[39m[32m"[39m,
+        [34mapartment_id[39m: [36mnull[39m,
+        [34mroles[39m: [34;4mIlluminate\Database\Eloquent\Collection[39;24m {#9708
+          [34mall[39m: [
+            [34;4mSpatie\Permission\Models\Role[39;24m {#9716
+              [34mid[39m: [35m2[39m,
+              [34mname[39m: [32m"[39m[32mChairman[39m[32m"[39m,
+              [34mguard_name[39m: [32m"[39m[32mweb[39m[32m"[39m,
+              [34mcreated_at[39m: [32m"[39m[32m2026-10-02 14:48:35[39m[32m"[39m,
+              [34mupdated_at[39m: [32m"[39m[32m2026-10-02 14:48:35[39m[32m"[39m,
+              [34mpivot[39m: [34;4mIlluminate\Database\Eloquent\Relations\MorphPivot[39;24m {#9841
+                [34mmodel_type[39m: [32m"[39m[32mApp[39m\\[32mModels[39m\\[32mUser[39m[32m"[39m,
+                [34mmodel_id[39m: [35m3[39m,
+                [34mrole_id[39m: [35m2[39m,
+              },
+            },
+          ],
+        },
+      },
+    ],
+  }
