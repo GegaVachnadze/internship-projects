@@ -4,20 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Payment extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'apartment_id',
+        'monthly_fee_id',
         'amount',
-        'month',
-        'is_paid',
     ];
 
-    public function apartment()
+    public function monthlyFee(): BelongsTo
     {
-        return $this->belongsTo(Apartment::class);
+        return $this->belongsTo(MonthlyFee::class);
     }
 }

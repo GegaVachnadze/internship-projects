@@ -31,5 +31,10 @@ class Apartment extends Model
     {
         return $this->belongsTo(Neighborhood::class);
     }
+    
+    public function monthlyFees(): HasMany
+    {
+        return $this->hasMany(MonthlyFee::class);
+    }
 }
 
