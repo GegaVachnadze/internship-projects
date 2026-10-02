@@ -57,4 +57,5 @@ return [
     'Collected' => 'Collected',
     'Remaining' => 'Remaining',
     'Collection %' => 'Collection %',
+    'Month' => 'Month',
 ];

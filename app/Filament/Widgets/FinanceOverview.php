@@ -12,9 +12,10 @@ class FinanceOverview extends StatsOverviewWidget
     protected function getStats(): array
     {
         $expected = MonthlyFee::sum('amount');
+
         $collected = MonthlyFee::with('payments')
             ->get()
-            ->sum(fn ($fee) => $fee->payments->sum('amount'));
+            ->sum(fn (MonthlyFee $fee): float => $fee->payments->sum('amount'));
 
         $expenses = Expense::sum('amount');
 
@@ -26,13 +27,9 @@ class FinanceOverview extends StatsOverviewWidget
 
         return [
             Stat::make(__('messages.Expected'), number_format($expected, 2) . ' ₾'),
-
             Stat::make(__('messages.Collected'), number_format($collected, 2) . ' ₾'),
-
             Stat::make(__('messages.Remaining'), number_format($remaining, 2) . ' ₾'),
-
             Stat::make(__('messages.Expenses'), number_format($expenses, 2) . ' ₾'),
-
             Stat::make(__('messages.Collection %'), $collectionPercentage . '%'),
         ];
     }

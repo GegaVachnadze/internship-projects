@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\MonthlyFees\Tables;
 
+use App\Models\MonthlyFee;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -39,7 +40,7 @@ class MonthlyFeesTable
                 TextColumn::make('remaining')
                     ->label(__('messages.Remaining'))
                     ->money('GEL')
-                    ->getStateUsing(function ($record) {
+                    ->getStateUsing(function (MonthlyFee $record): float {
                         return max(
                             0,
                             $record->amount - $record->payments->sum('amount')
@@ -49,7 +50,7 @@ class MonthlyFeesTable
                 TextColumn::make('collection_percentage')
                     ->label(__('messages.Collection %'))
                     ->suffix('%')
-                    ->getStateUsing(function ($record) {
+                    ->getStateUsing(function (MonthlyFee $record): float {
                         if ($record->amount <= 0) {
                             return 0;
                         }
@@ -75,3 +76,4 @@ class MonthlyFeesTable
             ]);
     }
 }
+

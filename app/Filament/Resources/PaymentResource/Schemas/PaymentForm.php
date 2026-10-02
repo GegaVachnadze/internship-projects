@@ -18,7 +18,7 @@ class PaymentForm
                     ->options(
                         MonthlyFee::with('apartment')
                             ->get()
-                            ->mapWithKeys(fn (MonthlyFee $fee) => [
+                            ->mapWithKeys(fn (MonthlyFee $fee): array => [
                                 $fee->id => $fee->apartment->apartment_number . ' — ' . $fee->month,
                             ])
                     )
@@ -34,3 +34,4 @@ class PaymentForm
             ]);
     }
 }
+

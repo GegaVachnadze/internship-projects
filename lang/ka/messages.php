@@ -57,4 +57,5 @@ return [
     'Collected' => 'შეგროვებული',
     'Remaining' => 'დარჩენილი',
     'Collection %' => 'შეგროვებულია %',
+    'Month' => 'თვე',
 ];
