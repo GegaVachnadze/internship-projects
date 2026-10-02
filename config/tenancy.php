@@ -2,47 +2,34 @@
 
 declare(strict_types=1);
 
+use App\Models\Tenant;
 use Stancl\Tenancy\Database\Models\Domain;
-use Stancl\Tenancy\Database\Models\Tenant;
 
 return [
     'tenant_model' => Tenant::class,
+
     'id_generator' => Stancl\Tenancy\UUIDGenerator::class,
 
     'domain_model' => Domain::class,
 
-    /**
-     * The list of domains hosting your central app.
-     */
     'central_domains' => [
         '127.0.0.1',
         'localhost',
     ],
 
-    /**
-     * Middleware used to identify tenants (using Path-based identification).
-     */
     'identification_middleware' => [
-        Stancl\Tenancy\Middleware\InitializeTenancyByPath::class,
+        Stancl\Tenancy\Middleware\InitializeTenancyByDomain::class,
     ],
 
-    /**
-     * Tenancy bootstrappers are executed when tenancy is initialized.
-     */
     'bootstrappers' => [
         Stancl\Tenancy\Bootstrappers\DatabaseTenancyBootstrapper::class,
         Stancl\Tenancy\Bootstrappers\CacheTenancyBootstrapper::class,
         Stancl\Tenancy\Bootstrappers\FilesystemTenancyBootstrapper::class,
         Stancl\Tenancy\Bootstrappers\QueueTenancyBootstrapper::class,
-        // Stancl\Tenancy\Bootstrappers\RedisTenancyBootstrapper::class,
     ],
 
-    /**
-     * Database tenancy config. Used by DatabaseTenancyBootstrapper.
-     */
     'database' => [
         'central_connection' => env('DB_CONNECTION', 'central'),
-
         'template_tenant_connection' => null,
 
         'prefix' => 'tenant',
@@ -56,18 +43,13 @@ return [
         ],
     ],
 
-    /**
-     * Cache tenancy config. Used by CacheTenancyBootstrapper.
-     */
     'cache' => [
         'tag_base' => 'tenant',
     ],
 
-    /**
-     * Filesystem tenancy config. Used by FilesystemTenancyBootstrapper.
-     */
     'filesystem' => [
         'suffix_base' => 'tenant',
+
         'disks' => [
             'local',
             'public',
@@ -82,40 +64,21 @@ return [
         'asset_helper_tenancy' => true,
     ],
 
-    /**
-     * Redis tenancy config. Used by RedisTenancyBootstrapper.
-     */
     'redis' => [
         'prefix_base' => 'tenant',
         'prefixed_connections' => [],
     ],
 
-    /**
-     * Features are classes that provide additional functionality.
-     */
-    'features' => [
-        // Stancl\Tenancy\Features\UserImpersonation::class,
-        // Stancl\Tenancy\Features\TelescopeTags::class,
-        // Stancl\Tenancy\Features\UniversalRoutes::class,
-        // Stancl\Tenancy\Features\TenantConfig::class,
-        // Stancl\Tenancy\Features\CrossDomainRedirect::class,
-        // Stancl\Tenancy\Features\ViteBundler::class,
-    ],
+    'features' => [],
 
     'routes' => true,
 
-    /**
-     * Parameters used by the tenants:migrate command.
-     */
     'migration_parameters' => [
         '--force' => true,
         '--path' => [database_path('migrations/tenant')],
         '--realpath' => true,
     ],
 
-    /**
-     * Parameters used by the tenants:seed command.
-     */
     'seeder_parameters' => [
         '--class' => 'DatabaseSeeder',
     ],

@@ -25,6 +25,7 @@ class CentralPanelProvider extends PanelProvider
         return $panel
             ->id('central')
             ->path('central')
+            ->login()
             ->colors([
                 'primary' => Color::Amber,
             ])

@@ -1,0 +1,89 @@
+[90m= [39m[34;4mIlluminate\Support\Collection[39;24m {#9323
+    [34mall[39m: [
+      {#9322
+        +"[1mid[22m": [35m1[39m,
+        +"[1mmigration[22m": [32m"[39m[32m0001_01_01_000000_create_users_table[39m[32m"[39m,
+        +"[1mbatch[22m": [35m1[39m,
+      },
+      {#9320
+        +"[1mid[22m": [35m2[39m,
+        +"[1mmigration[22m": [32m"[39m[32m0001_01_01_000001_create_cache_table[39m[32m"[39m,
+        +"[1mbatch[22m": [35m1[39m,
+      },
+      {#9318
+        +"[1mid[22m": [35m3[39m,
+        +"[1mmigration[22m": [32m"[39m[32m0001_01_01_000002_create_jobs_table[39m[32m"[39m,
+        +"[1mbatch[22m": [35m1[39m,
+      },
+      {#9325
+        +"[1mid[22m": [35m4[39m,
+        +"[1mmigration[22m": [32m"[39m[32m2026_09_20_000000_create_neighborhoods_table[39m[32m"[39m,
+        +"[1mbatch[22m": [35m1[39m,
+      },
+      {#9302
+        +"[1mid[22m": [35m5[39m,
+        +"[1mmigration[22m": [32m"[39m[32m2026_09_24_142430_create_permission_tables[39m[32m"[39m,
+        +"[1mbatch[22m": [35m1[39m,
+      },
+      {#9326
+        +"[1mid[22m": [35m6[39m,
+        +"[1mmigration[22m": [32m"[39m[32m2026_09_24_151405_create_apartments_table[39m[32m"[39m,
+        +"[1mbatch[22m": [35m1[39m,
+      },
+      {#9327
+        +"[1mid[22m": [35m7[39m,
+        +"[1mmigration[22m": [32m"[39m[32m2026_09_24_151539_apartment_to_users_table[39m[32m"[39m,
+        +"[1mbatch[22m": [35m1[39m,
+      },
+      {#9328
+        +"[1mid[22m": [35m8[39m,
+        +"[1mmigration[22m": [32m"[39m[32m2026_09_24_152551_create_payments_table[39m[32m"[39m,
+        +"[1mbatch[22m": [35m1[39m,
+      },
+      {#9329
+        +"[1mid[22m": [35m9[39m,
+        +"[1mmigration[22m": [32m"[39m[32m2026_09_24_153352_create_expenses_table[39m[32m"[39m,
+        +"[1mbatch[22m": [35m1[39m,
+      },
+      {#9330
+        +"[1mid[22m": [35m10[39m,
+        +"[1mmigration[22m": [32m"[39m[32m2026_09_29_114611_create_announcements_table[39m[32m"[39m,
+        +"[1mbatch[22m": [35m1[39m,
+      },
+      {#9331
+        +"[1mid[22m": [35m11[39m,
+        +"[1mmigration[22m": [32m"[39m[32m2026_09_30_071427_add_neighborhood_id_to_existing_tables[39m[32m"[39m,
+        +"[1mbatch[22m": [35m1[39m,
+      },
+      {#9332
+        +"[1mid[22m": [35m12[39m,
+        +"[1mmigration[22m": [32m"[39m[32m2026_09_30_082015_create_neighborhood_user_table[39m[32m"[39m,
+        +"[1mbatch[22m": [35m1[39m,
+      },
+      {#9333
+        +"[1mid[22m": [35m13[39m,
+        +"[1mmigration[22m": [32m"[39m[32m2019_09_15_000010_create_tenants_table[39m[32m"[39m,
+        +"[1mbatch[22m": [35m2[39m,
+      },
+      {#9334
+        +"[1mid[22m": [35m14[39m,
+        +"[1mmigration[22m": [32m"[39m[32m2019_09_15_000020_create_domains_table[39m[32m"[39m,
+        +"[1mbatch[22m": [35m2[39m,
+      },
+      {#9335
+        +"[1mid[22m": [35m15[39m,
+        +"[1mmigration[22m": [32m"[39m[32m2026_10_02_072153_add_neighborhood_id_to_apartments_table[39m[32m"[39m,
+        +"[1mbatch[22m": [35m3[39m,
+      },
+      {#9336
+        +"[1mid[22m": [35m16[39m,
+        +"[1mmigration[22m": [32m"[39m[32m2026_10_02_074605_create_monthly_fees_table[39m[32m"[39m,
+        +"[1mbatch[22m": [35m4[39m,
+      },
+      {#9337
+        +"[1mid[22m": [35m17[39m,
+        +"[1mmigration[22m": [32m"[39m[32m2026_10_02_075355_update_payments_table_for_monthly_fees[39m[32m"[39m,
+        +"[1mbatch[22m": [35m5[39m,
+      },
+    ],
+  }
