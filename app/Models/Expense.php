@@ -14,6 +14,5 @@ class Expense extends Model
         'amount',
         'expense_date',
         'description',
-        'neighborhood_id',
     ];
 }

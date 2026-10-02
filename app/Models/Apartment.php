@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Apartment extends Model
@@ -14,7 +13,6 @@ class Apartment extends Model
     protected $fillable = [
         'apartment_number',
         'floor',
-        'neighborhood_id',
     ];
 
     public function users(): HasMany
@@ -27,14 +25,8 @@ class Apartment extends Model
         return $this->hasMany(Payment::class);
     }
 
-    public function neighborhood(): BelongsTo
-    {
-        return $this->belongsTo(Neighborhood::class);
-    }
-    
     public function monthlyFees(): HasMany
     {
         return $this->hasMany(MonthlyFee::class);
     }
 }
-
