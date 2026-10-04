@@ -2,6 +2,8 @@
 
 namespace App\Filament\Central\Resources\TenantResource\Tables;
 
+use App\Filament\Central\Resources\TenantResource;
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -25,6 +27,12 @@ class TenantsTable
             ->filters([])
             ->actions([
                 EditAction::make(),
+
+                Action::make('manageUsers')
+                    ->label('Manage Users')
+                    ->url(fn ($record) => TenantResource::getUrl('manage-users', [
+                        'record' => $record,
+                    ])),
             ])
             ->bulkActions([
                 BulkActionGroup::make([

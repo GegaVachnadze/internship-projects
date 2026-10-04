@@ -35,9 +35,10 @@ class TenantResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTenants::route('/'),
-            'create' => Pages\CreateTenant::route('/create'),
-            'edit' => Pages\EditTenant::route('/{record}/edit'),
+        'index' => Pages\ListTenants::route('/'),
+        'create' => Pages\CreateTenant::route('/create'),
+        'edit' => Pages\EditTenant::route('/{record}/edit'),
+        'manage-users' => Pages\ManageTenantUsers::route('/{record}/users'),
         ];
     }
 }
