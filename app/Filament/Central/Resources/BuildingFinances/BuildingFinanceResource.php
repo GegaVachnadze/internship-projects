@@ -59,7 +59,7 @@ class BuildingFinanceResource extends Resource
 
     public static function canAccess(): bool
     {
-        return auth()->user()?->hasRole('Super Admin') ?? false;
+        return (bool) auth()->user()?->is_super_admin;
     }
 
     public static function shouldRegisterNavigation(): bool
