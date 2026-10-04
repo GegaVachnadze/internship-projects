@@ -3,12 +3,10 @@
 namespace App\Filament\Central\Resources\BuildingFinances;
 
 use App\Filament\Central\Resources\BuildingFinances\Pages\ListBuildingFinances;
-use App\Filament\Central\Resources\BuildingFinances\Schemas\BuildingFinanceForm;
 use App\Filament\Central\Resources\BuildingFinances\Tables\BuildingFinancesTable;
 use App\Models\Tenant;
 use BackedEnum;
 use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
@@ -33,11 +31,6 @@ class BuildingFinanceResource extends Resource
     public static function getPluralModelLabel(): string
     {
         return __('messages.finances');
-    }
-
-    public static function form(Schema $schema): Schema
-    {
-        return BuildingFinanceForm::configure($schema);
     }
 
     public static function table(Table $table): Table
