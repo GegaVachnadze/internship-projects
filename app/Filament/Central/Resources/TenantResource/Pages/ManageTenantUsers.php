@@ -138,9 +138,7 @@ class ManageTenantUsers extends Page implements HasTable
                             'name' => $data['name'],
                             'email' => $data['email'],
                             'password' => $data['password'],
-                            'apartment_id' => $role->name === 'Resident'
-                                ? ($data['apartment_id'] ?? null)
-                                : null,
+                            'apartment_id' => $data['apartment_id'] ?? null,
                         ]);
 
                         $user->syncRoles([$role]);
@@ -312,9 +310,7 @@ class ManageTenantUsers extends Page implements HasTable
                                 $record->password = $data['password'];
                             }
 
-                            $record->apartment_id = $role->name === 'Resident'
-                                ? ($data['apartment_id'] ?? null)
-                                : null;
+                            $record->apartment_id = $data['apartment_id'] ?? null;
 
                             $record->save();
 

@@ -80,5 +80,12 @@ return [
     'user_management' => 'User Management',
     'subdomain' => 'Subdomain',
     'tenant_id' => 'Tenant ID',
-    'delete_user' => 'Delete user'
+    'delete_user' => 'Delete user',
+    'collection_progress' => 'Collection progress',
+    'building' => 'Building',
+    'total_due' => 'Total due',
+    'collected' => 'Collected',
+    'remaining' => 'Remaining',
+    'collection_percentage' => 'Percentage',
+    'finances' => 'Finances'
 ];

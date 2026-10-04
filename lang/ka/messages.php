@@ -80,5 +80,12 @@ return [
     'user_management' => 'მომხმარებლების მენეჯმენტი',
     'subdomain' => 'სუბდომეინი',
     'tenant_id' => 'ტენანტის ID',
-    'delete_user' => 'მომხმარებლის წაშლა'
+    'delete_user' => 'მომხმარებლის წაშლა',
+    'collection_progress' => 'შეგროვების პროგრესი',
+    'building' => 'საცხოვრებელი',
+    'total_due' => 'საერთო ჯამი',
+    'collected' => 'შეგროვებულია',
+    'remaining' => 'დარჩენილია',
+    'collection_percentage' => 'პროცენტულობა',
+    'finances' => 'ფინანსები',
 ];
