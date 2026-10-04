@@ -43,10 +43,15 @@ class TenantUserForm
 
             Select::make('role')
                 ->label(__('messages.role'))
-                ->options([
-                    UserRole::Chairman->value => __('messages.chairman'),
-                    UserRole::Resident->value => __('messages.resident'),
-                ])
+                ->options(
+                    collect(UserRole::cases())
+                        ->mapWithKeys(
+                            fn (UserRole $role): array => [
+                                $role->value => $role->label(),
+                            ]
+                        )
+                        ->all()
+                )
                 ->required(),
 
             Select::make('apartment_id')
