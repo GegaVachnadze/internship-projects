@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\DTOs\BuildingFinanceData;
 use App\Models\Payment;
 use App\Models\Tenant;
 use Illuminate\Database\Eloquent\Builder;
@@ -11,7 +12,7 @@ class BuildingFinanceService
 {
     private static array $financialCache = [];
 
-    public function getFinancialData(Tenant $tenant): array
+    public function getFinancialData(Tenant $tenant): BuildingFinanceData
     {
         $key = (string) $tenant->getKey();
 
@@ -19,7 +20,7 @@ class BuildingFinanceService
             return self::$financialCache[$key];
         }
 
-        self::$financialCache[$key] = $tenant->run(function (): array {
+        self::$financialCache[$key] = $tenant->run(function (): BuildingFinanceData {
             $totalDue = (float) Payment::query()
                 ->sum('amount');
 
@@ -31,12 +32,12 @@ class BuildingFinanceService
                 ? ($collected / $totalDue) * 100
                 : 0;
 
-            return [
-                'total_due' => $totalDue,
-                'collected' => $collected,
-                'remaining' => $remaining,
-                'percentage' => $percentage,
-            ];
+            return new BuildingFinanceData(
+                totalDue: $totalDue,
+                collected: $collected,
+                remaining: $remaining,
+                percentage: $percentage,
+            );
         });
 
         return self::$financialCache[$key];

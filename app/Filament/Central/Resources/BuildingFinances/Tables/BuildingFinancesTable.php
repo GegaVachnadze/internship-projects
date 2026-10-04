@@ -24,7 +24,8 @@ class BuildingFinancesTable
                         fn (Tenant $record): string =>
                             number_format(
                                 app(BuildingFinanceService::class)
-                                    ->getFinancialData($record)['total_due'],
+                                    ->getFinancialData($record)
+                                    ->totalDue,
                                 2
                             ) . ' ₾'
                     ),
@@ -35,7 +36,8 @@ class BuildingFinancesTable
                         fn (Tenant $record): string =>
                             number_format(
                                 app(BuildingFinanceService::class)
-                                    ->getFinancialData($record)['collected'],
+                                    ->getFinancialData($record)
+                                    ->collected,
                                 2
                             ) . ' ₾'
                     ),
@@ -46,7 +48,8 @@ class BuildingFinancesTable
                         fn (Tenant $record): string =>
                             number_format(
                                 app(BuildingFinanceService::class)
-                                    ->getFinancialData($record)['remaining'],
+                                    ->getFinancialData($record)
+                                    ->remaining,
                                 2
                             ) . ' ₾'
                     ),
@@ -57,7 +60,8 @@ class BuildingFinancesTable
                         fn (Tenant $record): string =>
                             number_format(
                                 app(BuildingFinanceService::class)
-                                    ->getFinancialData($record)['percentage'],
+                                    ->getFinancialData($record)
+                                    ->percentage,
                                 1
                             ) . '%'
                     )
