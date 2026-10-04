@@ -2,20 +2,21 @@
 
 namespace App\Filament\Central\Resources\TenantResource\Pages;
 
-use App\Filament\Central\Resources\TenantResource\Schemas\TenantUserForm;
 use App\Enums\UserRole;
 use App\Filament\Central\Resources\TenantResource;
+use App\Filament\Central\Resources\TenantResource\Schemas\TenantUserForm;
 use App\Filament\Central\Resources\TenantResource\Tables\TenantUsersTable;
 use App\Models\Apartment;
 use App\Models\User;
 use Filament\Actions\Action;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Resources\Pages\Concerns\InteractsWithRecord;
 use Filament\Resources\Pages\Page;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Validation\ValidationException;
 use Spatie\Permission\Models\Role;
 
@@ -46,47 +47,9 @@ class ManageTenantUsers extends Page implements HasTable
                 ->icon('heroicon-o-user-plus')
                 ->modalHeading(__('messages.create_user'))
                 ->modalSubmitActionLabel(__('messages.create_user'))
-                ->schema([
-                    TextInput::make('name')
-                        ->label(__('messages.name'))
-                        ->required()
-                        ->maxLength(255),
-
-                    TextInput::make('email')
-                        ->label(__('messages.email'))
-                        ->email()
-                        ->required()
-                        ->maxLength(255),
-
-                    TextInput::make('password')
-                        ->label(__('messages.password'))
-                        ->password()
-                        ->revealable()
-                        ->required()
-                        ->minLength(8),
-
-                    Select::make('role')
-                        ->label(__('messages.role'))
-                        ->options([
-                            UserRole::Chairman->value => __('messages.chairman'),
-                            UserRole::Resident->value => __('messages.resident'),
-                        ])
-                        ->required(),
-
-                    Select::make('apartment_id')
-                        ->label(__('messages.apartment'))
-                        ->options(
-                            fn () => $this->record->run(
-                                fn () => Apartment::query()
-                                    ->orderBy('apartment_number')
-                                    ->pluck('apartment_number', 'id')
-                                    ->toArray()
-                            )
-                        )
-                        ->searchable()
-                        ->preload()
-                        ->nullable(),
-                ])
+                ->schema(
+                    TenantUserForm::configure($this->record)
+                )
                 ->action(function (array $data): void {
                     $this->record->run(function () use ($data): void {
                         if (
@@ -116,7 +79,7 @@ class ManageTenantUsers extends Page implements HasTable
                             User::query()
                                 ->whereHas(
                                     'roles',
-                                    fn ($query) => $query
+                                    fn (Builder $query): Builder => $query
                                         ->where('name', UserRole::Chairman->value)
                                         ->where('guard_name', 'web')
                                 )
