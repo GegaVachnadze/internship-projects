@@ -9,6 +9,7 @@ use App\Models\User;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Spatie\Permission\Models\Role;
 
 class TenantUsersTable
 {
@@ -43,7 +44,7 @@ class TenantUsersTable
                     ->state(
                         fn (User $record): string => $record->roles
                             ->map(
-                                fn ($role): string => match ($role->name) {
+                                fn (Role $role): string => match ($role->name) {
                                     UserRole::Chairman->value => __('messages.chairman'),
                                     UserRole::Resident->value => __('messages.resident'),
                                     default => $role->name,
