@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\PaymentStatus;
 use App\DTOs\BuildingFinanceData;
 use App\Models\Payment;
 use App\Models\Tenant;
@@ -78,23 +79,15 @@ class BuildingFinanceService
 
     private function sumPaidByStatus(string $column): float
     {
-        $paidStatuses = [
-            'paid',
-            'completed',
-            'complete',
-            'success',
-            'successful',
-        ];
-
         return (float) Payment::query()
-            ->where(function (Builder $query) use ($column, $paidStatuses): void {
-                foreach ($paidStatuses as $status) {
+            ->where(function (Builder $query) use ($column): void {
+                foreach (PaymentStatus::values() as $status) {
                     $query->orWhereRaw(
                         "LOWER(CAST(`{$column}` AS CHAR)) = ?",
                         [$status]
-                    );
-                }
-            })
-            ->sum('amount');
+                );
+            }
+        })
+        ->sum('amount');
     }
 }
