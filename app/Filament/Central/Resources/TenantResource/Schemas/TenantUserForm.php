@@ -52,8 +52,8 @@ class TenantUserForm
             Select::make('apartment_id')
                 ->label(__('messages.apartment'))
                 ->options(
-                    fn () => $tenant->run(
-                        fn () => Apartment::query()
+                    fn (): array => $tenant->run(
+                        fn (): array => Apartment::query()
                             ->orderBy('apartment_number')
                             ->pluck('apartment_number', 'id')
                             ->toArray()
