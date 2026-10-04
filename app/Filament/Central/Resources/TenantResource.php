@@ -17,6 +17,21 @@ class TenantResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function getNavigationLabel(): string
+    {
+        return __('messages.tenants');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('messages.tenant');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('messages.tenants');
+    }
+
     public static function form(Schema $schema): Schema
     {
         return TenantForm::configure($schema);
@@ -35,10 +50,10 @@ class TenantResource extends Resource
     public static function getPages(): array
     {
         return [
-        'index' => Pages\ListTenants::route('/'),
-        'create' => Pages\CreateTenant::route('/create'),
-        'edit' => Pages\EditTenant::route('/{record}/edit'),
-        'manage-users' => Pages\ManageTenantUsers::route('/{record}/users'),
+            'index' => Pages\ListTenants::route('/'),
+            'create' => Pages\CreateTenant::route('/create'),
+            'edit' => Pages\EditTenant::route('/{record}/edit'),
+            'manage-users' => Pages\ManageTenantUsers::route('/{record}/users'),
         ];
     }
 }

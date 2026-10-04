@@ -156,6 +156,12 @@ class ManageTenantUsers extends Page implements HasTable
                 $this->record->run(
                     fn () => User::query()
                         ->with(['roles', 'apartment'])
+                        ->whereHas(
+                            'roles',
+                            fn ($query) => $query
+                                ->where('guard_name', 'web')
+                                ->whereIn('name', ['Chairman', 'Resident'])
+                        )
                 )
             )
             ->columns([

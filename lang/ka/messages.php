@@ -75,4 +75,10 @@ return [
     'invalid_role_selected' => 'არჩეული როლი არასწორია.',
     'apartment_required_for_resident' => 'მოსახლეობისთვის ბინის მითითება აუცილებელია.',
     'delete_user_confirmation' => 'დარწმუნებული ხართ, რომ გსურთ ამ მომხმარებლის წაშლა? ეს მოქმედება ვერ გაუქმდება.',
+    'tenant' => 'ტენანტი',
+    'tenants' => 'ტენანტები',
+    'user_management' => 'მომხმარებლების მენეჯმენტი',
+    'subdomain' => 'სუბდომეინი',
+    'tenant_id' => 'ტენანტის ID',
+    'delete_user' => 'მომხმარებლის წაშლა'
 ];

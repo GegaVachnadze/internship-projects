@@ -17,7 +17,7 @@ class TenantsTable
         return $table
             ->columns([
                 TextColumn::make('id')
-                    ->label('Tenant ID')
+                    ->label(__('messages.tenant_id'))
                     ->searchable(),
 
                 TextColumn::make('created_at')
@@ -29,7 +29,7 @@ class TenantsTable
                 EditAction::make(),
 
                 Action::make('manageUsers')
-                    ->label('Manage Users')
+                    ->label(__('messages.manage_tenant_users'))
                     ->url(fn ($record) => TenantResource::getUrl('manage-users', [
                         'record' => $record,
                     ])),

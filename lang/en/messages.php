@@ -75,4 +75,10 @@ return [
     'invalid_role_selected' => 'Invalid role selected.',
     'apartment_required_for_resident' => 'Apartment is required for a Resident.',
     'delete_user_confirmation' => 'Are you sure you want to delete this user? This action cannot be undone.',
+    'tenant' => 'Tenant',
+    'tenants' => 'Tenants',
+    'user_management' => 'User Management',
+    'subdomain' => 'Subdomain',
+    'tenant_id' => 'Tenant ID',
+    'delete_user' => 'Delete user'
 ];

@@ -27,6 +27,7 @@ class CentralPanelProvider extends PanelProvider
             ->id('central')
             ->path('central')
             ->login()
+            ->brandName(fn () => __('messages.user_management'))
             ->colors([
                 'primary' => Color::Amber,
             ])
