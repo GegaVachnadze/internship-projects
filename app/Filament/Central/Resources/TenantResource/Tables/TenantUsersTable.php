@@ -2,6 +2,7 @@
 
 namespace App\Filament\Central\Resources\TenantResource\Tables;
 
+use App\Enums\UserRole;
 use App\Filament\Central\Resources\TenantResource\Actions\TenantUserActions;
 use App\Models\Tenant;
 use App\Models\User;
@@ -21,7 +22,7 @@ class TenantUsersTable
                             'roles',
                             fn ($query) => $query
                                 ->where('guard_name', 'web')
-                                ->whereIn('name', ['Chairman', 'Resident'])
+                                ->whereIn('name', UserRole::values())
                         )
                 )
             )
@@ -42,8 +43,8 @@ class TenantUsersTable
                         fn (User $record) => $record->roles
                             ->map(
                                 fn ($role) => match ($role->name) {
-                                    'Chairman' => __('messages.chairman'),
-                                    'Resident' => __('messages.resident'),
+                                    UserRole::Chairman->value => __('messages.chairman'),
+                                    UserRole::Resident->value => __('messages.resident'),
                                     default => $role->name,
                                 }
                             )

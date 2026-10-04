@@ -2,6 +2,7 @@
 
 namespace App\Filament\Central\Resources\TenantResource\Actions;
 
+use App\Enums\UserRole;
 use App\Models\Apartment;
 use App\Models\Tenant;
 use App\Models\User;
@@ -53,7 +54,10 @@ class TenantUserActions
                     }
 
                     self::validateChairmanLimit($role, $record->id);
-                    self::validateResidentApartment($role, $data['apartment_id'] ?? null);
+                    self::validateResidentApartment(
+                        $role,
+                        $data['apartment_id'] ?? null
+                    );
 
                     $record->name = $data['name'];
                     $record->email = $data['email'];
@@ -63,6 +67,7 @@ class TenantUserActions
                     }
 
                     $record->apartment_id = $data['apartment_id'] ?? null;
+
                     $record->save();
                     $record->syncRoles([$role]);
                 });
@@ -121,8 +126,8 @@ class TenantUserActions
             Select::make('role')
                 ->label(__('messages.role'))
                 ->options([
-                    'Chairman' => __('messages.chairman'),
-                    'Resident' => __('messages.resident'),
+                    UserRole::Chairman->value => __('messages.chairman'),
+                    UserRole::Resident->value => __('messages.resident'),
                 ])
                 ->required(),
 
@@ -147,20 +152,22 @@ class TenantUserActions
         return Role::query()
             ->where('name', $roleName)
             ->where('guard_name', 'web')
-            ->whereIn('name', ['Chairman', 'Resident'])
+            ->whereIn('name', UserRole::values())
             ->first();
     }
 
-    private static function validateChairmanLimit(Role $role, int $exceptUserId): void
-    {
+    private static function validateChairmanLimit(
+        Role $role,
+        int $exceptUserId
+    ): void {
         if (
-            $role->name === 'Chairman' &&
+            $role->name === UserRole::Chairman->value &&
             User::query()
                 ->where('id', '!=', $exceptUserId)
                 ->whereHas(
                     'roles',
                     fn ($query) => $query
-                        ->where('name', 'Chairman')
+                        ->where('name', UserRole::Chairman->value)
                         ->where('guard_name', 'web')
                 )
                 ->exists()
@@ -176,7 +183,7 @@ class TenantUserActions
         ?int $apartmentId
     ): void {
         if (
-            $role->name === 'Resident' &&
+            $role->name === UserRole::Resident->value &&
             empty($apartmentId)
         ) {
             throw ValidationException::withMessages([

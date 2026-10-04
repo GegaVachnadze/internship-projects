@@ -2,6 +2,7 @@
 
 namespace App\Filament\Central\Resources\TenantResource\Pages;
 
+use App\Enums\UserRole;
 use App\Filament\Central\Resources\TenantResource;
 use App\Filament\Central\Resources\TenantResource\Tables\TenantUsersTable;
 use App\Models\Apartment;
@@ -66,8 +67,8 @@ class ManageTenantUsers extends Page implements HasTable
                     Select::make('role')
                         ->label(__('messages.role'))
                         ->options([
-                            'Chairman' => __('messages.chairman'),
-                            'Resident' => __('messages.resident'),
+                            UserRole::Chairman->value => __('messages.chairman'),
+                            UserRole::Resident->value => __('messages.resident'),
                         ])
                         ->required(),
 
@@ -100,7 +101,7 @@ class ManageTenantUsers extends Page implements HasTable
                         $role = Role::query()
                             ->where('name', $data['role'])
                             ->where('guard_name', 'web')
-                            ->whereIn('name', ['Chairman', 'Resident'])
+                            ->whereIn('name', UserRole::values())
                             ->first();
 
                         if (! $role) {
@@ -110,12 +111,12 @@ class ManageTenantUsers extends Page implements HasTable
                         }
 
                         if (
-                            $role->name === 'Chairman' &&
+                            $role->name === UserRole::Chairman->value &&
                             User::query()
                                 ->whereHas(
                                     'roles',
                                     fn ($query) => $query
-                                        ->where('name', 'Chairman')
+                                        ->where('name', UserRole::Chairman->value)
                                         ->where('guard_name', 'web')
                                 )
                                 ->exists()
@@ -126,7 +127,7 @@ class ManageTenantUsers extends Page implements HasTable
                         }
 
                         if (
-                            $role->name === 'Resident' &&
+                            $role->name === UserRole::Resident->value &&
                             empty($data['apartment_id'])
                         ) {
                             throw ValidationException::withMessages([
