@@ -44,11 +44,9 @@ class TenantUsersTable
                     ->state(
                         fn (User $record): string => $record->roles
                             ->map(
-                                fn (Role $role): string => match ($role->name) {
-                                    UserRole::Chairman->value => __('messages.chairman'),
-                                    UserRole::Resident->value => __('messages.resident'),
-                                    default => $role->name,
-                                }
+                                fn (Role $role): string =>
+                                    UserRole::tryFrom($role->name)?->label()
+                                    ?? $role->name
                             )
                             ->join(', ')
                     )
