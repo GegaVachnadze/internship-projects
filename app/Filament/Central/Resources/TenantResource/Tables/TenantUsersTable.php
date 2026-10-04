@@ -8,6 +8,7 @@ use App\Models\Tenant;
 use App\Models\User;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class TenantUsersTable
 {
@@ -16,11 +17,11 @@ class TenantUsersTable
         return $table
             ->query(
                 $tenant->run(
-                    fn () => User::query()
+                    fn (): Builder => User::query()
                         ->with(['roles', 'apartment'])
                         ->whereHas(
                             'roles',
-                            fn ($query) => $query
+                            fn (Builder $query): Builder => $query
                                 ->where('guard_name', 'web')
                                 ->whereIn('name', UserRole::values())
                         )
@@ -40,9 +41,9 @@ class TenantUsersTable
                 TextColumn::make('roles.name')
                     ->label(__('messages.role'))
                     ->state(
-                        fn (User $record) => $record->roles
+                        fn (User $record): string => $record->roles
                             ->map(
-                                fn ($role) => match ($role->name) {
+                                fn ($role): string => match ($role->name) {
                                     UserRole::Chairman->value => __('messages.chairman'),
                                     UserRole::Resident->value => __('messages.resident'),
                                     default => $role->name,
