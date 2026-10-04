@@ -2,6 +2,7 @@
 
 namespace App\Filament\Central\Resources\TenantResource\Pages;
 
+use App\Filament\Central\Resources\TenantResource\Schemas\TenantUserForm;
 use App\Enums\UserRole;
 use App\Filament\Central\Resources\TenantResource;
 use App\Filament\Central\Resources\TenantResource\Tables\TenantUsersTable;

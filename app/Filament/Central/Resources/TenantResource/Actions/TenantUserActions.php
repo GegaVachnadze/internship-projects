@@ -3,12 +3,10 @@
 namespace App\Filament\Central\Resources\TenantResource\Actions;
 
 use App\Enums\UserRole;
-use App\Models\Apartment;
+use App\Filament\Central\Resources\TenantResource\Schemas\TenantUserForm;
 use App\Models\Tenant;
 use App\Models\User;
 use Filament\Actions\Action;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Illuminate\Validation\ValidationException;
 use Spatie\Permission\Models\Role;
 
@@ -31,7 +29,9 @@ class TenantUserActions
                     'apartment_id' => $record->apartment_id,
                 ]
             )
-            ->schema(self::userFormSchema($tenant, true))
+            ->schema(
+                TenantUserForm::configure($tenant, true)
+            )
             ->action(function (User $record, array $data) use ($tenant): void {
                 $tenant->run(function () use ($record, $data): void {
                     if (
@@ -91,60 +91,6 @@ class TenantUserActions
                     $record->delete();
                 });
             });
-    }
-
-    private static function userFormSchema(Tenant $tenant, bool $editing): array
-    {
-        return [
-            TextInput::make('name')
-                ->label(__('messages.name'))
-                ->required()
-                ->maxLength(255),
-
-            TextInput::make('email')
-                ->label(__('messages.email'))
-                ->email()
-                ->required()
-                ->maxLength(255),
-
-            TextInput::make('password')
-                ->label(
-                    $editing
-                        ? __('messages.new_password')
-                        : __('messages.password')
-                )
-                ->password()
-                ->revealable()
-                ->minLength(8)
-                ->nullable()
-                ->helperText(
-                    $editing
-                        ? __('messages.leave_empty_to_keep_current_password')
-                        : null
-                ),
-
-            Select::make('role')
-                ->label(__('messages.role'))
-                ->options([
-                    UserRole::Chairman->value => __('messages.chairman'),
-                    UserRole::Resident->value => __('messages.resident'),
-                ])
-                ->required(),
-
-            Select::make('apartment_id')
-                ->label(__('messages.apartment'))
-                ->options(
-                    fn () => $tenant->run(
-                        fn () => Apartment::query()
-                            ->orderBy('apartment_number')
-                            ->pluck('apartment_number', 'id')
-                            ->toArray()
-                    )
-                )
-                ->searchable()
-                ->preload()
-                ->nullable(),
-        ];
     }
 
     private static function findRole(string $roleName): ?Role
