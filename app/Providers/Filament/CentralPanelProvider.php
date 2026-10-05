@@ -2,11 +2,15 @@
 
 namespace App\Providers\Filament;
 
+use Filament\Http\Middleware\Authenticate;
+use Filament\Http\Middleware\DisableBladeIconComponents;
+use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
-use Filament\Pages;
-use Filament\Widgets;
 use Filament\Support\Colors\Color;
+use Filament\View\PanelsRenderHook;
+use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -14,37 +18,36 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use Filament\Http\Middleware\Authenticate;
-use Filament\Http\Middleware\DisableBladeIconComponents;
-use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\View\PanelsRenderHook;
 
 class CentralPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
+            ->default()
             ->id('central')
-            ->path('central')
+            ->path('admin')
             ->login()
-            ->brandName(fn () => __('messages.user_management'))
+            ->brandName(
+                fn (): string => __('messages.user_management')
+            )
             ->colors([
                 'primary' => Color::Amber,
             ])
             ->discoverResources(
                 in: app_path('Filament/Central/Resources'),
-                for: 'App\\Filament\\Central\\Resources'
+                for: 'App\\Filament\\Central\\Resources',
             )
             ->discoverPages(
                 in: app_path('Filament/Central/Pages'),
-                for: 'App\\Filament\\Central\\Pages'
+                for: 'App\\Filament\\Central\\Pages',
             )
             ->pages([
                 Pages\Dashboard::class,
             ])
             ->discoverWidgets(
                 in: app_path('Filament/Central/Widgets'),
-                for: 'App\\Filament\\Central\\Widgets'
+                for: 'App\\Filament\\Central\\Widgets',
             )
             ->widgets([
                 Widgets\AccountWidget::class,
@@ -67,7 +70,9 @@ class CentralPanelProvider extends PanelProvider
             ])
             ->renderHook(
                 PanelsRenderHook::GLOBAL_SEARCH_BEFORE,
-                fn(): string => view('filament.components.language-switcher')->render()
+                fn (): string => view(
+                    'filament.components.language-switcher'
+                )->render(),
             );
     }
 }

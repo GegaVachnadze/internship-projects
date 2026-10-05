@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Enums\UserRole;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -35,7 +37,7 @@ class User extends Authenticatable implements FilamentUser
         ];
     }
 
-    public function apartment()
+    public function apartment(): BelongsTo
     {
         return $this->belongsTo(Apartment::class);
     }
@@ -43,9 +45,10 @@ class User extends Authenticatable implements FilamentUser
     public function canAccessPanel(Panel $panel): bool
     {
         return match ($panel->getId()) {
-        'central' => $this->is_super_admin,
-        'tenant' => $this->hasAnyRole(['Chairman', 'Resident']),
-        default => false,
-    };
-    }
+            'central' => (bool) $this->is_super_admin,
+            'chairman' => $this->hasRole(UserRole::Chairman->value),
+            'resident' => $this->hasRole(UserRole::Resident->value),
+            default => false,
+        };
+    } 
 }
