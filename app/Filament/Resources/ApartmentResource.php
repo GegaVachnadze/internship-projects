@@ -47,12 +47,13 @@ class ApartmentResource extends Resource
         return [];
     }
 
-    public static function getPages(): array
+   public static function getPages(): array
     {
         return [
-            'index' => Pages\ListApartments::route('/'),
-            'create' => Pages\CreateApartment::route('/create'),
-            'edit' => Pages\EditApartment::route('/{record}/edit'),
+        'index' => Pages\ListApartments::route('/'),
+        'create' => Pages\CreateApartment::route('/create'),
+        'edit' => Pages\EditApartment::route('/{record}/edit'),
+        'manage' => Pages\ManageApartments::route('/floor/{floor}'),
         ];
     }
 }
