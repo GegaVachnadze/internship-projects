@@ -3,7 +3,7 @@
         @forelse ($announcements as $announcement)
             <div class="w-full">
                 <x-filament::section
-                    class="!bg-[#262626] !border-gray-700/60"
+                    class="!border-gray-700/60 !bg-[#262626]"
                 >
                     <x-slot name="heading">
                         <div class="flex flex-wrap items-center gap-2">
@@ -33,25 +33,45 @@
                             {{ $announcement->created_at?->format('d.m.Y H:i') }}
                         </p>
 
-                        @if ($announcement->requires_payment)
-                            <x-filament::button
-                                color="primary"
-                                icon="heroicon-o-banknotes"
-                                :href="\App\Filament\Resources\PaymentResource::getUrl('create')"
-                            >
-                                {{ __('messages.make_transfer') }}
-                            </x-filament::button>
-                        @endif
+                        <div class="flex flex-wrap items-center gap-2">
+                            {{-- Resident can pay --}}
+                            @if (
+                                $announcement->requires_payment &&
+                                auth()->user()?->hasRole(\App\Enums\UserRole::Resident->value)
+                            )
+                                <x-filament::button
+                                    color="primary"
+                                    icon="heroicon-o-banknotes"
+                                    :href="\App\Filament\Resources\PaymentResource::getUrl('create')"
+                                >
+                                    {{ __('messages.make_transfer') }}
+                                </x-filament::button>
+                            @endif
+
+                            {{-- Chairman can delete --}}
+                            @if (
+                                auth()->user()?->hasRole(\App\Enums\UserRole::Chairman->value)
+                            )
+                                <x-filament::button
+                                    color="danger"
+                                    icon="heroicon-o-trash"
+                                    wire:click="deleteAnnouncement({{ $announcement->id }})"
+                                >
+                                    {{ __('messages.delete') }}
+                                </x-filament::button>
+                            @endif
+                        </div>
                     </div>
                 </x-filament::section>
             </div>
 
+            {{-- Vertical space between announcements --}}
             @if (! $loop->last)
                 <div style="height: 40px;"></div>
             @endif
         @empty
             <x-filament::section
-                class="!bg-[#262626] !border-gray-700/60"
+                class="!border-gray-700/60 !bg-[#262626]"
             >
                 <div class="py-5 text-center">
                     <x-filament::icon

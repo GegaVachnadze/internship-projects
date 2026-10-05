@@ -128,4 +128,5 @@ return [
     'make_transfer' => 'Add Transfer',
     'requires_payment' => 'Must pay',
     'announcements' => 'Announcement',
+    'requires_payment_description' => 'Payment required',
 ];

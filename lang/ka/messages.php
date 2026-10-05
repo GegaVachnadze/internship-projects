@@ -126,5 +126,6 @@ return [
     'add_bank_account' => 'ბანკის ანგარიშის დამატება',
     'make_transfer' => 'გადარიცხვის დამატება',
     'requires_payment' => 'გადასახდელია',
-    'announcements' => 'განცხადება'
+    'announcements' => 'განცხადება',
+    'requires_payment_description' => 'გადახდა სავალდებულოა',
 ];

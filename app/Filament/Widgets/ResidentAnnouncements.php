@@ -22,4 +22,16 @@ class ResidentAnnouncements extends Widget
                 ->get(),
         ];
     }
+
+    public function deleteAnnouncement(int $announcementId): void
+    {
+        abort_unless(
+            auth()->user()?->hasRole(\App\Enums\UserRole::Chairman->value),
+            403,
+        );
+
+        $announcement = Announcement::query()->findOrFail($announcementId);
+
+        $announcement->delete();
+    }
 }

@@ -47,7 +47,7 @@ class AdminPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
             ])
             ->widgets([
-                FinanceOverview::class,
+                \App\Filament\Widgets\ResidentAnnouncements::class,
             ])
             ->middleware([
                 EncryptCookies::class,
