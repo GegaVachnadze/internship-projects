@@ -12,11 +12,9 @@ class TenantFinancialOverviewService
     public function getFinancialData(Tenant $tenant): TenantFinancialOverviewData
     {
         return $tenant->run(function (): TenantFinancialOverviewData {
-            $expected = (float) MonthlyFee::sum('amount');
+            $expected = (float) MonthlyFee::query()->sum('amount');
 
-            $collected = (float) Payment::query()
-                ->where('is_paid', true)
-                ->sum('amount');
+            $collected = (float) Payment::query()->sum('amount');
 
             $percentage = $expected > 0
                 ? round(($collected / $expected) * 100, 1)

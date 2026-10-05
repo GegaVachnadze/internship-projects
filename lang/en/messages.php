@@ -118,5 +118,14 @@ return [
     'apartments_to_add' => 'Add new apartment',
     'floor' => 'Floor',
     'apartments_added' => 'Apartments have been added successfully !',
-    'apartments_added_count'
+    'apartments_added_count',
+    'monlty_fee' => 'Montly fee',
+    'finance_overview' => 'Financial Overview',
+    'finance_overview_description' => 'Overview of payments, expenses and collection progress.',
+    'financial_actions' => 'Financial Actions',
+    'financial_actions_description' => 'Manage the bank account and perform financial operations.',
+    'add_bank_account' => 'Add Bank Account',
+    'make_transfer' => 'Add Transfer',
+    'requires_payment' => 'Must pay',
+    'announcements' => 'Announcement',
 ];

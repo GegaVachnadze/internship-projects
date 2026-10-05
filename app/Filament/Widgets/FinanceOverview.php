@@ -4,33 +4,42 @@ namespace App\Filament\Widgets;
 
 use App\Models\Expense;
 use App\Models\MonthlyFee;
-use Filament\Widgets\StatsOverviewWidget;
-use Filament\Widgets\StatsOverviewWidget\Stat;
+use Filament\Widgets\Widget;
 
-class FinanceOverview extends StatsOverviewWidget
+class FinanceOverview extends Widget
 {
-    protected function getStats(): array
+    protected string $view = 'filament.widgets.finance-overview';
+
+    protected int|string|array $columnSpan = 'full';
+
+    /**
+     * @return array<string, float>
+     */
+    protected function getViewData(): array
     {
-        $expected = MonthlyFee::sum('amount');
+        $expected = (float) MonthlyFee::query()->sum('amount');
 
-        $collected = MonthlyFee::with('payments')
+        $collected = (float) MonthlyFee::query()
+            ->with('payments')
             ->get()
-            ->sum(fn (MonthlyFee $fee): float => $fee->payments->sum('amount'));
+            ->sum(
+                fn (MonthlyFee $fee): float => (float) $fee->payments->sum('amount')
+            );
 
-        $expenses = Expense::sum('amount');
+        $expenses = (float) Expense::query()->sum('amount');
 
         $remaining = max(0, $expected - $collected);
 
         $collectionPercentage = $expected > 0
-            ? min(100, round(($collected / $expected) * 100, 2))
+            ? min(100, round(($collected / $expected) * 100, 1))
             : 0;
 
         return [
-            Stat::make(__('messages.Expected'), number_format($expected, 2) . ' ₾'),
-            Stat::make(__('messages.Collected'), number_format($collected, 2) . ' ₾'),
-            Stat::make(__('messages.Remaining'), number_format($remaining, 2) . ' ₾'),
-            Stat::make(__('messages.Expenses'), number_format($expenses, 2) . ' ₾'),
-            Stat::make(__('messages.Collection %'), $collectionPercentage . '%'),
+            'expected' => $expected,
+            'collected' => $collected,
+            'remaining' => (float) $remaining,
+            'expenses' => $expenses,
+            'collectionPercentage' => (float) $collectionPercentage,
         ];
     }
 }

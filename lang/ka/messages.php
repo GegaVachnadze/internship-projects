@@ -117,5 +117,14 @@ return [
     'back' => 'უკან დაბრუნება',
     'apartments_to_add' => 'ახალი ბინის დამატება ამ სართულზე',
     'floor' => 'სართული',
-    'apartments_added' => 'ბინები დამატებულია !'
+    'apartments_added' => 'ბინები დამატებულია !',
+    'monlty_fee' => 'თვიური გადასახადი',
+    'finance_overview' => 'ფინანსური მიმოხილვა',
+    'finance_overview_description' => 'გადასახადების, ხარჯებისა და შეგროვების პროგრესის მიმოხილვა.',
+    'financial_actions' => 'ფინანსური მოქმედებები',
+    'financial_actions_description' => 'მართეთ საბანკო ანგარიში და განახორციელეთ ფინანსური ოპერაციები.',
+    'add_bank_account' => 'ბანკის ანგარიშის დამატება',
+    'make_transfer' => 'გადარიცხვის დამატება',
+    'requires_payment' => 'გადასახდელია',
+    'announcements' => 'განცხადება'
 ];

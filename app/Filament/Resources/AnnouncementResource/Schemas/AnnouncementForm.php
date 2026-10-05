@@ -4,6 +4,7 @@ namespace App\Filament\Resources\AnnouncementResource\Schemas;
 
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 
 class AnnouncementForm
@@ -22,6 +23,13 @@ class AnnouncementForm
                     ->label(__('messages.Description'))
                     ->required()
                     ->columnSpanFull(),
+
+                Toggle::make('requires_payment')
+                    ->label(__('messages.requires_payment'))
+                    ->helperText(
+                        __('messages.requires_payment_description')
+                    )
+                    ->default(false),
             ]);
     }
 }
