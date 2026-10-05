@@ -2,6 +2,8 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\Auth\RegisterResident;
+use App\Filament\Components\PanelFeatures;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -24,11 +26,14 @@ class ResidentPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
+        $panel = PanelFeatures::configure($panel);
+
         return $panel
             ->id('resident')
             ->path('resident')
             ->domain('{tenant}.localhost')
             ->login()
+            ->registration(RegisterResident::class)
             ->plugins([
                 FilamentShieldPlugin::make(),
             ])

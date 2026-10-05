@@ -88,4 +88,10 @@ return [
     'remaining' => 'დარჩენილია',
     'collection_percentage' => 'პროცენტულობა',
     'finances' => 'ფინანსები',
+    'apartment' => 'ბინა',
+    'registration' => 'რეგისტრაცია',
+    'register' => 'რეგისტრაცია',
+    'email_required' => 'ელფოსტა აუცილებელია.',
+    'email_invalid' => 'შეიყვანეთ სწორი ელფოსტის მისამართი.',
+    'email_taken' => 'ეს ელფოსტა უკვე გამოყენებულია.',
 ];

@@ -87,5 +87,11 @@ return [
     'collected' => 'Collected',
     'remaining' => 'Remaining',
     'collection_percentage' => 'Percentage',
-    'finances' => 'Finances'
+    'finances' => 'Finances',
+    'apartment' => 'Apartment',
+    'registration' => 'Registration',
+    'register' => 'Register',
+    'email_required' => 'Email is required.',
+    'email_invalid' => 'Please enter a valid email address.',
+    'email_taken' => 'This email is already in use.',
 ];
