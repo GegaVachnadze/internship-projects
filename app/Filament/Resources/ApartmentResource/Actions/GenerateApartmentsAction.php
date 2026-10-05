@@ -3,15 +3,16 @@
 namespace App\Filament\Resources\ApartmentResource\Actions;
 
 use App\Enums\UserRole;
-use App\Models\Apartment;
+use App\Services\ApartmentCreator;
+use App\Services\ApartmentNumberParser;
 use Filament\Actions\Action;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
-use Filament\Schemas\Components\Utilities\Get;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use Throwable;
 
-class GenerateApartmentsAction
+final class GenerateApartmentsAction
 {
     public static function make(): Action
     {
@@ -32,34 +33,25 @@ class GenerateApartmentsAction
                     ->maxValue(100)
                     ->required(),
 
-                TextInput::make('count')
-                    ->label(__('messages.apartments_to_add'))
-                    ->numeric()
-                    ->integer()
-                    ->minValue(1)
-                    ->maxValue(99)
+                Textarea::make('apartment_numbers')
+                    ->label(__('messages.apartment_numbers'))
+                    ->placeholder(
+                        __('messages.apartment_numbers_placeholder')
+                    )
+                    ->helperText(
+                        __('messages.apartment_numbers_helper')
+                    )
+                    ->rows(4)
                     ->required(),
             ])
             ->requiresConfirmation()
-            ->action(
-                function (array $data): void {
-                    $floor = (int) $data['floor'];
-                    $count = (int) $data['count'];
-
-                    $created = self::addApartments($floor, $count);
-
-                    Notification::make()
-                        ->title(__('messages.apartments_generated'))
-                        ->body(
-                            __('messages.apartments_added_count', [
-                                'count' => $created,
-                                'floor' => $floor,
-                            ])
-                        )
-                        ->success()
-                        ->send();
-                }
-            );
+            ->action(function (array $data): void {
+                /** @var array{floor: int|string, apartment_numbers: string} $data */
+                self::process(
+                    (int) $data['floor'],
+                    $data['apartment_numbers']
+                );
+            });
     }
 
     public static function makeForFloor(int $floor): Action
@@ -73,98 +65,76 @@ class GenerateApartmentsAction
                 ) ?? false
             )
             ->schema([
-                TextInput::make('count')
-                    ->label(__('messages.apartments_to_add'))
-                    ->numeric()
-                    ->integer()
-                    ->minValue(1)
-                    ->maxValue(99)
+                Textarea::make('apartment_numbers')
+                    ->label(__('messages.apartment_numbers'))
+                    ->placeholder(
+                        __('messages.apartment_numbers_placeholder')
+                    )
+                    ->helperText(
+                        __('messages.apartment_numbers_helper')
+                    )
+                    ->rows(4)
                     ->required(),
             ])
             ->requiresConfirmation()
-            ->action(
-                function (array $data) use ($floor): void {
-                    $count = (int) $data['count'];
-
-                    $created = self::addApartments($floor, $count);
-
-                    Notification::make()
-                        ->title(__('messages.apartments_added'))
-                        ->body(
-                            __('messages.apartments_added_count', [
-                                'count' => $created,
-                                'floor' => $floor,
-                            ])
-                        )
-                        ->success()
-                        ->send();
-                }
-            );
+            ->action(function (array $data) use ($floor): void {
+                /** @var array{apartment_numbers: string} $data */
+                self::process(
+                    $floor,
+                    $data['apartment_numbers']
+                );
+            });
     }
 
-    protected static function addApartments(
+    private static function process(
         int $floor,
-        int $count
-    ): int {
-        if ($floor < 1 || $floor > 100) {
-            throw ValidationException::withMessages([
-                'floor' => __('messages.invalid_floor'),
-            ]);
-        }
+        string $input
+    ): void {
+        try {
+            $parser = new ApartmentNumberParser();
+            $creator = new ApartmentCreator();
 
-        if ($count < 1) {
-            throw ValidationException::withMessages([
-                'count' => __('messages.invalid_apartment_count'),
-            ]);
-        }
+            $numbers = $parser->parse($input);
 
-        return DB::transaction(
-            function () use ($floor, $count): int {
-                $firstNumber = ($floor * 100) + 1;
-                $lastNumber = ($floor * 100) + 99;
+            $created = $creator->create(
+                $floor,
+                $numbers
+            );
 
-                $existingNumbers = Apartment::query()
-                    ->where('floor', $floor)
-                    ->pluck('apartment_number')
-                    ->map(
-                        fn (mixed $number): int => (int) $number
-                    )
-                    ->all();
-
-                $usedNumbers = array_fill_keys(
-                    $existingNumbers,
-                    true
-                );
-
-                $created = 0;
-                $nextNumber = $firstNumber;
-
-                while ($created < $count) {
-                    while (
-                        isset($usedNumbers[$nextNumber]) &&
-                        $nextNumber <= $lastNumber
-                    ) {
-                        $nextNumber++;
-                    }
-
-                    if ($nextNumber > $lastNumber) {
-                        throw ValidationException::withMessages([
-                            'count' => __('messages.floor_apartment_limit'),
-                        ]);
-                    }
-
-                    Apartment::create([
-                        'apartment_number' => $nextNumber,
+            Notification::make()
+                ->title(__('messages.apartments_generated'))
+                ->body(
+                    __('messages.apartments_added_count', [
+                        'count' => $created,
                         'floor' => $floor,
-                    ]);
+                    ])
+                )
+                ->success()
+                ->send();
+        } catch (ValidationException $e) {
+            $message = collect($e->errors())
+                ->flatten()
+                ->first();
 
-                    $usedNumbers[$nextNumber] = true;
-                    $created++;
-                    $nextNumber++;
-                }
+            Notification::make()
+                ->title(__('messages.error'))
+                ->body(
+                    is_string($message)
+                        ? $message
+                        : __('messages.apartments_generation_failed')
+                )
+                ->danger()
+                ->send();
+        } catch (Throwable $e) {
+            report($e);
 
-                return $created;
-            }
-        );
+            Notification::make()
+                ->title(__('messages.error'))
+                ->body(
+                    __('messages.apartments_generation_failed')
+                )
+                ->danger()
+                ->send();
+        }
     }
 }

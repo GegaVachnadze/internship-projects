@@ -128,4 +128,14 @@ return [
     'requires_payment' => 'გადასახდელია',
     'announcements' => 'განცხადება',
     'requires_payment_description' => 'გადახდა სავალდებულოა',
+    'apartment_numbers' => 'ბინის ნომრები',
+    'apartment_numbers_helper' => 'გამოიყენეთ მძიმე, space ან ახალი ხაზი. მაგალითად, 37-45 ნიშნავს 37-დან 45-მდე.',
+    'invalid_apartment_number_format' => 'ბინის ნომრის ფორმატი არასწორია: :number.',
+    'apartment_already_exists' => 'ბინა :number უკვე არსებობს ამ სართულზე.',
+    'apartment_number_required' => 'მიუთითეთ მინიმუმ ერთი ბინის ნომერი.',
+    'apartment_range_too_large' => 'ბინის დიაპაზონი ძალიან დიდია.',
+    'duplicate_apartment_number' => 'ბინის ნომერი :number ერთზე მეტჯერ არის მითითებული.',
+    'apartment_numbers_placeholder' => '37-45, 47A, 47B, 50',
+    'apartments_generation_failed' => 'ბინების შექმნა ვერ მოხერხდა.',
+    'apartments_added_count' => 'ბინები წარმატებით დაემატა !'
 ];

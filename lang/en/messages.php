@@ -129,4 +129,14 @@ return [
     'requires_payment' => 'Must pay',
     'announcements' => 'Announcement',
     'requires_payment_description' => 'Payment required',
+    'apartment_numbers' => 'Apartment numbers',
+    'apartment_numbers_helper' => 'Use commas, spaces, or new lines. Use 37-45 for a numeric range.',
+    'invalid_apartment_number_format' => 'Invalid apartment number: :number.',
+    'apartment_already_exists' => 'Apartment :number already exists on this floor.',
+    'apartment_number_required' => 'Enter at least one apartment number.',
+    'apartment_range_too_large' => 'The apartment range is too large.',
+    'duplicate_apartment_number' => 'Apartment :number was entered more than once.',
+    'apartment_numbers_placeholder' => '37-45, 47A, 47B, 50',
+    'apartments_generation_failed' => 'Apartments could not be created.',
+    'apartments_added_count' => 'Apartments added successfully !'
 ];
