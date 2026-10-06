@@ -155,37 +155,4 @@
             </div>
         </div>
     </div>
-
-    {{-- Financial actions --}}
-    <div class="mt-4 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-gray-900">
-        <div class="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-
-            <div>
-                <p class="text-base font-semibold text-gray-950 dark:text-white">
-                    {{ __('messages.financial_actions') }}
-                </p>
-
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                    {{ __('messages.financial_actions_description') }}
-                </p>
-            </div>
-
-            <div class="flex flex-wrap gap-3">
-                <x-filament::button
-                    color="gray"
-                    icon="heroicon-o-building-library"
-                    disabled
-                >
-                    {{ __('messages.add_bank_account') }}
-                </x-filament::button>
-
-                <x-filament::button
-                    icon="heroicon-o-arrow-up-right"
-                    :href="\App\Filament\Resources\PaymentResource::getUrl('create')"
-                >
-                    {{ __('messages.make_transfer') }}
-                </x-filament::button>
-            </div>
-        </div>
-    </div>
 </x-filament::section>
