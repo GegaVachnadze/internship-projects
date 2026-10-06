@@ -33,6 +33,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('building')
             ->domain('{tenant}.localhost')
             ->login()
+            ->databaseNotifications()
             ->registration(RegisterResident::class)
             ->plugins([
                 FilamentShieldPlugin::make(),

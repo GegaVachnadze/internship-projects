@@ -166,4 +166,7 @@ return [
     'i_transferred' => 'გადარიცხვა',
     'payment_saved' => 'გადახდა წარმატებით დაფიქსირდა.',
     'payment_saved_description' => 'თქვენი გადარიცხვა წარმატებით დაფიქსირდა.',
+    'bank_of_georgia' => 'საქართველოს ბანკი',
+    'tbc' => 'თიბისი ბანკი',
+    'view_announcement' => 'განცხადების ნახვა',
 ];

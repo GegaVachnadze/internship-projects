@@ -1,7 +1,10 @@
 <x-filament-widgets::widget>
     <div class="mx-auto w-full max-w-3xl">
         @forelse ($announcements as $announcement)
-            <div class="w-full">
+            <div
+                id="announcement-{{ $announcement->id }}"
+                class="w-full scroll-mt-24"
+            >
                 <x-filament::section
                     class="!border-gray-700/60 !bg-[#262626]"
                 >
@@ -48,7 +51,7 @@
                                     href="https://bogpay.ge/ka/gadaricxva"
                                     target="_blank"
                                 >
-                                    საქართველოს ბანკი
+                                    {{ __('messages.bank_of_georgia') }}
                                 </x-filament::button>
 
                                 {{-- TBC --}}
@@ -59,7 +62,7 @@
                                     href="https://tbcpay.ge/ka/transfers"
                                     target="_blank"
                                 >
-                                    TBC
+                                    {{ __('messages.tbc') }}
                                 </x-filament::button>
                             @endif
 

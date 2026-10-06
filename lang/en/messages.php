@@ -167,5 +167,7 @@ return [
     'i_transferred' => 'Transfer',
     'payment_saved' => 'Payment recorded successfully.',
     'payment_saved_description' => 'Your transfer has been recorded successfully.',
-    
+    'bank_of_georgia' => 'Bank of Georgia',
+    'tbc' => 'TBC Bank',
+    'view_announcement' => 'View announcement',
 ];
