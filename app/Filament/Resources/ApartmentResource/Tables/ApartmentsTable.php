@@ -6,6 +6,7 @@ use App\Filament\Resources\ApartmentResource;
 use App\Filament\Resources\ApartmentResource\Actions\GenerateApartmentsAction;
 use App\Models\Apartment;
 use Filament\Actions\Action;
+use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -16,6 +17,42 @@ class ApartmentsTable
         return $table
             ->headerActions([
                 GenerateApartmentsAction::make(),
+
+                Action::make('inviteResidents')
+                    ->label(__('messages.invite_residents'))
+                    ->icon('heroicon-o-user-plus')
+                    ->modalHeading(__('messages.invite_residents'))
+                    ->modalDescription(
+                        __('messages.invite_residents_description')
+                    )
+                    ->form([
+                        TextInput::make('registration_link')
+                            ->label(__('messages.registration_link'))
+                            ->default(
+                                fn (): string => filament()->getRegistrationUrl()
+                            )
+                            ->readOnly()
+                            ->suffixAction(
+                                Action::make('copy')
+                                    ->icon('heroicon-o-clipboard')
+                                    ->action(
+                                        function ($state, $livewire): void {
+                                            $livewire->js(
+                                                "navigator.clipboard.writeText(" .
+                                                json_encode($state) .
+                                                ")"
+                                            );
+
+                                            \Filament\Notifications\Notification::make()
+                                                ->title(__('messages.link_copied'))
+                                                ->success()
+                                                ->send();
+                                        }
+                                    )
+                            ),
+                    ])
+                    ->modalSubmitAction(false)
+                    ->modalCancelActionLabel(__('messages.close')),
             ])
             ->query(
                 ApartmentResource::getEloquentQuery()

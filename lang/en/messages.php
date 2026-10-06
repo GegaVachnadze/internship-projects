@@ -180,4 +180,9 @@ return [
     'no_announcements' => 'Announcements not found',
     'building' => 'Building',
     'buildings' => 'Buildings',
+    'invite_residents' => 'Invite residents',
+    'invite_residents_description' => 'Link for residents',
+    'close' => 'Close',
+    'registration_link' => 'Registration link',
+    'link_copied' => 'Link copied successfully',
 ];

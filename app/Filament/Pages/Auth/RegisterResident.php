@@ -6,8 +6,8 @@ use App\Enums\UserRole;
 use App\Models\Apartment;
 use App\Models\User;
 use Filament\Auth\Pages\Register;
-use Filament\Schemas\Components\Utilities\Get;
 use Filament\Forms\Components\Select;
+use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
 use Illuminate\Validation\ValidationException;
 
@@ -18,15 +18,10 @@ class RegisterResident extends Register
         return $schema
             ->components([
                 $this->getNameFormComponent(),
-
                 $this->getEmailFormComponent(),
-
                 $this->getPasswordFormComponent(),
-
                 $this->getPasswordConfirmationFormComponent(),
-
                 $this->getFloorFormComponent(),
-
                 $this->getApartmentFormComponent(),
             ]);
     }
@@ -58,6 +53,15 @@ class RegisterResident extends Register
                 fn (Get $get): array => $get('floor')
                     ? Apartment::query()
                         ->where('floor', (int) $get('floor'))
+                        ->whereDoesntHave('users', function ($query) {
+                            $query->whereHas(
+                                'roles',
+                                fn ($roleQuery) => $roleQuery->where(
+                                    'name',
+                                    UserRole::Resident->value
+                                )
+                            );
+                        })
                         ->orderBy('apartment_number')
                         ->pluck('apartment_number', 'id')
                         ->toArray()
@@ -80,12 +84,28 @@ class RegisterResident extends Register
 
         $apartmentId = (int) $data['apartment_id'];
 
-        $apartmentExists = Apartment::query()
+        $apartment = Apartment::query()
             ->whereKey($apartmentId)
             ->where('floor', $floor)
+            ->first();
+
+        if (! $apartment) {
+            throw ValidationException::withMessages([
+                'apartment_id' => __('messages.invalid_apartment'),
+            ]);
+        }
+
+        $apartmentAlreadyOccupied = $apartment->users()
+            ->whereHas(
+                'roles',
+                fn ($query) => $query->where(
+                    'name',
+                    UserRole::Resident->value
+                )
+            )
             ->exists();
 
-        if (! $apartmentExists) {
+        if ($apartmentAlreadyOccupied) {
             throw ValidationException::withMessages([
                 'apartment_id' => __('messages.invalid_apartment'),
             ]);

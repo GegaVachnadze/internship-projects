@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -29,5 +28,10 @@ class Apartment extends Model
     public function monthlyFees(): HasMany
     {
         return $this->hasMany(MonthlyFee::class);
+    }
+
+    public function residentInvitations(): HasMany
+    {
+        return $this->hasMany(ResidentInvitation::class);
     }
 }

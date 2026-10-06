@@ -179,4 +179,9 @@ return [
     'no_announcements' => 'განცხადებები არ მოიძებნა',
     'building' => 'შენობა',
     'buildings' => 'შენობები',
+    'invite_residents' => 'მაცხოვრებელთა რეგისტრირება',
+    'invite_residents_description' => 'მეზობლების რეგისტრაციის ლინკი',
+    'close' => 'დახურვა',
+    'registration_link' => 'სარეგისტრაციო ბმული',
+    'link_copied' => 'ბმული წარმატებით დაკოპირდა !',
 ];
