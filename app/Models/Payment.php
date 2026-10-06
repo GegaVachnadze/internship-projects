@@ -17,6 +17,7 @@ class Payment extends Model
         'announcement_id',
         'user_id',
         'amount',
+        'status',
     ];
 
     protected function casts(): array

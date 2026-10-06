@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\MonthlyFees\Tables;
 
 use App\Models\MonthlyFee;
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -27,46 +28,41 @@ class MonthlyFeesTable
                     ->sortable(),
 
                 TextColumn::make('amount')
-                    ->label(__('messages.Expected'))
+                    ->label(__('messages.Amount'))
                     ->money('GEL')
                     ->sortable(),
 
-                TextColumn::make('payments_sum_amount')
-                    ->label(__('messages.Collected'))
-                    ->money('GEL')
-                    ->sum('payments', 'amount')
-                    ->sortable(),
-
-                TextColumn::make('remaining')
-                    ->label(__('messages.Remaining'))
-                    ->money('GEL')
-                    ->getStateUsing(function (MonthlyFee $record): float {
-                        return max(
-                            0,
-                            $record->amount - $record->payments->sum('amount')
-                        );
-                    }),
-
-                TextColumn::make('collection_percentage')
-                    ->label(__('messages.Collection %'))
-                    ->suffix('%')
-                    ->getStateUsing(function (MonthlyFee $record): float {
-                        if ($record->amount <= 0) {
-                            return 0;
-                        }
-
-                        return min(
-                            100,
-                            round(
-                                ($record->payments->sum('amount') / $record->amount) * 100,
-                                2
-                            )
-                        );
+                TextColumn::make('status')
+                    ->label(__('messages.Status'))
+                    ->badge()
+                    ->getStateUsing(function (MonthlyFee $record): string {
+                        return $record->is_paid
+                            ? __('messages.paid')
+                            : __('messages.not_paid');
+                    })
+                    ->color(function (MonthlyFee $record): string {
+                        return $record->is_paid ? 'success' : 'danger';
                     }),
             ])
             ->filters([])
             ->recordActions([
+                Action::make('markAsPaid')
+                    ->label(function (MonthlyFee $record): string {
+                        return $record->is_paid
+                            ? __('messages.paid')
+                            : __('messages.mark_as_paid');
+                    })
+                    ->icon('heroicon-o-check-circle')
+                    ->color('success')
+                    ->visible(fn (MonthlyFee $record): bool => ! $record->is_paid)
+                    ->action(function (MonthlyFee $record): void {
+                        $record->update([
+                            'is_paid' => true,
+                        ]);
+                    }),
+
                 EditAction::make(),
+
                 DeleteAction::make(),
             ])
             ->toolbarActions([
@@ -76,4 +72,3 @@ class MonthlyFeesTable
             ]);
     }
 }
-

@@ -170,4 +170,12 @@ return [
     'bank_of_georgia' => 'Bank of Georgia',
     'tbc' => 'TBC Bank',
     'view_announcement' => 'View announcement',
+    'no_apartments' => 'No apartments have been created yet.',
+    'monthly_fee_already_exists' => 'The monthly fee for this month has already been created.',
+    'no_pending_payment' => 'You have no pending payment.',
+    'Status' => 'Status',
+    'paid' => 'Paid',
+    'not_paid' => 'Not Paid',
+    'mark_as_paid' => 'Mark as paid',
+    'no_announcements' => 'Announcements not found'
 ];

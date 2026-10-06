@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Enums\UserRole;
 use App\Filament\Components\PanelFeatures;
 use App\Filament\Pages\Auth\RegisterResident;
 use App\Filament\Widgets\ResidentAnnouncements;
@@ -18,6 +19,7 @@ use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
@@ -32,6 +34,19 @@ class AdminPanelProvider extends PanelProvider
             ->id('building')
             ->path('building')
             ->domain('{tenant}.localhost')
+            ->brandName(function (): string {
+                $user = Auth::user();
+
+                if ($user?->hasRole(UserRole::Chairman->value)) {
+                    return 'Building Management';
+                }
+
+                if ($user?->hasRole(UserRole::Resident->value)) {
+                    return 'My House';
+                }
+
+                return 'Neighborhood';
+            })
             ->login()
             ->databaseNotifications()
             ->registration(RegisterResident::class)

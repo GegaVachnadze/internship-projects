@@ -38,12 +38,10 @@
 
                         <div class="flex flex-wrap items-center gap-2">
 
-                            {{-- Resident payment buttons --}}
                             @if (
                                 $announcement->requires_payment &&
                                 auth()->user()?->hasRole(\App\Enums\UserRole::Resident->value)
                             )
-                                {{-- Bank of Georgia --}}
                                 <x-filament::button
                                     tag="a"
                                     color="primary"
@@ -54,7 +52,6 @@
                                     {{ __('messages.bank_of_georgia') }}
                                 </x-filament::button>
 
-                                {{-- TBC --}}
                                 <x-filament::button
                                     tag="a"
                                     color="info"
@@ -66,7 +63,6 @@
                                 </x-filament::button>
                             @endif
 
-                            {{-- Chairman can delete --}}
                             @if (
                                 auth()->user()?->hasRole(\App\Enums\UserRole::Chairman->value)
                             )
@@ -105,4 +101,27 @@
             </x-filament::section>
         @endforelse
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash;
+
+            if (!hash.startsWith('#announcement-')) {
+                return;
+            }
+
+            const scrollToAnnouncement = () => {
+                const element = document.querySelector(hash);
+
+                if (element) {
+                    element.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start',
+                    });
+                }
+            };
+
+            setTimeout(scrollToAnnouncement, 300);
+        });
+    </script>
 </x-filament-widgets::widget>

@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\MonthlyFees;
 
-use App\Filament\Resources\MonthlyFees\RelationManagers\PaymentsRelationManager;
 use App\Filament\Resources\MonthlyFees\Pages\CreateMonthlyFee;
 use App\Filament\Resources\MonthlyFees\Pages\EditMonthlyFee;
 use App\Filament\Resources\MonthlyFees\Pages\ListMonthlyFees;
@@ -33,9 +32,7 @@ class MonthlyFeeResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            PaymentsRelationManager::class,
-        ];
+        return [];
     }
 
     public static function getPages(): array

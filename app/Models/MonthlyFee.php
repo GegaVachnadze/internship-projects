@@ -15,7 +15,16 @@ class MonthlyFee extends Model
         'apartment_id',
         'amount',
         'month',
+        'is_paid',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'amount' => 'decimal:2',
+            'is_paid' => 'boolean',
+        ];
+    }
 
     public function apartment(): BelongsTo
     {

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Pages;
 
 use App\Enums\UserRole;
-use App\Models\Announcement;
+use App\Models\MonthlyFee;
 use App\Models\Payment;
 use BackedEnum;
 use Filament\Forms\Components\Placeholder;
@@ -19,13 +19,11 @@ class MakePayment extends Page implements HasSchemas
 {
     use InteractsWithSchemas;
 
-    protected static ?string $slug = 'payments/{announcement}/pay';
-
     protected string $view = 'filament.pages.make-payment';
 
-    public ?array $data = [];
+    protected static ?string $slug = 'payments/pay';
 
-    public ?int $announcementId = null;
+    public ?array $data = [];
 
     public bool $saved = false;
 
@@ -51,33 +49,21 @@ class MakePayment extends Page implements HasSchemas
 
     public function mount(): void
     {
-        $currentTenant = tenant();
+        $user = auth()->user();
 
-        if ($currentTenant === null) {
-            throw ValidationException::withMessages([
-                'data' => __('messages.tenant_not_found'),
-            ]);
-        }
-
-        $announcementId = request()->route('announcement');
-
-        if (! is_numeric($announcementId)) {
+        if ($user === null || $user->apartment_id === null) {
             throw ValidationException::withMessages([
                 'data' => __('messages.payment_unavailable'),
             ]);
         }
 
-        $announcement = Announcement::query()
-            ->where('requires_payment', true)
-            ->find((int) $announcementId);
+        $monthlyFee = $this->getPayableMonthlyFee();
 
-        if ($announcement === null) {
+        if ($monthlyFee === null) {
             throw ValidationException::withMessages([
-                'data' => __('messages.payment_unavailable'),
+                'data' => __('messages.no_pending_payment'),
             ]);
         }
-
-        $this->announcementId = $announcement->id;
 
         $this->form->fill();
     }
@@ -86,19 +72,20 @@ class MakePayment extends Page implements HasSchemas
     {
         return $schema
             ->components([
-                Placeholder::make('announcement_title')
-                    ->label(__('messages.announcement'))
+                Placeholder::make('month')
+                    ->label(__('messages.Month'))
                     ->content(function (): string {
-                        return $this->getAnnouncement()->title;
+                        return $this->getPayableMonthlyFee()?->month ?? '-';
                     }),
 
                 Placeholder::make('amount')
                     ->label(__('messages.payment_amount'))
                     ->content(function (): string {
-                        return number_format(
-                            (float) $this->getAnnouncement()->payment_amount,
-                            2
-                        ) . ' ₾';
+                        $monthlyFee = $this->getPayableMonthlyFee();
+
+                        return $monthlyFee === null
+                            ? '-'
+                            : number_format((float) $monthlyFee->amount, 2) . ' ₾';
                     }),
             ])
             ->statePath('data');
@@ -106,36 +93,44 @@ class MakePayment extends Page implements HasSchemas
 
     public function save(): void
     {
-        $announcement = $this->getAnnouncement();
+        $user = auth()->user();
+
+        if ($user === null || $user->apartment_id === null) {
+            throw ValidationException::withMessages([
+                'data' => __('messages.payment_unavailable'),
+            ]);
+        }
+
+        $monthlyFee = $this->getPayableMonthlyFee();
+
+        if ($monthlyFee === null) {
+            throw ValidationException::withMessages([
+                'data' => __('messages.no_pending_payment'),
+            ]);
+        }
 
         Payment::create([
-            'announcement_id' => $announcement->id,
-            'user_id' => auth()->id(),
-            'monthly_fee_id' => null,
-            'amount' => $announcement->payment_amount,
+            'monthly_fee_id' => $monthlyFee->id,
+            'user_id' => $user->id,
+            'amount' => $monthlyFee->amount,
+            'status' => 'pending',
         ]);
 
         $this->saved = true;
     }
 
-    private function getAnnouncement(): Announcement
+    private function getPayableMonthlyFee(): ?MonthlyFee
     {
-        if ($this->announcementId === null) {
-            throw ValidationException::withMessages([
-                'data' => __('messages.payment_unavailable'),
-            ]);
+        $user = auth()->user();
+
+        if ($user === null || $user->apartment_id === null) {
+            return null;
         }
 
-        $announcement = Announcement::query()
-            ->where('requires_payment', true)
-            ->find($this->announcementId);
-
-        if ($announcement === null) {
-            throw ValidationException::withMessages([
-                'data' => __('messages.payment_unavailable'),
-            ]);
-        }
-
-        return $announcement;
+        return MonthlyFee::query()
+            ->where('apartment_id', $user->apartment_id)
+            ->whereDoesntHave('payments')
+            ->orderBy('month')
+            ->first();
     }
 }

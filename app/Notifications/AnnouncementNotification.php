@@ -38,7 +38,7 @@ class AnnouncementNotification extends Notification
             ->body($this->announcement->body)
             ->actions([
                 Action::make('view')
-                    ->label(__('messages.view_announcement'))
+                    ->label(fn (): string => __('messages.view_announcement'))
                     ->url($url),
             ])
             ->getDatabaseMessage();
