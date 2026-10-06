@@ -2,9 +2,9 @@
 
 namespace App\Providers\Filament;
 
-
-use App\Filament\Widgets\FinanceOverview;
 use App\Filament\Components\PanelFeatures;
+use App\Filament\Pages\Auth\RegisterResident;
+use App\Filament\Widgets\ResidentAnnouncements;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -29,10 +29,11 @@ class AdminPanelProvider extends PanelProvider
         $panel = PanelFeatures::configure($panel);
 
         return $panel
-            ->id('chairman')
-            ->path('chairman')
+            ->id('building')
+            ->path('building')
             ->domain('{tenant}.localhost')
             ->login()
+            ->registration(RegisterResident::class)
             ->plugins([
                 FilamentShieldPlugin::make(),
             ])
@@ -48,7 +49,7 @@ class AdminPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
             ])
             ->widgets([
-                \App\Filament\Widgets\ResidentAnnouncements::class,
+                ResidentAnnouncements::class,
             ])
             ->middleware([
                 EncryptCookies::class,

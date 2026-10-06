@@ -46,9 +46,11 @@ class User extends Authenticatable implements FilamentUser
     {
         return match ($panel->getId()) {
             'central' => (bool) $this->is_super_admin,
-            'chairman' => $this->hasRole(UserRole::Chairman->value),
-            'resident' => $this->hasRole(UserRole::Resident->value),
+            'building' => $this->hasAnyRole([
+                UserRole::Chairman->value,
+                UserRole::Resident->value,
+        ]),
             default => false,
-        };
-    } 
+    };
+    }
 }
