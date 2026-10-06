@@ -10,12 +10,14 @@ class Announcement extends Model
         'title',
         'body',
         'requires_payment',
+        'payment_amount',
     ];
 
     protected function casts(): array
     {
         return [
             'requires_payment' => 'boolean',
+            'payment_amount' => 'decimal:2',
         ];
     }
 }

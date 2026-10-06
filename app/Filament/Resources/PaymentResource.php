@@ -1,13 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
+use App\Enums\UserRole;
 use App\Filament\Resources\PaymentResource\Pages;
 use App\Filament\Resources\PaymentResource\Schemas\PaymentForm;
 use App\Filament\Resources\PaymentResource\Tables\PaymentsTable;
-use Illuminate\Database\Eloquent\Builder;
 use App\Models\Payment;
 use BackedEnum;
+use Illuminate\Database\Eloquent\Builder;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
@@ -16,8 +19,7 @@ class PaymentResource extends Resource
 {
     protected static ?string $model = Payment::class;
 
-    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-home';
-
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-banknotes';
 
     public static function getNavigationLabel(): string
     {
@@ -53,23 +55,24 @@ class PaymentResource extends Resource
     {
         return [
             'index' => Pages\ListPayments::route('/'),
-            'create' => Pages\CreatePayment::route('/create'),
-            'edit' => Pages\EditPayment::route('/{record}/edit'),
         ];
     }
 
-   public static function getEloquentQuery(): Builder
+    public static function getEloquentQuery(): Builder
     {
-    $query = parent::getEloquentQuery();
+        $query = parent::getEloquentQuery();
 
-    $user = auth()->user();
+        $user = auth()->user();
 
-    if ($user?->hasRole('Resident')) {
-        $query->whereHas('monthlyFee', function (Builder $query) use ($user): void {
-            $query->where('apartment_id', $user->apartment_id);
-        });
+        if ($user?->hasRole(UserRole::Resident->value)) {
+            $query->where('user_id', $user->id);
+        }
+
+        return $query;
     }
 
-    return $query;
+    public static function canCreate(): bool
+    {
+        return false;
     }
 }

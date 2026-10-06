@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,11 +14,32 @@ class Payment extends Model
 
     protected $fillable = [
         'monthly_fee_id',
+        'announcement_id',
+        'user_id',
+        'payer_iban',
         'amount',
+        'bank',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'amount' => 'decimal:2',
+        ];
+    }
 
     public function monthlyFee(): BelongsTo
     {
         return $this->belongsTo(MonthlyFee::class);
+    }
+
+    public function announcement(): BelongsTo
+    {
+        return $this->belongsTo(Announcement::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

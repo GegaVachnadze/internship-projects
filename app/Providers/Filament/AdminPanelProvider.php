@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+
 use App\Filament\Widgets\FinanceOverview;
 use App\Filament\Components\PanelFeatures;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
@@ -45,6 +46,7 @@ class AdminPanelProvider extends PanelProvider
             )
             ->pages([
                 Pages\Dashboard::class,
+                \App\Filament\Pages\BankAccounts::class,
             ])
             ->widgets([
                 \App\Filament\Widgets\ResidentAnnouncements::class,

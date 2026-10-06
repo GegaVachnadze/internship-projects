@@ -29,7 +29,16 @@ class AnnouncementForm
                     ->helperText(
                         __('messages.requires_payment_description')
                     )
-                    ->default(false),
+                    ->default(false)
+                    ->live(),
+
+                TextInput::make('payment_amount')
+                    ->label(__('messages.payment_amount'))
+                    ->numeric()
+                    ->minValue(0.01)
+                    ->step(0.01)
+                    ->required(fn (callable $get): bool => (bool) $get('requires_payment'))
+                    ->visible(fn (callable $get): bool => (bool) $get('requires_payment')),
             ]);
     }
 }

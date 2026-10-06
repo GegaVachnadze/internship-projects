@@ -19,6 +19,16 @@ class TenantForm
                 ->label(__('messages.subdomain'))
                 ->required()
                 ->placeholder('e.g. tbilisi-hills'),
+
+            TextInput::make('tbc_iban')
+                ->label(__('messages.tbc_iban'))
+                ->maxLength(34)
+                ->placeholder('GE...'),
+
+            TextInput::make('bog_iban')
+                ->label(__('messages.bog_iban'))
+                ->maxLength(34)
+                ->placeholder('GE...'),
         ]);
     }
 }

@@ -34,17 +34,19 @@
                         </p>
 
                         <div class="flex flex-wrap items-center gap-2">
+
                             {{-- Resident can pay --}}
                             @if (
                                 $announcement->requires_payment &&
                                 auth()->user()?->hasRole(\App\Enums\UserRole::Resident->value)
                             )
                                 <x-filament::button
+                                    tag="a"
                                     color="primary"
                                     icon="heroicon-o-banknotes"
-                                    :href="\App\Filament\Resources\PaymentResource::getUrl('create')"
+                                    :href="url('/resident/payments/' . $announcement->id . '/pay')"
                                 >
-                                    {{ __('messages.make_transfer') }}
+                                    {{ __('messages.make_payment') }}
                                 </x-filament::button>
                             @endif
 
@@ -60,15 +62,16 @@
                                     {{ __('messages.delete') }}
                                 </x-filament::button>
                             @endif
+
                         </div>
                     </div>
                 </x-filament::section>
             </div>
 
-            {{-- Vertical space between announcements --}}
             @if (! $loop->last)
                 <div style="height: 40px;"></div>
             @endif
+
         @empty
             <x-filament::section
                 class="!border-gray-700/60 !bg-[#262626]"
