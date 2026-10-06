@@ -16,9 +16,7 @@ class Payment extends Model
         'monthly_fee_id',
         'announcement_id',
         'user_id',
-        'payer_iban',
         'amount',
-        'bank',
     ];
 
     protected function casts(): array

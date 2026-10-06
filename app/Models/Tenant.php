@@ -15,9 +15,6 @@ class Tenant extends BaseTenant implements TenantWithDatabase
 
     public static function getCustomColumns(): array
     {
-        return array_merge(parent::getCustomColumns(), [
-            'tbc_iban',
-            'bog_iban',
-        ]);
+        return parent::getCustomColumns();
     }
 }

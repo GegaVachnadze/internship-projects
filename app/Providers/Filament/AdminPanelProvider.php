@@ -46,7 +46,6 @@ class AdminPanelProvider extends PanelProvider
             )
             ->pages([
                 Pages\Dashboard::class,
-                \App\Filament\Pages\BankAccounts::class,
             ])
             ->widgets([
                 \App\Filament\Widgets\ResidentAnnouncements::class,

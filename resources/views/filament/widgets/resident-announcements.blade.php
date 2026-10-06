@@ -35,18 +35,31 @@
 
                         <div class="flex flex-wrap items-center gap-2">
 
-                            {{-- Resident can pay --}}
+                            {{-- Resident payment buttons --}}
                             @if (
                                 $announcement->requires_payment &&
                                 auth()->user()?->hasRole(\App\Enums\UserRole::Resident->value)
                             )
+                                {{-- Bank of Georgia --}}
                                 <x-filament::button
                                     tag="a"
                                     color="primary"
-                                    icon="heroicon-o-banknotes"
-                                    :href="url('/resident/payments/' . $announcement->id . '/pay')"
+                                    icon="heroicon-o-building-library"
+                                    href="https://bogpay.ge/ka/gadaricxva"
+                                    target="_blank"
                                 >
-                                    {{ __('messages.make_payment') }}
+                                    საქართველოს ბანკი
+                                </x-filament::button>
+
+                                {{-- TBC --}}
+                                <x-filament::button
+                                    tag="a"
+                                    color="info"
+                                    icon="heroicon-o-building-library"
+                                    href="https://tbcpay.ge/ka/transfers"
+                                    target="_blank"
+                                >
+                                    TBC
                                 </x-filament::button>
                             @endif
 
