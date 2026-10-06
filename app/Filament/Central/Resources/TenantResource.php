@@ -19,17 +19,17 @@ class TenantResource extends Resource
 
     public static function getNavigationLabel(): string
     {
-        return __('messages.tenants');
+        return __('messages.buildings');
     }
 
     public static function getModelLabel(): string
     {
-        return __('messages.tenant');
+        return __('messages.building');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('messages.tenants');
+        return __('messages.buildings');
     }
 
     public static function form(Schema $schema): Schema

@@ -4,21 +4,15 @@ namespace App\Filament\Central\Resources\TenantResource\Pages;
 
 use App\Enums\UserRole;
 use App\Filament\Central\Resources\TenantResource;
-use App\Filament\Central\Resources\TenantResource\Schemas\TenantUserForm;
-use App\Filament\Central\Resources\TenantResource\Tables\TenantUsersTable;
-use App\Models\Apartment;
 use App\Models\User;
 use Filament\Actions\Action;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Pages\Concerns\InteractsWithRecord;
 use Filament\Resources\Pages\Page;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Validation\ValidationException;
-use Spatie\Permission\Models\Role;
 
 class ManageTenantUsers extends Page implements HasTable
 {
@@ -42,14 +36,35 @@ class ManageTenantUsers extends Page implements HasTable
     protected function getHeaderActions(): array
     {
         return [
-            Action::make('createUser')
-                ->label(__('messages.create_user'))
+            Action::make('createChairman')
+                ->label(__('messages.create_chairman'))
                 ->icon('heroicon-o-user-plus')
-                ->modalHeading(__('messages.create_user'))
-                ->modalSubmitActionLabel(__('messages.create_user'))
-                ->schema(
-                    TenantUserForm::configure($this->record)
-                )
+                ->modalHeading(__('messages.create_chairman'))
+                ->modalSubmitActionLabel(__('messages.create_chairman'))
+                ->schema([
+                    TextInput::make('name')
+                        ->label(__('messages.name'))
+                        ->required()
+                        ->maxLength(255),
+
+                    TextInput::make('email')
+                        ->label(__('messages.email'))
+                        ->email()
+                        ->required()
+                        ->maxLength(255),
+
+                    TextInput::make('password')
+                        ->label(__('messages.password'))
+                        ->password()
+                        ->required()
+                        ->minLength(8)
+                        ->confirmed(),
+
+                    TextInput::make('password_confirmation')
+                        ->label(__('messages.password_confirmation'))
+                        ->password()
+                        ->required(),
+                ])
                 ->action(function (array $data): void {
                     $this->record->run(function () use ($data): void {
                         if (
@@ -62,40 +77,19 @@ class ManageTenantUsers extends Page implements HasTable
                             ]);
                         }
 
-                        $role = Role::query()
-                            ->where('name', $data['role'])
-                            ->where('guard_name', 'web')
-                            ->whereIn('name', UserRole::values())
-                            ->first();
-
-                        if (! $role) {
-                            throw ValidationException::withMessages([
-                                'role' => __('messages.invalid_role_selected'),
-                            ]);
-                        }
-
                         if (
-                            $role->name === UserRole::Chairman->value &&
                             User::query()
                                 ->whereHas(
                                     'roles',
-                                    fn (Builder $query): Builder => $query
-                                        ->where('name', UserRole::Chairman->value)
-                                        ->where('guard_name', 'web')
+                                    fn ($query) => $query->where(
+                                        'name',
+                                        UserRole::Chairman->value
+                                    )
                                 )
                                 ->exists()
                         ) {
                             throw ValidationException::withMessages([
-                                'role' => __('messages.a_tenant_can_have_only_one_chairman'),
-                            ]);
-                        }
-
-                        if (
-                            $role->name === UserRole::Resident->value &&
-                            empty($data['apartment_id'])
-                        ) {
-                            throw ValidationException::withMessages([
-                                'apartment_id' => __('messages.apartment_required_for_resident'),
+                                'email' => __('messages.a_tenant_can_have_only_one_chairman'),
                             ]);
                         }
 
@@ -103,10 +97,9 @@ class ManageTenantUsers extends Page implements HasTable
                             'name' => $data['name'],
                             'email' => $data['email'],
                             'password' => $data['password'],
-                            'apartment_id' => $data['apartment_id'] ?? null,
                         ]);
 
-                        $user->syncRoles([$role]);
+                        $user->assignRole(UserRole::Chairman->value);
                     });
                 }),
         ];
@@ -114,6 +107,9 @@ class ManageTenantUsers extends Page implements HasTable
 
     public function table(Table $table): Table
     {
-        return TenantUsersTable::configure($table, $this->record);
+        return \App\Filament\Central\Resources\TenantResource\Tables\TenantUsersTable::configure(
+            $table,
+            $this->record
+        );
     }
 }

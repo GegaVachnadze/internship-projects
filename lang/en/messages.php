@@ -177,5 +177,7 @@ return [
     'paid' => 'Paid',
     'not_paid' => 'Not Paid',
     'mark_as_paid' => 'Mark as paid',
-    'no_announcements' => 'Announcements not found'
+    'no_announcements' => 'Announcements not found',
+    'building' => 'Building',
+    'buildings' => 'Buildings',
 ];
