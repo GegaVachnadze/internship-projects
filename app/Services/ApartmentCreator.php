@@ -24,6 +24,7 @@ final class ApartmentCreator
         return DB::transaction(
             function () use ($floor, $numbers): int {
                 $existing = Apartment::query()
+                    ->where('floor', $floor)
                     ->whereIn('apartment_number', $numbers)
                     ->pluck('apartment_number')
                     ->map(
@@ -40,6 +41,7 @@ final class ApartmentCreator
                             'messages.apartment_already_exists',
                             [
                                 'number' => $existing[0],
+                                'floor' => $floor,
                             ]
                         ),
                     ]);

@@ -48,7 +48,6 @@ class AdminPanelProvider extends PanelProvider
                 return 'Neighborhood';
             })
             ->login()
-            ->databaseNotifications()
             ->registration(RegisterResident::class)
             ->plugins([
                 FilamentShieldPlugin::make(),

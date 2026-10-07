@@ -4,9 +4,12 @@ namespace App\Filament\Resources\ApartmentResource\Tables;
 
 use App\Filament\Resources\ApartmentResource;
 use App\Filament\Resources\ApartmentResource\Actions\GenerateApartmentsAction;
+use App\Filament\Resources\ApartmentResource\Actions\GenerateFloorsAction;
 use App\Models\Apartment;
+use App\Models\Floor;
 use Filament\Actions\Action;
 use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -16,6 +19,8 @@ class ApartmentsTable
     {
         return $table
             ->headerActions([
+                GenerateFloorsAction::make(),
+
                 GenerateApartmentsAction::make(),
 
                 Action::make('inviteResidents')
@@ -36,15 +41,20 @@ class ApartmentsTable
                                 Action::make('copy')
                                     ->icon('heroicon-o-clipboard')
                                     ->action(
-                                        function ($state, $livewire): void {
+                                        function (
+                                            mixed $state,
+                                            mixed $livewire
+                                        ): void {
                                             $livewire->js(
-                                                "navigator.clipboard.writeText(" .
+                                                'navigator.clipboard.writeText(' .
                                                 json_encode($state) .
-                                                ")"
+                                                ')'
                                             );
 
-                                            \Filament\Notifications\Notification::make()
-                                                ->title(__('messages.link_copied'))
+                                            Notification::make()
+                                                ->title(
+                                                    __('messages.link_copied')
+                                                )
                                                 ->success()
                                                 ->send();
                                         }
@@ -55,30 +65,23 @@ class ApartmentsTable
                     ->modalCancelActionLabel(__('messages.close')),
             ])
             ->query(
-                ApartmentResource::getEloquentQuery()
-                    ->whereIn(
-                        'apartments.id',
-                        Apartment::query()
-                            ->selectRaw('MIN(id)')
-                            ->groupBy('floor')
-                    )
-                    ->select('apartments.*')
+                Floor::query()
+                    ->select('floors.*')
                     ->selectSub(
                         Apartment::query()
-                            ->from('apartments as floor_apartments')
                             ->selectRaw('COUNT(*)')
                             ->whereColumn(
-                                'floor_apartments.floor',
-                                'apartments.floor'
+                                'apartments.floor',
+                                'floors.number'
                             ),
                         'apartments_count'
                     )
+                    ->orderBy('floors.number', 'asc')
             )
             ->columns([
-                TextColumn::make('floor')
+                TextColumn::make('number')
                     ->label(__('messages.Floor'))
-                    ->numeric()
-                    ->sortable(),
+                    ->numeric(),
 
                 TextColumn::make('apartments_count')
                     ->label(__('messages.apartment_count'))
@@ -91,10 +94,10 @@ class ApartmentsTable
                     ->label(__('messages.manage_apartments'))
                     ->icon('heroicon-o-building-office-2')
                     ->url(
-                        fn (Apartment $record): string => ApartmentResource::getUrl(
+                        fn (Floor $record): string => ApartmentResource::getUrl(
                             'manage',
                             [
-                                'floor' => $record->floor,
+                                'floor' => $record->number,
                             ]
                         )
                     ),
@@ -102,3 +105,4 @@ class ApartmentsTable
             ->toolbarActions([]);
     }
 }
+

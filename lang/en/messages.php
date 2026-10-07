@@ -185,4 +185,7 @@ return [
     'close' => 'Close',
     'registration_link' => 'Registration link',
     'link_copied' => 'Link copied successfully',
+    'generate_floors' => 'Generate floors',
+    'floor_count' => 'Number of floors',
+    'floors_generated' => 'Floors generated successfully',
 ];

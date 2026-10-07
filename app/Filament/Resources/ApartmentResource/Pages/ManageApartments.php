@@ -7,6 +7,8 @@ use App\Filament\Resources\ApartmentResource;
 use App\Filament\Resources\ApartmentResource\Actions\GenerateApartmentsAction;
 use Filament\Actions\Action;
 use Filament\Actions\DeleteAction;
+use Filament\Actions\EditAction;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Pages\Page;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
@@ -48,7 +50,7 @@ class ManageApartments extends Page implements HasTable
             ->query(
                 ApartmentResource::getEloquentQuery()
                     ->where('floor', $this->floor)
-                    ->orderBy('apartment_number')
+                    ->orderByRaw('CAST(apartment_number AS UNSIGNED) ASC')
             )
             ->columns([
                 TextColumn::make('apartment_number')
@@ -57,6 +59,22 @@ class ManageApartments extends Page implements HasTable
                     ->sortable(),
             ])
             ->recordActions([
+                EditAction::make()
+                    ->form([
+                        TextInput::make('apartment_number')
+                            ->label(__('messages.Apartment Number'))
+                            ->required()
+                            ->maxLength(255),
+                    ])
+                    ->successRedirectUrl(
+                        fn (): string => ApartmentResource::getUrl(
+                            'manage',
+                            [
+                                'floor' => $this->floor,
+                            ]
+                        )
+                    ),
+
                 DeleteAction::make(),
             ])
             ->toolbarActions([]);
