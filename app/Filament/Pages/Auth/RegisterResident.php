@@ -9,6 +9,7 @@ use Filament\Auth\Pages\Register;
 use Filament\Forms\Components\Select;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Validation\ValidationException;
 
 class RegisterResident extends Register
@@ -53,15 +54,18 @@ class RegisterResident extends Register
                 fn (Get $get): array => $get('floor')
                     ? Apartment::query()
                         ->where('floor', (int) $get('floor'))
-                        ->whereDoesntHave('users', function ($query) {
-                            $query->whereHas(
-                                'roles',
-                                fn ($roleQuery) => $roleQuery->where(
-                                    'name',
-                                    UserRole::Resident->value
-                                )
-                            );
-                        })
+                        ->whereDoesntHave(
+                            'users',
+                            function (Builder $query): void {
+                                $query->whereHas(
+                                    'roles',
+                                    fn (Builder $roleQuery): Builder => $roleQuery->where(
+                                        'name',
+                                        UserRole::Resident->value
+                                    )
+                                );
+                            }
+                        )
                         ->orderBy('apartment_number')
                         ->pluck('apartment_number', 'id')
                         ->toArray()
@@ -98,7 +102,7 @@ class RegisterResident extends Register
         $apartmentAlreadyOccupied = $apartment->users()
             ->whereHas(
                 'roles',
-                fn ($query) => $query->where(
+                fn (Builder $query): Builder => $query->where(
                     'name',
                     UserRole::Resident->value
                 )
