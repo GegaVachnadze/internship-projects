@@ -2,11 +2,12 @@
 
 namespace App\Filament\Resources\AnnouncementResource\Pages;
 
-use App\Filament\Resources\AnnouncementResource;
-use App\Notifications\AnnouncementNotification;
 use App\Enums\UserRole;
+use App\Filament\Resources\AnnouncementResource;
 use App\Models\User;
+use App\Notifications\AnnouncementNotification;
 use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Database\Eloquent\Builder;
 
 class CreateAnnouncement extends CreateRecord
 {
@@ -17,9 +18,12 @@ class CreateAnnouncement extends CreateRecord
         $announcement = $this->record;
 
         $users = User::query()
-            ->whereHas('roles', function ($query): void {
-                $query->where('name', UserRole::Resident->value);
-            })
+            ->whereHas(
+                'roles',
+                function (Builder $query): void {
+                    $query->where('name', UserRole::Resident->value);
+                }
+            )
             ->get();
 
         foreach ($users as $user) {
