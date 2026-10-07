@@ -20,6 +20,21 @@ class MonthlyFeeResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    public static function getNavigationLabel(): string
+    {
+        return __('messages.Monthly Fees');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('messages.Monthly Fee');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('messages.Monthly Fees');
+    }
+
     public static function form(Schema $schema): Schema
     {
         return MonthlyFeeForm::configure($schema);

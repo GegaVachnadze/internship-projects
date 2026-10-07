@@ -48,7 +48,6 @@ return [
     'Created At' => 'Created At',
     'Announcement' => 'Announcement',
     'tenant_id_slug' => 'Tenant ID (Slug)',
-    'Monthly Fee' => 'Monthly Fee',
     'Expected' => 'Expected',
     'Collected' => 'Collected',
     'Remaining' => 'Remaining',
@@ -188,4 +187,6 @@ return [
     'generate_floors' => 'Generate floors',
     'floor_count' => 'Number of floors',
     'floors_generated' => 'Floors generated successfully',
+    'Monthly Fee' => 'Monthly Fee',
+    'Monthly Fees' => 'Monthly Fees',
 ];
