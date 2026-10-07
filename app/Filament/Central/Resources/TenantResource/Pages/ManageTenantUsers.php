@@ -12,6 +12,7 @@ use Filament\Resources\Pages\Page;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Validation\ValidationException;
 
 class ManageTenantUsers extends Page implements HasTable
@@ -81,7 +82,7 @@ class ManageTenantUsers extends Page implements HasTable
                             User::query()
                                 ->whereHas(
                                     'roles',
-                                    fn ($query) => $query->where(
+                                    fn (Builder $query): Builder => $query->where(
                                         'name',
                                         UserRole::Chairman->value
                                     )
