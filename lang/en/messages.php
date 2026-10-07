@@ -189,4 +189,9 @@ return [
     'floors_generated' => 'Floors generated successfully',
     'Monthly Fee' => 'Monthly Fee',
     'Monthly Fees' => 'Monthly Fees',
+    'chat' => 'Chat',
+    'no_messages' => 'Messages not found',
+    'write_message' => 'Write message',
+    'send' => 'Send message',
+    'building_chat' => 'Building chat',
 ];

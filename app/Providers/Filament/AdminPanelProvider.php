@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use Asignua\FilamentChat\FilamentChatPlugin;
 use App\Enums\UserRole;
 use App\Filament\Components\PanelFeatures;
 use App\Filament\Pages\Auth\RegisterResident;
@@ -51,6 +52,7 @@ class AdminPanelProvider extends PanelProvider
             ->registration(RegisterResident::class)
             ->plugins([
                 FilamentShieldPlugin::make(),
+                FilamentChatPlugin::make(),
             ])
             ->discoverResources(
                 in: app_path('Filament/Resources'),
