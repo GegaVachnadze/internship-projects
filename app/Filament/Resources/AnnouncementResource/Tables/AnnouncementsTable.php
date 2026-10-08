@@ -28,8 +28,10 @@ class AnnouncementsTable
             ])
             ->filters([])
             ->actions([
-                EditAction::make(),
-                DeleteAction::make(),
+                EditAction::make()
+                    ->label(''),
+                DeleteAction::make()
+                    ->label(''),
             ])
             ->bulkActions([
                 BulkActionGroup::make([

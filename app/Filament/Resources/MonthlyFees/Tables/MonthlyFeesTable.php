@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\MonthlyFees\Tables;
 
 use App\Models\MonthlyFee;
-use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -46,24 +45,11 @@ class MonthlyFeesTable
             ])
             ->filters([])
             ->recordActions([
-                Action::make('markAsPaid')
-                    ->label(function (MonthlyFee $record): string {
-                        return $record->is_paid
-                            ? __('messages.paid')
-                            : __('messages.mark_as_paid');
-                    })
-                    ->icon('heroicon-o-check-circle')
-                    ->color('success')
-                    ->visible(fn (MonthlyFee $record): bool => ! $record->is_paid)
-                    ->action(function (MonthlyFee $record): void {
-                        $record->update([
-                            'is_paid' => true,
-                        ]);
-                    }),
+                EditAction::make()
+                    ->label(''),
 
-                EditAction::make(),
-
-                DeleteAction::make(),
+                DeleteAction::make()
+                    ->label(''),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

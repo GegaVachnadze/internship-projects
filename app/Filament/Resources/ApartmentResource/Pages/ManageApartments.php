@@ -60,6 +60,7 @@ class ManageApartments extends Page implements HasTable
             ])
             ->recordActions([
                 EditAction::make()
+                    ->label('')
                     ->form([
                         TextInput::make('apartment_number')
                             ->label(__('messages.Apartment Number'))
@@ -75,7 +76,8 @@ class ManageApartments extends Page implements HasTable
                         )
                     ),
 
-                DeleteAction::make(),
+                DeleteAction::make()
+                    ->label(''),
             ])
             ->toolbarActions([]);
     }
