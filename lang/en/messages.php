@@ -203,4 +203,5 @@ return [
     'no_payment' => 'No payment required',
     'residents' => 'Residents',
     'no_residents' => 'No residents',
+    'create_user' => 'Create User',
 ];

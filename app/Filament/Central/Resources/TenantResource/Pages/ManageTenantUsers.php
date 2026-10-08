@@ -39,10 +39,10 @@ class ManageTenantUsers extends Page implements HasTable
     {
         return [
             Action::make('createUser')
-                ->label('Create User')
+                ->label(__('messages.create_user'))
                 ->icon('heroicon-o-user-plus')
-                ->modalHeading('Create User')
-                ->modalSubmitActionLabel('Create User')
+                ->modalHeading(__('messages.create_user'))
+                ->modalSubmitActionLabel(__('messages.create_user'))
                 ->schema([
                     TextInput::make('name')
                         ->label(__('messages.name'))
@@ -65,8 +65,8 @@ class ManageTenantUsers extends Page implements HasTable
                     Select::make('role')
                         ->label(__('messages.role'))
                         ->options(
-                            fn () => $this->record->run(
-                                fn () => Role::query()
+                            fn (): array => $this->record->run(
+                                fn (): array => Role::query()
                                     ->where('name', 'Chairman')
                                     ->where('guard_name', 'web')
                                     ->pluck('name', 'name')
@@ -78,8 +78,8 @@ class ManageTenantUsers extends Page implements HasTable
                     Select::make('apartment_id')
                         ->label(__('messages.apartment'))
                         ->options(
-                            fn () => $this->record->run(
-                                fn () => Apartment::query()
+                            fn (): array => $this->record->run(
+                                fn (): array => Apartment::query()
                                     ->orderBy('apartment_number')
                                     ->pluck('apartment_number', 'id')
                                     ->toArray()
