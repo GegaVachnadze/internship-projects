@@ -199,4 +199,6 @@ return [
     'password_confirmation' => 'Confirm password',
     'error' => 'Error',
     'floors_added_count' => 'Floors added successfully !',
+    'Payment' => 'Payment',
+    'no_payment' => 'No payment required',
 ];
