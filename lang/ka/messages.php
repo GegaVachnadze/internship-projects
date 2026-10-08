@@ -197,5 +197,6 @@ return [
     'create_chairman' => 'შექმენი ახალი თავჯდომარის ანგარიში',
     'password_confirmation' => 'პაროლის დადასტურება',
     'error' => 'შეცდომა !',
-    'floors_added_count' => 'სართულები წარმატებით დაემატა !'
+    'floors_added_count' => 'სართულები წარმატებით დაემატა !',
+    'Announcements' => 'განცხადებები',
 ];

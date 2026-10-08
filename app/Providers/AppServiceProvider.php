@@ -19,6 +19,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->app->useLangPath(base_path('lang'));
+
+        $this->loadTranslationsFrom(
+            base_path('lang/vendor/filament-chat'),
+            'filament-chat'
+        );
     }
 }

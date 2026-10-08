@@ -1,0 +1,110 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'chat' => 'Chat',
+    'type_direct' => 'Direct message',
+    'type_group' => 'Group',
+    'members' => 'Members',
+    'group_title' => 'Group name',
+    'new_direct' => 'New message',
+    'new_group' => 'New group',
+    'with' => 'With',
+    'start' => 'Start conversation',
+    'create_group' => 'Create group',
+    'manage_group' => 'Group settings',
+    'save_group' => 'Save',
+    'leave_group' => 'Leave group',
+    'leave_group_hint' => 'You will keep the existing conversation, but you will no longer be able to send messages.',
+    'left_hint' => 'You left this group — you can only view messages.',
+    'search' => 'Search conversations',
+    'empty' => 'No conversations yet.',
+    'nothing_found' => 'Nothing found',
+    'no_messages' => 'No messages yet',
+    'say_hi' => 'Write the first message.',
+    'pick' => 'Select a conversation or start a new one.',
+    'placeholder' => 'Message…',
+    'enter_hint' => 'Enter — send, Shift+Enter — new line, @ — mention',
+    'send' => 'Send',
+    'back' => 'Back to conversations',
+    'you' => 'You',
+    'unknown_user' => 'Unknown user',
+    'load_older' => 'Load older messages',
+
+    'attach_record' => 'Attach record',
+    'attachment' => 'Attachment',
+    'attach' => 'Attach',
+    'detach' => 'Remove attachment',
+
+    'reference_type' => 'Type',
+    'reference_record' => 'Record',
+    'reference_deleted' => 'Record deleted',
+    'reference_hidden' => 'You do not have access',
+
+    'drop_hint' => 'Drop here to attach a record',
+    'drop_unsupported' => 'This link does not point to a supported record.',
+    'drop_not_allowed' => 'This type of record cannot be attached.',
+    'add_current' => 'Attach current record',
+
+    'open' => 'Open chat',
+    'reply' => 'Reply',
+    'expand' => 'Open full page',
+    'close' => 'Close',
+    'pin' => 'Pin',
+
+    'discuss' => 'Discuss in chat',
+    'discuss_to' => 'Send to',
+    'discuss_groups' => 'Groups',
+    'discuss_people' => 'People',
+
+    'message' => 'Message',
+    'sent' => 'Sent to chat',
+
+    'error_self' => 'You cannot start a conversation with yourself.',
+    'error_not_group' => 'This is not a group conversation.',
+    'error_title' => 'Enter a group name.',
+    'error_members' => 'The group needs at least one other member.',
+    'error_empty' => 'Cannot send an empty message.',
+    'error_too_long' => 'The message is too long.',
+    'error_groups_off' => 'Group conversations are disabled.',
+    'error_reactions_off' => 'Reactions are disabled.',
+    'error_not_member' => 'You are not a member of this conversation.',
+
+    'status_sent' => 'Sent',
+    'status_read' => 'Read',
+    'status_read_all' => 'Read by everyone',
+    'status_unread_by' => 'Unread by: :names',
+
+    'react' => 'Reaction',
+    'reaction_heart' => 'Love',
+    'reaction_like' => 'Like',
+    'reaction_laugh' => 'Laugh',
+    'reaction_wow' => 'Wow',
+    'reaction_sad' => 'Sad',
+    'reaction_pray' => 'Thanks',
+
+    'notification_title' => ':who sent you a message',
+    'notification_group_title' => ':who in group ":title"',
+    'mention_title' => ':who mentioned you',
+    'mention_group_title' => ':who mentioned you in group ":title"',
+
+    'edit' => 'Edit',
+    'editing' => 'Editing message',
+    'cancel_edit' => 'Cancel editing',
+    'edited' => 'Edited',
+    'save_edit' => 'Save',
+
+    'error_cannot_edit' => 'This message can no longer be edited.',
+    'mention_hint' => 'Type @ to mention a user',
+
+    'replying_to' => 'Replying to',
+    'cancel_reply' => 'Cancel reply',
+    'reply_unknown' => 'Message unavailable',
+
+    'new_messages' => 'New messages',
+
+    'format_time' => 'H:i',
+    'format_day' => 'M j',
+    'format_date' => 'F j, Y',
+];
