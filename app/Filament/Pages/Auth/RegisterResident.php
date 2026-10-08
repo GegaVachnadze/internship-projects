@@ -4,10 +4,10 @@ namespace App\Filament\Pages\Auth;
 
 use App\Enums\UserRole;
 use App\Models\Apartment;
+use App\Models\Floor;
 use App\Models\User;
 use Filament\Auth\Pages\Register;
-use Filament\Forms\Components\Select;
-use Filament\Schemas\Components\Utilities\Get;
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Validation\ValidationException;
@@ -27,49 +27,30 @@ class RegisterResident extends Register
                     ? []
                     : [
                         $this->getFloorFormComponent(),
-                        $this->getApartmentFormComponent(),
+                        $this->getApartmentNumberFormComponent(),
                     ]),
             ]);
     }
 
-    protected function getFloorFormComponent(): Select
+    protected function getFloorFormComponent(): TextInput
     {
-        return Select::make('floor')
+        return TextInput::make('floor')
             ->label(__('messages.floor'))
-            ->options(
-                fn (): array => Apartment::query()
-                    ->select('floor')
-                    ->distinct()
-                    ->orderBy('floor')
-                    ->pluck('floor', 'floor')
-                    ->toArray()
-            )
-            ->live()
+            ->numeric()
+            ->minValue(1)
             ->required()
             ->validationMessages([
                 'required' => __('messages.floor_required'),
             ]);
     }
 
-    protected function getApartmentFormComponent(): Select
+    protected function getApartmentNumberFormComponent(): TextInput
     {
-        return Select::make('apartment_id')
+        return TextInput::make('apartment_number')
             ->label(__('messages.apartment'))
-            ->options(
-                fn (Get $get): array => $get('floor')
-                    ? Apartment::query()
-                        ->where('floor', (int) $get('floor'))
-                        ->orderBy('apartment_number')
-                        ->pluck('apartment_number', 'id')
-                        ->toArray()
-                    : []
-            )
-            ->searchable()
-            ->preload()
+            ->numeric()
+            ->minValue(1)
             ->required()
-            ->disabled(
-                fn (Get $get): bool => blank($get('floor'))
-            )
             ->validationMessages([
                 'required' => __('messages.apartment_required'),
             ]);
@@ -93,22 +74,25 @@ class RegisterResident extends Register
 
         $floor = (int) $data['floor'];
 
-        $apartmentId = (int) $data['apartment_id'];
+        $apartmentNumber = (string) $data['apartment_number'];
 
-        $apartment = Apartment::query()
-            ->whereKey($apartmentId)
-            ->where('floor', $floor)
-            ->first();
+        Floor::query()->firstOrCreate([
+            'number' => $floor,
+        ]);
 
-        if (! $apartment) {
-            throw ValidationException::withMessages([
-                'apartment_id' => __('messages.invalid_apartment'),
-            ]);
-        }
+        $apartment = Apartment::query()->firstOrCreate(
+            [
+                'floor' => $floor,
+                'apartment_number' => $apartmentNumber,
+            ],
+        );
 
-        unset($data['floor']);
+        unset($data['floor'], $data['apartment_number']);
 
-        $user = User::create($data);
+        $user = User::create([
+            ...$data,
+            'apartment_id' => $apartment->id,
+        ]);
 
         $user->assignRole(UserRole::Resident->value);
 
