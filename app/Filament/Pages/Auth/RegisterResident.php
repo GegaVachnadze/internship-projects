@@ -5,8 +5,8 @@ namespace App\Filament\Pages\Auth;
 use App\Enums\UserRole;
 use App\Models\Apartment;
 use App\Models\User;
-use Filament\Forms\Components\Select;
 use Filament\Auth\Pages\Register;
+use Filament\Forms\Components\Select;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
 use Illuminate\Database\Eloquent\Builder;
@@ -59,18 +59,6 @@ class RegisterResident extends Register
                 fn (Get $get): array => $get('floor')
                     ? Apartment::query()
                         ->where('floor', (int) $get('floor'))
-                        ->whereDoesntHave(
-                            'users',
-                            function (Builder $query): void {
-                                $query->whereHas(
-                                    'roles',
-                                    fn (Builder $roleQuery): Builder => $roleQuery->where(
-                                        'name',
-                                        UserRole::Resident->value
-                                    )
-                                );
-                            }
-                        )
                         ->orderBy('apartment_number')
                         ->pluck('apartment_number', 'id')
                         ->toArray()
@@ -113,22 +101,6 @@ class RegisterResident extends Register
             ->first();
 
         if (! $apartment) {
-            throw ValidationException::withMessages([
-                'apartment_id' => __('messages.invalid_apartment'),
-            ]);
-        }
-
-        $apartmentAlreadyOccupied = $apartment->users()
-            ->whereHas(
-                'roles',
-                fn (Builder $query): Builder => $query->where(
-                    'name',
-                    UserRole::Resident->value
-                )
-            )
-            ->exists();
-
-        if ($apartmentAlreadyOccupied) {
             throw ValidationException::withMessages([
                 'apartment_id' => __('messages.invalid_apartment'),
             ]);
