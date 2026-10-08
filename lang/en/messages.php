@@ -204,4 +204,6 @@ return [
     'residents' => 'Residents',
     'no_residents' => 'No residents',
     'create_user' => 'Create User',
+    'monthly_fee_paid_successfully' => 'Payment completed successfully',
+    'monthly_fee_not_found' => 'No payable monthly fee was found',
 ];

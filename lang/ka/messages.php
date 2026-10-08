@@ -206,4 +206,6 @@ return [
     'residents' => 'მაცხოვრებლები',
     'no_residents' => 'მაცხოვრებლები არ არიან',
     'create_user' => 'მომხმარებლის შექმნა',
+    'monthly_fee_paid_successfully' => 'გადახდა წარმატებულად შესრულდა !',
+    'monthly_fee_not_found' => 'გადასახდელი ვერ მოიძებნა',
 ];

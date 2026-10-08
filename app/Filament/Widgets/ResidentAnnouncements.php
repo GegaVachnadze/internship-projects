@@ -5,9 +5,9 @@ namespace App\Filament\Widgets;
 use App\Enums\UserRole;
 use App\Models\Announcement;
 use App\Models\MonthlyFee;
+use Carbon\Carbon;
 use Filament\Notifications\Notification;
 use Filament\Widgets\Widget;
-use Carbon\Carbon;
 
 class ResidentAnnouncements extends Widget
 {
@@ -65,7 +65,7 @@ class ResidentAnnouncements extends Widget
 
         if (! $monthlyFee) {
             Notification::make()
-                ->title('გადასახდელი გადასახადი ვერ მოიძებნა')
+                ->title(__('messages.monthly_fee_not_found'))
                 ->danger()
                 ->send();
 
@@ -77,7 +77,7 @@ class ResidentAnnouncements extends Widget
         ]);
 
         Notification::make()
-            ->title('გადასახადი წარმატებით გადაიხადეთ')
+            ->title(__('messages.monthly_fee_paid_successfully'))
             ->success()
             ->send();
     }
