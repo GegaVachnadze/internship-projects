@@ -35,25 +35,13 @@
                         $announcement->requires_payment &&
                         auth()->user()?->hasRole(\App\Enums\UserRole::Resident->value)
                     )
-                        <div class="mt-6 flex flex-wrap items-center gap-2">
+                        <div class="mt-6">
                             <x-filament::button
-                                tag="a"
                                 color="primary"
-                                icon="heroicon-o-building-library"
-                                href="https://bogpay.ge/ka/gadaricxva"
-                                target="_blank"
+                                icon="heroicon-o-credit-card"
+                                wire:click="payMonthlyFee"
                             >
-                                {{ __('messages.bank_of_georgia') }}
-                            </x-filament::button>
-
-                            <x-filament::button
-                                tag="a"
-                                color="info"
-                                icon="heroicon-o-building-library"
-                                href="https://tbcpay.ge/ka/transfers"
-                                target="_blank"
-                            >
-                                {{ __('messages.tbc') }}
+                                {{ app()->getLocale() === 'ka' ? 'გადახდა' : 'Pay' }}
                             </x-filament::button>
                         </div>
                     @endif
