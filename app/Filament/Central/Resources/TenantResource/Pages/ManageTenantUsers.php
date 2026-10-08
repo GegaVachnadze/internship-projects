@@ -2,8 +2,10 @@
 
 namespace App\Filament\Central\Resources\TenantResource\Pages;
 
+use App\Enums\UserRole;
 use App\Filament\Central\Resources\TenantResource;
 use App\Models\Apartment;
+use App\Models\Role;
 use App\Models\User;
 use Filament\Actions\Action;
 use Filament\Forms\Components\Select;
@@ -14,7 +16,6 @@ use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Illuminate\Validation\ValidationException;
-use Spatie\Permission\Models\Role;
 
 class ManageTenantUsers extends Page implements HasTable
 {
@@ -67,8 +68,7 @@ class ManageTenantUsers extends Page implements HasTable
                         ->options(
                             fn (): array => $this->record->run(
                                 fn (): array => Role::query()
-                                    ->where('name', 'Chairman')
-                                    ->where('guard_name', 'web')
+                                    ->chairman()
                                     ->pluck('name', 'name')
                                     ->toArray()
                             )
@@ -102,9 +102,8 @@ class ManageTenantUsers extends Page implements HasTable
                         }
 
                         $role = Role::query()
+                            ->chairman()
                             ->where('name', $data['role'])
-                            ->where('guard_name', 'web')
-                            ->whereIn('name', ['Chairman'])
                             ->first();
 
                         if (! $role) {
