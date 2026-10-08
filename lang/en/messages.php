@@ -194,4 +194,9 @@ return [
     'write_message' => 'Write message',
     'send' => 'Send message',
     'building_chat' => 'Building chat',
+    'edit_user' => 'Edit user',
+    'create_chairman' => 'Create new chairman',
+    'password_confirmation' => 'Confirm password',
+    'error' => 'Error',
+    'floors_added_count' => 'Floors added successfully !'
 ];
