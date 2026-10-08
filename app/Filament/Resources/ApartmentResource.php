@@ -17,6 +17,8 @@ class ApartmentResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-home';
 
+    protected static bool $hasTitleCaseModelLabel = false;
+
     public static function getNavigationLabel(): string
     {
         return __('messages.Apartments');

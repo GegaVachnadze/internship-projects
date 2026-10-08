@@ -17,6 +17,8 @@ class TenantResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static bool $hasTitleCaseModelLabel = false;
+
     public static function getNavigationLabel(): string
     {
         return __('messages.buildings');

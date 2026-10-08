@@ -31,52 +31,47 @@
                         {!! $announcement->body !!}
                     </div>
 
-                    <div class="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                        <p class="text-xs text-gray-400">
-                            {{ $announcement->created_at?->format('d.m.Y H:i') }}
-                        </p>
+                    @if (
+                        $announcement->requires_payment &&
+                        auth()->user()?->hasRole(\App\Enums\UserRole::Resident->value)
+                    )
+                        <div class="mt-6 flex flex-wrap items-center gap-2">
+                            <x-filament::button
+                                tag="a"
+                                color="primary"
+                                icon="heroicon-o-building-library"
+                                href="https://bogpay.ge/ka/gadaricxva"
+                                target="_blank"
+                            >
+                                {{ __('messages.bank_of_georgia') }}
+                            </x-filament::button>
 
-                        <div class="flex flex-wrap items-center gap-2">
-
-                            @if (
-                                $announcement->requires_payment &&
-                                auth()->user()?->hasRole(\App\Enums\UserRole::Resident->value)
-                            )
-                                <x-filament::button
-                                    tag="a"
-                                    color="primary"
-                                    icon="heroicon-o-building-library"
-                                    href="https://bogpay.ge/ka/gadaricxva"
-                                    target="_blank"
-                                >
-                                    {{ __('messages.bank_of_georgia') }}
-                                </x-filament::button>
-
-                                <x-filament::button
-                                    tag="a"
-                                    color="info"
-                                    icon="heroicon-o-building-library"
-                                    href="https://tbcpay.ge/ka/transfers"
-                                    target="_blank"
-                                >
-                                    {{ __('messages.tbc') }}
-                                </x-filament::button>
-                            @endif
-
-                            @if (
-                                auth()->user()?->hasRole(\App\Enums\UserRole::Chairman->value)
-                            )
-                                <x-filament::button
-                                    color="danger"
-                                    icon="heroicon-o-trash"
-                                    wire:click="deleteAnnouncement({{ $announcement->id }})"
-                                >
-                                    {{ __('messages.delete') }}
-                                </x-filament::button>
-                            @endif
-
+                            <x-filament::button
+                                tag="a"
+                                color="info"
+                                icon="heroicon-o-building-library"
+                                href="https://tbcpay.ge/ka/transfers"
+                                target="_blank"
+                            >
+                                {{ __('messages.tbc') }}
+                            </x-filament::button>
                         </div>
-                    </div>
+                    @endif
+
+                    @if (
+                        auth()->user()?->hasRole(\App\Enums\UserRole::Chairman->value)
+                    )
+                        <div class="flex justify-end pt-10">
+                            <x-filament::button
+                                color="danger"
+                                icon="heroicon-o-trash"
+                                wire:click="deleteAnnouncement({{ $announcement->id }})"
+                                aria-label="{{ __('messages.delete') }}"
+                                tooltip="{{ __('messages.delete') }}"
+                            >
+                            </x-filament::button>
+                        </div>
+                    @endif
                 </x-filament::section>
             </div>
 

@@ -8,7 +8,7 @@ return [
     'type_group' => 'ჯგუფი',
     'members' => 'წევრები',
     'group_title' => 'ჯგუფის სახელი',
-    'new_direct' => 'ახალი შეტყობინება',
+    'new_direct' => 'ახალი ჩატი',
     'new_group' => 'ახალი ჯგუფი',
     'with' => 'ვის',
     'start' => 'საუბრის დაწყება',
@@ -102,7 +102,7 @@ return [
     'cancel_reply' => 'პასუხის გაუქმება',
     'reply_unknown' => 'შეტყობინება მიუწვდომელია',
 
-    'new_messages' => 'ახალი შეტყობინებები',
+    'new_messages' => 'ახალი ჩატი',
 
     'format_time' => 'H:i',
     'format_day' => 'M j',

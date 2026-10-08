@@ -8,7 +8,7 @@ return [
     'type_group' => 'Group',
     'members' => 'Members',
     'group_title' => 'Group name',
-    'new_direct' => 'New message',
+    'new_direct' => 'New chat',
     'new_group' => 'New group',
     'with' => 'With',
     'start' => 'Start conversation',
@@ -102,7 +102,7 @@ return [
     'cancel_reply' => 'Cancel reply',
     'reply_unknown' => 'Message unavailable',
 
-    'new_messages' => 'New messages',
+    'new_messages' => 'New chat',
 
     'format_time' => 'H:i',
     'format_day' => 'M j',

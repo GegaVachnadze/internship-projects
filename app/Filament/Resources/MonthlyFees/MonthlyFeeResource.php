@@ -18,6 +18,8 @@ class MonthlyFeeResource extends Resource
 {
     protected static ?string $model = MonthlyFee::class;
 
+    protected static bool $hasTitleCaseModelLabel = false;
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     public static function getNavigationLabel(): string

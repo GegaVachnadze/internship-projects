@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+
 use App\Filament\Resources\AnnouncementResource\Pages;
 use App\Filament\Resources\AnnouncementResource\Schemas\AnnouncementForm;
 use App\Filament\Resources\AnnouncementResource\Tables\AnnouncementsTable;
@@ -17,7 +18,8 @@ class AnnouncementResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-megaphone';
 
-
+    protected static bool $hasTitleCaseModelLabel = false;
+    
     public static function getNavigationLabel(): string
     {
         return __('messages.Announcements');

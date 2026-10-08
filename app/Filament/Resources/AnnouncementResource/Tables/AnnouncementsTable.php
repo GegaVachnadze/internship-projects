@@ -19,12 +19,6 @@ class AnnouncementsTable
                     ->label(__('messages.Title'))
                     ->searchable()
                     ->sortable(),
-
-                TextColumn::make('created_at')
-                    ->label(__('messages.Created At'))
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([])
             ->actions([

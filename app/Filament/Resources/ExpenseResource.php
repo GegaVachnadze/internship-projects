@@ -15,6 +15,8 @@ class ExpenseResource extends Resource
 {
     protected static ?string $model = Expense::class;
 
+    protected static bool $hasTitleCaseModelLabel = false;
+
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-banknotes';
 
     public static function getNavigationLabel(): string
