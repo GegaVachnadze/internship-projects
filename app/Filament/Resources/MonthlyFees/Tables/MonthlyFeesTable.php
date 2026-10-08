@@ -8,6 +8,7 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class MonthlyFeesTable
@@ -43,7 +44,14 @@ class MonthlyFeesTable
                         return $record->is_paid ? 'success' : 'danger';
                     }),
             ])
-            ->filters([])
+            ->filters([
+                SelectFilter::make('is_paid')
+                    ->label(__('messages.Status'))
+                    ->options([
+                        '1' => __('messages.paid'),
+                        '0' => __('messages.not_paid'),
+                    ]),
+            ])
             ->recordActions([
                 EditAction::make()
                     ->label(''),
