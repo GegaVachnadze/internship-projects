@@ -50,6 +50,7 @@ class ManageApartments extends Page implements HasTable
             ->query(
                 ApartmentResource::getEloquentQuery()
                     ->where('floor', $this->floor)
+                    ->with('users')
                     ->orderByRaw('CAST(apartment_number AS UNSIGNED) ASC')
             )
             ->columns([
@@ -57,6 +58,11 @@ class ManageApartments extends Page implements HasTable
                     ->label(__('messages.Apartment Number'))
                     ->numeric()
                     ->sortable(),
+
+                TextColumn::make('users.name')
+                    ->label(__('messages.residents'))
+                    ->listWithLineBreaks()
+                    ->placeholder(__('messages.no_residents')),
             ])
             ->recordActions([
                 EditAction::make()

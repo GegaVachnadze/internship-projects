@@ -201,4 +201,6 @@ return [
     'floors_added_count' => 'Floors added successfully !',
     'Payment' => 'Payment',
     'no_payment' => 'No payment required',
+    'residents' => 'Residents',
+    'no_residents' => 'No residents',
 ];
